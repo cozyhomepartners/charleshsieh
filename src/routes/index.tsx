@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowUpRight, Mail, Linkedin, Github, Menu, X, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, Linkedin, Github, Menu, X, Phone, Plane } from "lucide-react";
 import familyPhoto from "@/assets/charles-family.jpg";
 
 const title = "Charles Hsieh — Revenue Leader & Founding GTM Operator";
@@ -75,94 +75,149 @@ const capabilities = [
   },
 ];
 
-type Role = {
-  company: string;
-  logo?: string;
+type Position = {
   title?: string;
   period: string;
-  bullets: string[];
+  bullets: React.ReactNode[];
 };
 
-const experience: Role[] = [
+type Company = {
+  company: string;
+  logo?: string;
+  icon?: boolean;
+  roles: Position[];
+};
+
+const experience: Company[] = [
   {
     company: "Blind — anonymous professional network (15M+ users)",
     logo: "/img/icons/icon_blind.png",
-    title: "Vice President of Sales and Product, North America",
-    period: "Feb 2023 – May 2026",
-    bullets: [
-      "Designed, built, and sold new SaaS and Ads products for the US market — scaled $0 to $6M ARR in two years, landing 50 large logos including Rivian, Amazon, Chewy, and Salesforce.",
-      "Led a 15-person GTM team plus four dotted-line software engineers.",
+    roles: [
+      {
+        title: "Advisor to CEO",
+        period: "Jun 2026 – Present",
+        bullets: [
+          "Advising the CEO on go-to-market strategy, product direction, and US market expansion.",
+        ],
+      },
+      {
+        title: "Vice President of Sales and Product, North America",
+        period: "Feb 2023 – May 2026",
+        bullets: [
+          "Designed, built, and sold new SaaS and Ads products for the US market — scaled $0 to $6M ARR in two years, landing 50 large logos including Rivian, Amazon, Chewy, and Salesforce.",
+          "Led a 15-person GTM team plus four dotted-line software engineers.",
+        ],
+      },
     ],
   },
   {
     company: "Switchboard Software",
     logo: "/img/icons/icon_switchboard.png",
-    title: "Vice President of Sales",
-    period: "Sep 2022 – Jan 2023",
-    bullets: [
-      "Closed $4M total ARR in 2022 ($1M in Q4), leading a 10-person GTM team of AEs, SDR, solutions engineering, and sales ops.",
+    roles: [
+      {
+        title: "Vice President of Sales",
+        period: "Sep 2022 – Jan 2023",
+        bullets: [
+          "Closed $4M total ARR in 2022 ($1M in Q4), leading a 10-person GTM team of AEs, SDR, solutions engineering, and sales ops.",
+        ],
+      },
     ],
   },
   {
     company: "Sabbatical",
-    period: "Oct 2021 – Aug 2022",
-    bullets: [
-      "Twelve months of family travel before the kids turned school age — documented at Hsiehnanigans.",
+    icon: true,
+    roles: [
+      {
+        period: "Oct 2021 – Aug 2022",
+        bullets: [
+          <>
+            Twelve months of family travel before the kids turned school age — documented at{" "}
+            <a
+              href="https://www.youtube.com/@hsiehnanigans"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-0.5 text-accent hover:underline"
+            >
+              Hsiehnanigans
+              <ArrowUpRight className="size-3.5" />
+            </a>
+            .
+          </>,
+        ],
+      },
     ],
   },
   {
     company: "Google",
     logo: "/img/icons/icon_google.png",
-    title: "Head of Sales, Google Workspace Essentials",
-    period: "Sep 2019 – Sep 2021",
-    bullets: [
-      "Grew an incubation SaaS product from $0 to $8M ARR in two years and closed 50+ enterprise logos before it was absorbed by Google Cloud Sales (8,000+ reps and partners).",
-      "Led an 8-person sales team (AEs, SDRs, ops), reporting to the VP of Product.",
-    ],
-  },
-  {
-    company: "Google",
-    logo: "/img/icons/icon_google.png",
-    title: "Head of Sales, Hire by Google",
-    period: "Sep 2016 – Aug 2019",
-    bullets: [
-      "Took a new product from $0 to $25M ARR and 3,000+ customers across idea, beta, and public launch in three years.",
-      "Led a 50-person global team; promoted twice in three years from first sales rep to global head of sales.",
+    roles: [
+      {
+        title: "Head of Sales, Google Workspace Essentials",
+        period: "Sep 2019 – Sep 2021",
+        bullets: [
+          "Grew an incubation SaaS product from $0 to $8M ARR in two years and closed 50+ enterprise logos before it was absorbed by Google Cloud Sales (8,000+ reps and partners).",
+          "Led an 8-person sales team (AEs, SDRs, ops), reporting to the VP of Product.",
+        ],
+      },
+      {
+        title: "Head of Sales, Hire by Google",
+        period: "Sep 2016 – Aug 2019",
+        bullets: [
+          "Took a new product from $0 to $25M ARR and 3,000+ customers across idea, beta, and public launch in three years.",
+          "Led a 50-person global team; promoted twice in three years from first sales rep to global head of sales.",
+        ],
+      },
     ],
   },
   {
     company: "HackerRank",
     logo: "/img/icons/icon_hackerrank.png",
-    title: "Director, Solutions Engineering",
-    period: "Jan 2014 – Jul 2016",
-    bullets: [
-      "Generated and supported $5.8M (2014), $10M (2015), and $7M (2016 H1) in sales, leading 14 solutions engineers across the US and India.",
+    roles: [
+      {
+        title: "Director, Solutions Engineering",
+        period: "Jan 2014 – Jul 2016",
+        bullets: [
+          "Generated and supported $5.8M (2014), $10M (2015), and $7M (2016 H1) in sales, leading 14 solutions engineers across the US and India.",
+        ],
+      },
     ],
   },
   {
     company: "LinkedIn",
     logo: "/img/icons/icon_linkedin.png",
-    title: "Senior Enterprise Account Manager",
-    period: "Feb 2010 – Jun 2013",
-    bullets: [
-      "President's Club 2010, 2011, 2012 — 179%, 140%, and 159% of quota.",
-      "Global Sales Rep of the Year 2010 and 2011. First global Account Manager hire; promoted three times in three years.",
+    roles: [
+      {
+        title: "Senior Enterprise Account Manager",
+        period: "Feb 2010 – Jun 2013",
+        bullets: [
+          "President's Club 2010, 2011, 2012 — 179%, 140%, and 159% of quota.",
+          "Global Sales Rep of the Year 2010 and 2011. First global Account Manager hire; promoted three times in three years.",
+        ],
+      },
     ],
   },
   {
     company: "Agilent Technologies",
     logo: "/img/icons/icon_agilent.png",
-    title: "Strategic Account Executive",
-    period: "Jul 2007 – Nov 2009",
-    bullets: ["135% of quota in 2008 (President's Club) and 115% of quota in 2009."],
+    roles: [
+      {
+        title: "Strategic Account Executive",
+        period: "Jul 2007 – Nov 2009",
+        bullets: ["135% of quota in 2008 (President's Club) and 115% of quota in 2009."],
+      },
+    ],
   },
   {
     company: "United Technologies",
     logo: "/img/icons/icon_united_technologies.png",
-    title: "Software Engineer",
-    period: "Jul 2006 – Jun 2007",
-    bullets: [
-      "Built a C++ simulation of all Boeing 787 system errors, cutting testing costs by $2M annually.",
+    roles: [
+      {
+        title: "Software Engineer",
+        period: "Jul 2006 – Jun 2007",
+        bullets: [
+          "Built a C++ simulation of all Boeing 787 system errors, cutting testing costs by $2M annually.",
+        ],
+      },
     ],
   },
 ];
@@ -204,13 +259,6 @@ const ventures = [
         href: "https://wwwhatsnew.com/2015/06/18/vacaybug-una-nueva-plataforma-para-registrar-nuestros-viajes/",
       },
     ] as { label: string; href: string }[] | undefined,
-  },
-  {
-    name: "3degrees",
-    period: "2016",
-    body: "iOS dating app where everyone is a matchmaker — leveraging third-degree connections for more validated matches.",
-    href: null,
-    image: "/img/3degrees.png",
   },
 ];
 
