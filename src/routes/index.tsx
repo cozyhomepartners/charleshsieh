@@ -45,7 +45,7 @@ export const Route = createFileRoute("/")({
 });
 
 const ventureLinks = [
-  { label: "Scale GTM", href: null as string | null },
+  { label: "Scale GTM", href: "https://tryscalegtm.com" },
   { label: "Cozy Home", href: "https://www.cozyhomepartners.com/" },
   { label: "Roofolio", href: "https://roofolio.ai" },
 ];
@@ -54,7 +54,7 @@ const sectionLinks = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Ventures", href: "#ventures" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "https://calendly.com/charleschsieh/30-minutes" },
 ];
 
 const capabilities = [
