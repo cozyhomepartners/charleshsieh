@@ -333,7 +333,7 @@ function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4">
           <a href="#top" className="font-display text-sm font-semibold tracking-tight whitespace-nowrap">
             Charles Hsieh
           </a>
@@ -418,7 +418,7 @@ function Home() {
       </header>
 
       <main id="top" className="mx-auto max-w-6xl px-5">
-        <section className="grid items-center gap-10 py-16 md:grid-cols-[1.15fr_0.85fr] md:py-24">
+        <section className="grid items-center gap-10 py-10 md:grid-cols-[1.15fr_0.85fr] md:py-14">
           <div>
             <p className="font-display text-xs uppercase tracking-[0.28em] text-accent">
               San Francisco, CA
@@ -463,7 +463,7 @@ function Home() {
 
         <section className="pb-14 pt-2">
           <SectionHeading id="about" label="About" />
-          <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
+          <p className="max-w-4xl text-base leading-relaxed text-muted-foreground">
             I moved from Taiwan when I was twelve, chasing the American dream. I studied
             engineering at Illinois, spent two decades building revenue teams at companies from
             seed-stage to Google-scale, and I'm a proud husband and father of two.
@@ -679,24 +679,6 @@ function Home() {
               className="inline-flex items-center gap-2 transition-colors hover:text-accent"
             >
               <Github className="size-4" /> github.com/cozyhomepartners
-            </a>
-          </div>
-          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
-            <a
-              href="https://www.youtube.com/@hsiehnanigans"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 hover:text-foreground"
-            >
-              Travel vlog <ArrowUpRight className="size-3.5" />
-            </a>
-            <a
-              href="https://medium.com/@chsieh6"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 hover:text-foreground"
-            >
-              Medium <ArrowUpRight className="size-3.5" />
             </a>
           </div>
           <p className="mt-12 text-xs text-muted-foreground">
