@@ -106,7 +106,7 @@ function FractionalSalesLeadership() {
             Fractional sales leadership
           </p>
           <h1 className="mt-5 max-w-4xl font-display text-4xl font-semibold leading-[1.08] tracking-tight md:text-5xl">
-            A revenue leader who has done it four times — without the full-time hire
+            A revenue leader who has done it four times, without the full-time hire
             <span className="mt-4 block text-lg font-medium leading-snug tracking-normal text-muted-foreground md:text-xl">
               Fractional VP of Sales and GTM leadership for seed to Series B founders.
             </span>
@@ -114,7 +114,7 @@ function FractionalSalesLeadership() {
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
             Most startups hire a VP of Sales too early, too expensively, and against a motion nobody
             has proven yet. I come in part-time to prove the motion, build the playbook, hire the
-            team that runs it — and then hand it over.
+            team that runs it, and then hand it over.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
