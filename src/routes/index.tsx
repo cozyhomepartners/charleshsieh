@@ -434,7 +434,9 @@ function Home() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="mailto:charles.hsieh6@gmail.com"
+                href="https://calendly.com/charleschsieh/30-minutes"
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
               >
                 <Mail className="size-4" /> Get in touch
