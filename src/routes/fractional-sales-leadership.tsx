@@ -3,7 +3,7 @@ import { ArrowUpRight, Mail, Check } from "lucide-react";
 
 const title = "Fractional Sales Leadership for Startups | Charles Hsieh";
 const description =
-  "Fractional VP of Sales and GTM leadership for seed to Series B startups: first sales hires, repeatable pipeline, pricing, and playbooks that scale from $0 to $25M+ ARR.";
+  "Fractional VP of Sales and GTM leadership for seed to Series B startups: first sales hires, repeatable pipeline, pricing, and playbooks that scale from $0 to double digit millions in ARR.";
 const url = "https://charleshsieh.com/fractional-sales-leadership";
 
 export const Route = createFileRoute("/fractional-sales-leadership")({
@@ -62,11 +62,11 @@ const engagements = [
 ];
 
 const proof = [
-  "Scaled products from $0 to $6M, $8M, and $25M+ ARR",
+  "Scaled products from $0 to $6M, $8M, and double digit millions in ARR",
   "Built GTM orgs from first hire to 50+ across AE, SDR, SE, and ops",
   "Landed enterprise logos including Rivian, Amazon, Chewy, and Salesforce",
   "President's Club and Global Rep of the Year at LinkedIn",
-  "Engineering background — fluent with product and technical buyers",
+  "Engineering background, fluent with product and technical buyers",
 ];
 
 const process = [
