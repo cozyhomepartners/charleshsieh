@@ -147,7 +147,7 @@ function Home() {
       </div>
       <div className="col-lg-8 sr-work">
       <p><b className="t">Advisor</b><br/>
-      Pathrise <span>2021 - CURRENT</b><br/>
+      Pathrise <span>2021 - CURRENT</span><br/>
       </p>
       <p><span className="more">YC18. Pathrise is an online program for tech professionals that provides 1-on-1 mentorship, training and advice to help you land your next job.</span></p>
       </div>
@@ -156,7 +156,7 @@ function Home() {
       </div>
       <div className="col-lg-8 sr-work">
       <p><b className="t">Investor / Advisor</b><br/>
-      Welcome <span>2019 - 2021</b><br/>
+      Welcome <span>2019 - 2021</span><br/>
       </p>
       <p><span className="more">YC20. Welcome is on a mission to provide access to jaw-dropping virtual experiences that connect, transport and engage people like never before.</span></p>
       </div>
@@ -165,7 +165,7 @@ function Home() {
       </div>
       <div className="col-lg-8 sr-work">
       <p><b className="t">Advisor</b><br/>
-      Byteboard <span>2019 - 2021</b><br/>
+      Byteboard <span>2019 - 2021</span><br/>
       </p>
       <p><span className="more">Backed by Google. Byteboard allows technical interview experience to be more effective, efficient, and equitable for all.</span></p>
       </div>
@@ -174,7 +174,7 @@ function Home() {
       </div>
       <div className="col-lg-8 sr-work">
       <p><b className="t">Advisor</b><br/>
-      Agave <span>2019 - 2020</b><br/>
+      Agave <span>2019 - 2020</span><br/>
       </p>
       <p><span className="more">Backed by SV Angel and Box Group. The free modern, open hiring platform to help you source, track, nurture, and close the best talent.</span></p>
       </div>
@@ -183,7 +183,7 @@ function Home() {
       </div>
       <div className="col-lg-8 sr-work">
       <p><b className="t">Advisor</b><br/>
-      CodingDojo <span>2017 - 2020</b><br/>
+      CodingDojo <span>2017 - 2020</span><br/>
       </p>
       <p><span className="more">Backed by Ulu Ventures. Software is eating the world, and Coding Dojo is changing how people learn software. Coding Dojo is one of the highest-rated coding bootcamps in the industry for both in-person and online learning.</span></p>
       </div>
@@ -192,7 +192,7 @@ function Home() {
       </div>
       <div className="col-lg-8 sr-work">
       <p><b className="t">Advisor</b><br/>
-      GrowingIO <span>2015 - 2018</b><br/>
+      GrowingIO <span>2015 - 2018</span><br/>
       </p>
       <p><span className="more">Backed by Greylock, NEA and Matrix Partner. GrowingIO is an end-to-end web and mobile analytics platform that provides predictive and actionable business intelligence.</span></p>
       </div>
