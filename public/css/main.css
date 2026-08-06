@@ -461,3 +461,8 @@ sm {
 	margin-bottom: 40px;
 	text-align: center;
 }
+
+.desc span.more {
+	float: none;
+	font-size: inherit;
+}
