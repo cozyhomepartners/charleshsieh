@@ -133,7 +133,7 @@ const experience: Company[] = [
         period: "Oct 2021 – Aug 2022",
         bullets: [
           <>
-            Twelve months of family travel before the kids turned school age — documented at{" "}
+            Twelve months of family travel before the kids turned school age, documented at{" "}
             <a
               href="https://www.youtube.com/@hsiehnanigans"
               target="_blank"
