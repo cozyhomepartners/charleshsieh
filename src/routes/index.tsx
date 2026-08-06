@@ -172,6 +172,7 @@ const ventures = [
     period: "2026 – Present",
     body: "Fractional go-to-market leadership: V1 playbooks, pricing, and first sales hires for founder-led teams.",
     href: null as string | null,
+    comingSoon: true,
     image: null as string | null,
   },
   {
@@ -275,11 +276,11 @@ function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-          <a href="#top" className="font-display text-sm font-semibold tracking-tight">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-6 px-6 py-4">
+          <a href="#top" className="font-display text-sm font-semibold tracking-tight whitespace-nowrap">
             Charles Hsieh
           </a>
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden items-center gap-5 whitespace-nowrap md:flex">
             {sectionLinks.map((l) => (
               <a
                 key={l.label}
@@ -471,9 +472,11 @@ function Home() {
                     ) : (
                       <span className="inline-flex items-baseline gap-2">
                         {v.name}
-                        <span className="font-sans text-[11px] uppercase tracking-wider text-muted-foreground/70">
-                          coming soon
-                        </span>
+                        {"comingSoon" in v && v.comingSoon && (
+                          <span className="font-sans text-[11px] uppercase tracking-wider text-muted-foreground/70">
+                            coming soon
+                          </span>
+                        )}
                       </span>
                     )}
                   </h3>
