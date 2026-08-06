@@ -338,15 +338,20 @@ function Home() {
             Charles Hsieh
           </a>
           <nav className="hidden items-center gap-5 whitespace-nowrap md:flex">
-            {sectionLinks.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {l.label}
-              </a>
-            ))}
+            {sectionLinks.map((l) => {
+              const isExternal = l.href.startsWith("http");
+              return (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noreferrer" : undefined}
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {l.label}
+                </a>
+              );
+            })}
             <span className="h-4 w-px bg-border" />
             {ventureLinks.map((l) =>
               l.href ? (
