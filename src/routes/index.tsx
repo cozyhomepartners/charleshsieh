@@ -92,7 +92,7 @@ type Company = {
 
 const experience: Company[] = [
   {
-    company: "Blind — anonymous professional network (15M+ users)",
+    company: "Blind, anonymous professional network (15M+ users)",
     logo: "/img/icons/icon_blind.png",
     roles: [
       {
