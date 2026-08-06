@@ -329,6 +329,11 @@ function SectionHeading({ label, id }: { label: string; id: string }) {
 
 function Home() {
   const [open, setOpen] = useState(false);
+  const sortedVentures = [...ventures].sort((a, b) => {
+    const yearA = parseInt(a.period.split("–")[0].trim());
+    const yearB = parseInt(b.period.split("–")[0].trim());
+    return yearB - yearA;
+  });
 
   return (
     <div className="min-h-screen bg-background text-foreground">
