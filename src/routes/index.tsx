@@ -226,10 +226,9 @@ const experience: Company[] = [
 const ventures = [
   {
     name: "Scale GTM",
-    period: "2026 – Present",
+    period: "2022 – Present",
     body: "Fractional go-to-market leadership: V1 playbooks, pricing, and first sales hires for founder-led teams.",
-    href: null as string | null,
-    comingSoon: true,
+    href: "https://tryscalegtm.com",
     image: null as string | null,
   },
   {
