@@ -318,7 +318,7 @@ const education = [
 
 function SectionHeading({ label, id }: { label: string; id: string }) {
   return (
-    <div className="mb-10 flex items-baseline gap-4 border-b border-border pb-4" id={id}>
+    <div className="scroll-mt-24 sm:scroll-mt-28 mb-10 flex items-baseline gap-4 border-b border-border pb-4" id={id}>
       <h2 className="font-display text-sm font-medium uppercase tracking-[0.22em] text-muted-foreground">
         {label}
       </h2>
@@ -659,7 +659,7 @@ function Home() {
         </section>
       </main>
 
-      <footer id="contact" className="border-t border-border bg-secondary/60">
+      <footer id="contact" className="scroll-mt-24 sm:scroll-mt-28 border-t border-border bg-secondary/60">
         <div className="mx-auto max-w-6xl px-5 py-16">
           <h2 className="font-display text-3xl font-semibold tracking-tight">Let's talk.</h2>
           <p className="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground">
