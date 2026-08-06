@@ -388,16 +388,21 @@ function Home() {
         {open && (
           <div className="border-t border-border bg-background md:hidden">
             <nav className="mx-auto flex max-w-3xl flex-col gap-3 px-6 py-4">
-              {sectionLinks.map((l) => (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="text-sm text-muted-foreground"
-                >
-                  {l.label}
-                </a>
-              ))}
+              {sectionLinks.map((l) => {
+                const isExternal = l.href.startsWith("http");
+                return (
+                  <a
+                    key={l.label}
+                    href={l.href}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noreferrer" : undefined}
+                    onClick={() => setOpen(false)}
+                    className="text-sm text-muted-foreground"
+                  >
+                    {l.label}
+                  </a>
+                );
+              })}
               <span className="h-px bg-border" />
               {ventureLinks.map((l) =>
                 l.href ? (
