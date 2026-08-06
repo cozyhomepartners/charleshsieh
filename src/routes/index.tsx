@@ -447,8 +447,8 @@ function Home() {
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
               Founding IC and revenue leader who has developed and scaled products from{" "}
-              <span className="text-foreground">$0 to $25M+ ARR</span> across Google, LinkedIn,
-              Blind, and venture-backed startups — building teams from first hire to 50+ and
+              <span className="text-foreground">$0 to double digit millions in ARR</span> across Google, LinkedIn,
+              Blind, and venture-backed startups, building teams from first hire to 50+ and
               establishing the V1 GTM playbooks along the way.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
