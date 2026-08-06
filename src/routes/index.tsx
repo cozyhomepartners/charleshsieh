@@ -4,9 +4,9 @@ import { ArrowUpRight, Mail, Linkedin, Github, Menu, X, Plane } from "lucide-rea
 import familyPhotoAsset from "@/assets/family-portrait.jpg.asset.json";
 const familyPhoto = familyPhotoAsset.url;
 
-const title = "Charles Hsieh — Revenue Leader, GTM Operator & Advisor";
+const title = "Charles Hsieh, Revenue Leader, GTM Operator & Advisor";
 const description =
-  "Charles Hsieh is a San Francisco revenue leader and GTM operator who scaled products $0 to $25M+ ARR at Google, LinkedIn, and Blind, and advises founders.";
+  "Charles Hsieh is a San Francisco revenue leader and GTM operator who scaled products from $0 to double digit millions in ARR at Google, LinkedIn, and Blind, and advises founders.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -61,11 +61,11 @@ const sectionLinks = [
 const capabilities = [
   {
     title: "Revenue leadership",
-    body: "Founding sales hire turned VP. Scaled products from $0 to $6M, $8M, and $25M ARR; President's Club and Global Rep of the Year at LinkedIn.",
+    body: "Founding sales hire turned VP. Scaled products from $0 to $6M, $8M, and double digit millions in ARR; President's Club and Global Rep of the Year at LinkedIn.",
   },
   {
     title: "Product",
-    body: "Partnered with — and reported to — product leaders to shape pricing, packaging, and roadmap from concept through public launch.",
+    body: "Partnered with, and reported to, product leaders to shape pricing, packaging, and roadmap from concept through public launch.",
   },
   {
     title: "Team building",
