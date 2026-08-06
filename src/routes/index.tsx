@@ -659,7 +659,7 @@ function Home() {
         </section>
       </main>
 
-      <footer id="contact" className="border-t border-border bg-secondary/60">
+      <footer id="contact" className="scroll-mt-24 sm:scroll-mt-28 border-t border-border bg-secondary/60">
         <div className="mx-auto max-w-6xl px-5 py-16">
           <h2 className="font-display text-3xl font-semibold tracking-tight">Let's talk.</h2>
           <p className="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground">
