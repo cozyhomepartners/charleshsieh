@@ -4,9 +4,9 @@ import { ArrowUpRight, Mail, Linkedin, Github, Menu, X, Plane } from "lucide-rea
 import familyPhotoAsset from "@/assets/family-portrait.jpg.asset.json";
 const familyPhoto = familyPhotoAsset.url;
 
-const title = "Charles Hsieh — Revenue Leader & Founding GTM Operator";
+const title = "Charles Hsieh — Revenue Leader, GTM Operator & Advisor";
 const description =
-  "Charles Hsieh is a San Francisco based revenue leader who has built and scaled products from $0 to $25M+ ARR at Google, LinkedIn, Blind, and venture-backed startups.";
+  "Charles Hsieh is a San Francisco-based revenue leader and GTM operator who has scaled products from $0 to $25M+ ARR at Google, LinkedIn, Blind, and venture-backed startups — and now advises founder-led teams through Scale GTM.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
