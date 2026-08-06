@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowUpRight, Mail, Linkedin, Github, Menu, X, Phone } from "lucide-react";
+import familyPhoto from "@/assets/charles-family.jpg";
 
 const title = "Charles Hsieh — Revenue Leader & Founding GTM Operator";
 const description =
@@ -44,7 +45,7 @@ export const Route = createFileRoute("/")({
 
 const ventureLinks = [
   { label: "Scale GTM", href: null as string | null },
-  { label: "Cozy Home Partners", href: "https://cozyhomepartners.com" },
+  { label: "Cozy Home", href: "https://www.cozyhomepartners.com/" },
   { label: "Roofolio", href: "https://roofolio.ai" },
 ];
 
@@ -176,10 +177,10 @@ const ventures = [
     image: null as string | null,
   },
   {
-    name: "Cozy Home Partners",
+    name: "Cozy Home",
     period: "2024 – Present",
     body: "Real estate investment partnership focused on acquiring and operating single-family rentals.",
-    href: "https://cozyhomepartners.com",
+    href: "https://www.cozyhomepartners.com/",
     image: null,
   },
   {
@@ -194,7 +195,15 @@ const ventures = [
     period: "2015 – 2016",
     body: "Pre-AI social travel site reaching 2K+ monthly visitors; featured on Product Hunt and travel blogs.",
     href: "http://www.vacaybug.com",
-    image: "/img/vacaybug.png",
+    image: null,
+    press: [
+      { label: "Product Hunt", href: "https://www.producthunt.com/products/vacaybug?launch=vacaybug" },
+      { label: "Explore Inspired", href: "https://exploreinspired.com/exploration-made-easy/" },
+      {
+        label: "WWWhat's New",
+        href: "https://wwwhatsnew.com/2015/06/18/vacaybug-una-nueva-plataforma-para-registrar-nuestros-viajes/",
+      },
+    ] as { label: string; href: string }[] | undefined,
   },
   {
     name: "3degrees",
@@ -360,39 +369,51 @@ function Home() {
         )}
       </header>
 
-      <main id="top" className="mx-auto max-w-3xl px-6">
-        <section className="border-b border-border py-20 md:py-28">
-          <p className="font-display text-xs uppercase tracking-[0.28em] text-accent">
-            San Francisco, CA
-          </p>
-          <h1 className="mt-5 font-display text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
-            Charles Hsieh
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            Founding IC and revenue leader who has developed and scaled products from{" "}
-            <span className="text-foreground">$0 to $25M+ ARR</span> across Google, LinkedIn,
-            Blind, and venture-backed startups — building teams from first hire to 50+ and
-            establishing the V1 GTM playbooks along the way.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="mailto:charles.hsieh6@gmail.com"
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-            >
-              <Mail className="size-4" /> Get in touch
-            </a>
-            <a
-              href="https://www.linkedin.com/in/chsieh"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-secondary"
-            >
-              <Linkedin className="size-4" /> LinkedIn
-            </a>
+      <main id="top" className="mx-auto max-w-5xl px-6">
+        <section className="grid items-center gap-10 py-16 md:grid-cols-[1.15fr_0.85fr] md:py-24">
+          <div>
+            <p className="font-display text-xs uppercase tracking-[0.28em] text-accent">
+              San Francisco, CA
+            </p>
+            <h1 className="mt-5 font-display text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
+              Charles Hsieh
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              Founding IC and revenue leader who has developed and scaled products from{" "}
+              <span className="text-foreground">$0 to $25M+ ARR</span> across Google, LinkedIn,
+              Blind, and venture-backed startups — building teams from first hire to 50+ and
+              establishing the V1 GTM playbooks along the way.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="mailto:charles.hsieh6@gmail.com"
+                className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                <Mail className="size-4" /> Get in touch
+              </a>
+              <a
+                href="https://www.linkedin.com/in/chsieh"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-secondary"
+              >
+                <Linkedin className="size-4" /> LinkedIn
+              </a>
+            </div>
           </div>
+          <figure className="m-0">
+            <img
+              src={familyPhoto}
+              alt="Charles Hsieh holding his newborn"
+              className="aspect-[4/5] w-full rounded-lg border border-border object-cover object-top"
+            />
+            <figcaption className="mt-3 font-display text-xs uppercase tracking-wider text-muted-foreground">
+              Husband, father of two, San Francisco
+            </figcaption>
+          </figure>
         </section>
 
-        <section className="py-16">
+        <section className="pb-14 pt-2">
           <SectionHeading id="about" label="About" />
           <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
             I moved from Taiwan when I was twelve, chasing the American dream. I studied
@@ -409,7 +430,7 @@ function Home() {
           </dl>
         </section>
 
-        <section className="py-16">
+        <section className="py-14">
           <SectionHeading id="experience" label="Experience" />
           <div className="space-y-12">
             {experience.map((role, i) => (
@@ -452,7 +473,7 @@ function Home() {
           </div>
         </section>
 
-        <section className="py-16">
+        <section className="py-14">
           <SectionHeading id="ventures" label="Ventures & Projects" />
           <div className="space-y-10">
             {ventures.map((v) => (
@@ -495,12 +516,28 @@ function Home() {
                     className="mt-4 w-full max-w-md rounded-md border border-border object-cover"
                   />
                 )}
+                {"press" in v && v.press && (
+                  <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+                    {v.press.map((p) => (
+                      <a
+                        key={p.href}
+                        href={p.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-accent"
+                      >
+                        {p.label}
+                        <ArrowUpRight className="size-3.5" />
+                      </a>
+                    ))}
+                  </div>
+                )}
               </article>
             ))}
           </div>
         </section>
 
-        <section className="py-16">
+        <section className="py-14">
           <SectionHeading id="advisory" label="Advisory & Investing" />
           <div className="grid gap-8 sm:grid-cols-2">
             {advisory.map((a) => (
@@ -523,7 +560,7 @@ function Home() {
           </div>
         </section>
 
-        <section className="py-16">
+        <section className="py-14">
           <SectionHeading id="education" label="Education" />
           <div className="space-y-8">
             {education.map((e) => (
@@ -550,7 +587,7 @@ function Home() {
       </main>
 
       <footer id="contact" className="border-t border-border bg-secondary/60">
-        <div className="mx-auto max-w-3xl px-6 py-16">
+        <div className="mx-auto max-w-5xl px-6 py-16">
           <h2 className="font-display text-3xl font-semibold tracking-tight">Let's talk.</h2>
           <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted-foreground">
             Building a go-to-market motion from scratch, or scaling one that's stalled? I'm always
