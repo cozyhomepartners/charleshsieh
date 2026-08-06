@@ -4,9 +4,9 @@ import { ArrowUpRight, Mail, Linkedin, Github, Menu, X, Plane } from "lucide-rea
 import familyPhotoAsset from "@/assets/family-portrait.jpg.asset.json";
 const familyPhoto = familyPhotoAsset.url;
 
-const title = "Charles Hsieh — Revenue Leader, GTM Operator & Advisor";
+const title = "Charles Hsieh, Revenue Leader, GTM Operator & Advisor";
 const description =
-  "Charles Hsieh is a San Francisco revenue leader and GTM operator who scaled products $0 to $25M+ ARR at Google, LinkedIn, and Blind, and advises founders.";
+  "Charles Hsieh is a San Francisco revenue leader and GTM operator who scaled products from $0 to double digit millions in ARR at Google, LinkedIn, and Blind, and advises founders.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -61,11 +61,11 @@ const sectionLinks = [
 const capabilities = [
   {
     title: "Revenue leadership",
-    body: "Founding sales hire turned VP. Scaled products from $0 to $6M, $8M, and $25M ARR; President's Club and Global Rep of the Year at LinkedIn.",
+    body: "Founding sales hire turned VP. Scaled products from $0 to $6M, $8M, and double digit millions in ARR; President's Club and Global Rep of the Year at LinkedIn.",
   },
   {
     title: "Product",
-    body: "Partnered with — and reported to — product leaders to shape pricing, packaging, and roadmap from concept through public launch.",
+    body: "Partnered with, and reported to, product leaders to shape pricing, packaging, and roadmap from concept through public launch.",
   },
   {
     title: "Team building",
@@ -92,7 +92,7 @@ type Company = {
 
 const experience: Company[] = [
   {
-    company: "Blind — anonymous professional network (15M+ users)",
+    company: "Blind, anonymous professional network (15M+ users)",
     logo: "/img/icons/icon_blind.png",
     roles: [
       {
@@ -106,7 +106,7 @@ const experience: Company[] = [
         title: "Vice President of Sales and Product, North America",
         period: "Feb 2023 – May 2026",
         bullets: [
-          "Designed, built, and sold new SaaS and Ads products for the US market — scaled $0 to $6M ARR in two years, landing 50 large logos including Rivian, Amazon, Chewy, and Salesforce.",
+          "Designed, built, and sold new SaaS and Ads products for the US market, scaled $0 to $6M ARR in two years, landing 50 large logos including Rivian, Amazon, Chewy, and Salesforce.",
           "Led a 15-person GTM team plus four dotted-line software engineers.",
         ],
       },
@@ -133,7 +133,7 @@ const experience: Company[] = [
         period: "Oct 2021 – Aug 2022",
         bullets: [
           <>
-            Twelve months of family travel before the kids turned school age — documented at{" "}
+            Twelve months of family travel before the kids turned school age, documented at{" "}
             <a
               href="https://www.youtube.com/@hsiehnanigans"
               target="_blank"
@@ -192,7 +192,7 @@ const experience: Company[] = [
         title: "Senior Enterprise Account Manager",
         period: "Feb 2010 – Jun 2013",
         bullets: [
-          "President's Club 2010, 2011, 2012 — 179%, 140%, and 159% of quota.",
+          "President's Club 2010, 2011, 2012, 179%, 140%, and 159% of quota.",
           "Global Sales Rep of the Year 2010 and 2011. First global Account Manager hire; promoted three times in three years.",
         ],
       },
@@ -447,8 +447,8 @@ function Home() {
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
               Founding IC and revenue leader who has developed and scaled products from{" "}
-              <span className="text-foreground">$0 to $25M+ ARR</span> across Google, LinkedIn,
-              Blind, and venture-backed startups — building teams from first hire to 50+ and
+              <span className="text-foreground">$0 to double digit millions in ARR</span> across Google, LinkedIn,
+              Blind, and venture-backed startups, building teams from first hire to 50+ and
               establishing the V1 GTM playbooks along the way.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
