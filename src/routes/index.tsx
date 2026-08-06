@@ -319,7 +319,7 @@ function Home() {
             onClick={() => setOpen((o) => !o)}
             className="md:hidden"
           >
-            {open ? <Menu className="size-5" /> : <Menu className="size-5" />}
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
         </div>
         {open && (
