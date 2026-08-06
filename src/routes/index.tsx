@@ -54,6 +54,7 @@ const sectionLinks = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Ventures", href: "#ventures" },
+  { label: "Advisory", href: "/fractional-sales-leadership" },
   { label: "Contact", href: "https://calendly.com/charleschsieh/30-minutes" },
 ];
 
