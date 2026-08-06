@@ -73,7 +73,7 @@ function Home() {
       <li><a href="http://bit.ly/thehsiehfamily" className="btn btn-header" target="_blank">Travel Vlog</a></li>
       <li><a href="mailto:charles.hsieh6@gmail.com" className="btn btn-header" target="_blank">Let's Connect</a></li>
       </ul>
-      </div></div></div></div></div><section id="about" name="about">
+      </div></div></div></div></div><section id="about">
       <div className="container">
       <div className="row">
       <div className="col-lg-2 col-lg-offset-5">
@@ -108,7 +108,7 @@ function Home() {
       <h3>Development</h3>
       <p>2 years of embedded system and full-stack web RoR development experiences.
       </p></div>
-      </div></div></section> <section id="resume" name="resume">
+      </div></div></section> <section id="resume">
       <div className="container desc">
       <div className="row">
       <div className="col-lg-2 col-lg-offset-5 text-center">
@@ -123,7 +123,7 @@ function Home() {
       <img src="/img/icons/icon_illinois.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>B.S. Degree in Electrical and Computer Engineering</t><br/>
+      <p><span className="t">B.S. Degree in Electrical and Computer Engineering</span><br/>
       University of Illinois, Urbana-Champaign <span>JUNE 2007</span>
       </p>
       </div>
@@ -131,7 +131,7 @@ function Home() {
       <img src="/img/icons/icon_tsinghua.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Minor in Chinese</t><br/>
+      <p><span className="t">Minor in Chinese</span><br/>
       Tsinghua University <span>SUMMER 2006</span>
       </p>
       </div>	
@@ -146,55 +146,55 @@ function Home() {
       <img src="/img/icons/icon_pathrise.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Advisor</t><br/>
+      <p><span className="t">Advisor</span><br/>
       Pathrise <span>2021 - CURRENT</span><br/>
       </p>
-      <p><more>YC18. Pathrise is an online program for tech professionals that provides 1-on-1 mentorship, training and advice to help you land your next job.</more></p>
+      <p><span className="more">YC18. Pathrise is an online program for tech professionals that provides 1-on-1 mentorship, training and advice to help you land your next job.</span></p>
       </div>
       <div className="col-lg-1 col-lg-offset-3">
       <img src="/img/icons/icon_welcome.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Investor / Advisor</t><br/>
+      <p><span className="t">Investor / Advisor</span><br/>
       Welcome <span>2019 - 2021</span><br/>
       </p>
-      <p><more>YC20. Welcome is on a mission to provide access to jaw-dropping virtual experiences that connect, transport and engage people like never before.</more></p>
+      <p><span className="more">YC20. Welcome is on a mission to provide access to jaw-dropping virtual experiences that connect, transport and engage people like never before.</span></p>
       </div>
       <div className="col-lg-1 col-lg-offset-3">
       <img src="/img/icons/icon_byteboard.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Advisor</t><br/>
+      <p><span className="t">Advisor</span><br/>
       Byteboard <span>2019 - 2021</span><br/>
       </p>
-      <p><more>Backed by Google. Byteboard allows technical interview experience to be more effective, efficient, and equitable for all.</more></p>
+      <p><span className="more">Backed by Google. Byteboard allows technical interview experience to be more effective, efficient, and equitable for all.</span></p>
       </div>
       <div className="col-lg-1 col-lg-offset-3">
       <img src="/img/icons/icon_agave.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Advisor</t><br/>
+      <p><span className="t">Advisor</span><br/>
       Agave <span>2019 - 2020</span><br/>
       </p>
-      <p><more>Backed by SV Angel and Box Group. The free modern, open hiring platform to help you source, track, nurture, and close the best talent.</more></p>
+      <p><span className="more">Backed by SV Angel and Box Group. The free modern, open hiring platform to help you source, track, nurture, and close the best talent.</span></p>
       </div>
       <div className="col-lg-1 col-lg-offset-3">
       <img src="/img/icons/icon_codingdojo.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Advisor</t><br/>
+      <p><span className="t">Advisor</span><br/>
       CodingDojo <span>2017 - 2020</span><br/>
       </p>
-      <p><more>Backed by Ulu Ventures. Software is eating the world, and Coding Dojo is changing how people learn software. Coding Dojo is one of the highest-rated coding bootcamps in the industry for both in-person and online learning.</more></p>
+      <p><span className="more">Backed by Ulu Ventures. Software is eating the world, and Coding Dojo is changing how people learn software. Coding Dojo is one of the highest-rated coding bootcamps in the industry for both in-person and online learning.</span></p>
       </div>
       <div className="col-lg-1 col-lg-offset-3">
       <img src="/img/icons/icon_growingio.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Advisor</t><br/>
+      <p><span className="t">Advisor</span><br/>
       GrowingIO <span>2015 - 2018</span><br/>
       </p>
-      <p><more>Backed by Greylock, NEA and Matrix Partner. GrowingIO is an end-to-end web and mobile analytics platform that provides predictive and actionable business intelligence.</more></p>
+      <p><span className="more">Backed by Greylock, NEA and Matrix Partner. GrowingIO is an end-to-end web and mobile analytics platform that provides predictive and actionable business intelligence.</span></p>
       </div>
       </div><br/>
       <hr/>
@@ -207,7 +207,7 @@ function Home() {
       <img src="/img/icons/icon_blind.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Vice President of Sales</t><br/>
+      <p><span className="t">Vice President of Sales</span><br/>
       Blind <span>MARCH 2023 - PRESENT</span>
       </p>
       <ul>
@@ -218,7 +218,7 @@ function Home() {
       <img src="/img/icons/icon_switchboard.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Vice President of Sales</t><br/>
+      <p><span className="t">Vice President of Sales</span><br/>
       Switchboard Software <span>SEPTEMBER 2022 - FEBRUARY 2023</span>
       </p>
       <ul>
@@ -229,7 +229,7 @@ function Home() {
       <img src="/img/icons/icon_google.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Head of Sales, Workspace, New Cloud Products</t><br/>
+      <p><span className="t">Head of Sales, Workspace, New Cloud Products</span><br/>
       Google <span>SEPTEMBER 2019 - SEPTEMBER 2021</span>
       </p>
       <ul>
@@ -240,7 +240,7 @@ function Home() {
       <img src="/img/icons/icon_google.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Head of Sales, Hire - Google Cloud</t><br/>
+      <p><span className="t">Head of Sales, Hire - Google Cloud</span><br/>
       Google <span>SEPTEMBER 2016 - AUGUST 2019</span>
       </p>
       <ul>
@@ -252,7 +252,7 @@ function Home() {
       <img src="/img/icons/icon_hackerrank.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Director, Solutions Engineering</t><br/>
+      <p><span className="t">Director, Solutions Engineering</span><br/>
       HackerRank <span>JULY 2014 - JULY 2016</span>
       </p>
       <ul>
@@ -265,7 +265,7 @@ function Home() {
       <img src="/img/icons/icon_linkedin.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Senior Enterprise Account Manager</t><br/>
+      <p><span className="t">Senior Enterprise Account Manager</span><br/>
       LinkedIn <span>JANUARY 2010 - JUNE 2013</span>
       </p>
       <ul>
@@ -282,7 +282,7 @@ function Home() {
       <img src="/img/icons/icon_agilent.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Strategic Account Executive</t><br/>
+      <p><span className="t">Strategic Account Executive</span><br/>
       Agilent Technologies <span>JULY 2007 - NOVEMBER 2009</span>
       </p>
       <ul>
@@ -295,7 +295,7 @@ function Home() {
       <img src="/img/icons/icon_united_technologies.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Software Engineer</t><br/>
+      <p><span className="t">Software Engineer</span><br/>
       United Technologies <span>JANUARY 2006 - JANUARY 2007</span>
       </p>
       <ul>
@@ -313,7 +313,7 @@ function Home() {
       <img src="/img/icons/icon_linkedin.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>President's Club</t><br/>
+      <p><span className="t">President's Club</span><br/>
       LinkedIn <span>2010, 2011, 2012</span>
       </p>
       </div>
@@ -321,23 +321,23 @@ function Home() {
       <img src="/img/icons/icon_linkedin.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Global Rep of The Year</t><br/>
+      <p><span className="t">Global Rep of The Year</span><br/>
       LinkedIn<span>2010, 2011</span>
       </p>
-      <p><more>This is a prestigious global company award that is given out to the top 5 sales rep annually. Consideration criteria includes: performance, internal resourcefulness and leadership.</more></p>
+      <p><span className="more">This is a prestigious global company award that is given out to the top 5 sales rep annually. Consideration criteria includes: performance, internal resourcefulness and leadership.</span></p>
       </div>
       <div className="col-lg-1 col-lg-offset-3">
       <img src="/img/icons/icon_agilent.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><t>Hardball Award - Most Competitive Wins</t><br/>
+      <p><span className="t">Hardball Award - Most Competitive Wins</span><br/>
       Agilent Technologies <span>2008</span>
       </p>
-      <p><more>This is the annual company award that is given out to one sales rep in each region for most wins in competitive situation.</more></p>
+      <p><span className="more">This is the annual company award that is given out to one sales rep in each region for most wins in competitive situation.</span></p>
       </div>		
       </div><br/><br/>
       </div></section>
-      <section id="project" name="project">
+      <section id="project">
       <div className="container desc">
       <div className="row">
       <div className="col-lg-2 col-lg-offset-5 text-center">
@@ -348,8 +348,8 @@ function Home() {
       <div className="project-card sr-card">
       <a href="http://www.vacaybug.com" target="_blank" className="card-img"><img className="img-responsive" src="/img/vacaybug.png" alt=""/></a>
       <h3>VACAYBUG</h3>
-      <p><more>A social travel website that enable traveler to be more productive. It allows travelers to create social profiles and openly share their itineraries with others.</more></p>
-      <p><more>It currently has ~2k monthly unique visitors, over 700 itineraries created in 35 cities, and 12 countries</more></p>
+      <p><span className="more">A social travel website that enable traveler to be more productive. It allows travelers to create social profiles and openly share their itineraries with others.</span></p>
+      <p><span className="more">It currently has ~2k monthly unique visitors, over 700 itineraries created in 35 cities, and 12 countries</span></p>
       <a href="http://exploreinspired.com/exploration-made-easy">Blog Featured by Jonathan Ronzio</a>
       <a href="http://wwwhatsnew.com/2015/06/18/vacaybug-una-nueva-plataforma-para-registrar-nuestros-viajes">Mentioned in whatsnew.com</a>
       <a href="https://www.producthunt.com/tech/vacaybug">Featured on Product Hunt</a>
@@ -359,14 +359,14 @@ function Home() {
       <div className="project-card sr-card">
       <a href="#" className="card-img"><img className="img-responsive" src="/img/3degrees.png" alt=""/></a>
       <h3>3DEGREES DATING APP</h3>
-      <p><more>A iOS dating app where everyone is a matchmaker by connecting your single friends with other member’s single friends.</more></p>
-      <p><more>The intent is leverage the power of 3rd degree connections to drive a more relevant and validated dating matches.</more></p>
+      <p><span className="more">A iOS dating app where everyone is a matchmaker by connecting your single friends with other member’s single friends.</span></p>
+      <p><span className="more">The intent is leverage the power of 3rd degree connections to drive a more relevant and validated dating matches.</span></p>
       </div>
       </div>
       </div><br/>
       <br/>
       </section>
-      <section id="blog" name="blog">
+      <section id="blog">
       <div id="blogwrap">
       <div className="container">
       <div className="row">
@@ -380,7 +380,7 @@ function Home() {
       </div>
       </div></div></div></section>
 
-      <section id="contact" name="contact">
+      <section id="contact">
       <div id="footwrap">
       <div className="container">
       <div className="row">

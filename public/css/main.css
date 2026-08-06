@@ -392,7 +392,7 @@ a:after {
 	color: #2f2f2f;
 }
 
-.desc t {
+.desc t, .desc .t {
 	color: #34495e;
 	font-weight: 700;
 }
@@ -403,7 +403,7 @@ a:after {
 	background: #34495e;
 }
 
-.desc more {
+.desc more, .desc .more {
 	color: #5a6a6b;
 }
 
