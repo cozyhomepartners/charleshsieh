@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowUpRight, Mail, Linkedin, Github, Menu, X, Phone } from "lucide-react";
+import familyPhoto from "@/assets/charles-family.jpg";
 
 const title = "Charles Hsieh — Revenue Leader & Founding GTM Operator";
 const description =
@@ -44,7 +45,7 @@ export const Route = createFileRoute("/")({
 
 const ventureLinks = [
   { label: "Scale GTM", href: null as string | null },
-  { label: "Cozy Home Partners", href: "https://cozyhomepartners.com" },
+  { label: "Cozy Home", href: "https://www.cozyhomepartners.com/" },
   { label: "Roofolio", href: "https://roofolio.ai" },
 ];
 
@@ -176,10 +177,10 @@ const ventures = [
     image: null as string | null,
   },
   {
-    name: "Cozy Home Partners",
+    name: "Cozy Home",
     period: "2024 – Present",
     body: "Real estate investment partnership focused on acquiring and operating single-family rentals.",
-    href: "https://cozyhomepartners.com",
+    href: "https://www.cozyhomepartners.com/",
     image: null,
   },
   {
@@ -194,7 +195,15 @@ const ventures = [
     period: "2015 – 2016",
     body: "Pre-AI social travel site reaching 2K+ monthly visitors; featured on Product Hunt and travel blogs.",
     href: "http://www.vacaybug.com",
-    image: "/img/vacaybug.png",
+    image: null,
+    press: [
+      { label: "Product Hunt", href: "https://www.producthunt.com/products/vacaybug?launch=vacaybug" },
+      { label: "Explore Inspired", href: "https://exploreinspired.com/exploration-made-easy/" },
+      {
+        label: "WWWhat's New",
+        href: "https://wwwhatsnew.com/2015/06/18/vacaybug-una-nueva-plataforma-para-registrar-nuestros-viajes/",
+      },
+    ] as { label: string; href: string }[] | undefined,
   },
   {
     name: "3degrees",
