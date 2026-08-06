@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "Person",
           name: "Charles Hsieh",
-          jobTitle: "Revenue Leader",
+          jobTitle: "Revenue Leader, GTM Operator & Advisor",
           email: "charles.hsieh6@gmail.com",
           url: "https://charleshsieh.com",
           sameAs: [
