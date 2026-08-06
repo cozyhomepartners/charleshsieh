@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowUpRight, Mail, Linkedin, Github, Menu, X, Phone, Plane } from "lucide-react";
-import familyPhoto from "@/assets/charles-family.jpg";
+import { ArrowUpRight, Mail, Linkedin, Github, Menu, X, Plane } from "lucide-react";
+import familyPhotoAsset from "@/assets/family-portrait.jpg.asset.json";
+const familyPhoto = familyPhotoAsset.url;
 
 const title = "Charles Hsieh — Revenue Leader & Founding GTM Operator";
 const description =
@@ -452,8 +453,8 @@ function Home() {
           <figure className="m-0">
             <img
               src={familyPhoto}
-              alt="Charles Hsieh holding his newborn"
-              className="aspect-[4/5] w-full rounded-lg border border-border object-cover object-top"
+              alt="Charles Hsieh with his wife and two children"
+              className="aspect-[4/5] w-full rounded-lg border border-border object-cover object-center"
             />
             <figcaption className="mt-3 font-display text-xs uppercase tracking-wider text-muted-foreground">
               Husband, father of two, San Francisco
@@ -463,7 +464,7 @@ function Home() {
 
         <section className="pb-14 pt-2">
           <SectionHeading id="about" label="About" />
-          <p className="max-w-4xl text-base leading-relaxed text-muted-foreground">
+          <p className="text-base leading-relaxed text-muted-foreground">
             I moved from Taiwan when I was twelve, chasing the American dream. I studied
             engineering at Illinois, spent two decades building revenue teams at companies from
             seed-stage to Google-scale, and I'm a proud husband and father of two.
@@ -647,7 +648,7 @@ function Home() {
       <footer id="contact" className="border-t border-border bg-secondary/60">
         <div className="mx-auto max-w-6xl px-5 py-16">
           <h2 className="font-display text-3xl font-semibold tracking-tight">Let's talk.</h2>
-          <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground">
             Building a go-to-market motion from scratch, or scaling one that's stalled? I'm always
             up for a conversation.
           </p>
@@ -657,12 +658,6 @@ function Home() {
               className="inline-flex items-center gap-2 transition-colors hover:text-accent"
             >
               <Mail className="size-4" /> charles.hsieh6@gmail.com
-            </a>
-            <a
-              href="tel:+18478093322"
-              className="inline-flex items-center gap-2 transition-colors hover:text-accent"
-            >
-              <Phone className="size-4" /> 847-809-3322
             </a>
             <a
               href="https://www.linkedin.com/in/chsieh"
