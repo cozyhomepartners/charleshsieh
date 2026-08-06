@@ -45,7 +45,7 @@ export const Route = createFileRoute("/")({
 });
 
 const ventureLinks = [
-  { label: "Scale GTM", href: null as string | null },
+  { label: "Scale GTM", href: "https://tryscalegtm.com" },
   { label: "Cozy Home", href: "https://www.cozyhomepartners.com/" },
   { label: "Roofolio", href: "https://roofolio.ai" },
 ];
@@ -54,7 +54,7 @@ const sectionLinks = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Ventures", href: "#ventures" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "https://calendly.com/charleschsieh/30-minutes" },
 ];
 
 const capabilities = [
@@ -226,10 +226,9 @@ const experience: Company[] = [
 const ventures = [
   {
     name: "Scale GTM",
-    period: "2026 – Present",
+    period: "2022 – Present",
     body: "Fractional go-to-market leadership: V1 playbooks, pricing, and first sales hires for founder-led teams.",
-    href: null as string | null,
-    comingSoon: true,
+    href: "https://tryscalegtm.com",
     image: null as string | null,
   },
   {
@@ -330,6 +329,11 @@ function SectionHeading({ label, id }: { label: string; id: string }) {
 
 function Home() {
   const [open, setOpen] = useState(false);
+  const sortedVentures = [...ventures].sort((a, b) => {
+    const yearA = parseInt(a.period.split("–")[0]?.trim() ?? "0");
+    const yearB = parseInt(b.period.split("–")[0]?.trim() ?? "0");
+    return yearB - yearA;
+  });
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -339,15 +343,20 @@ function Home() {
             Charles Hsieh
           </a>
           <nav className="hidden items-center gap-5 whitespace-nowrap md:flex">
-            {sectionLinks.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {l.label}
-              </a>
-            ))}
+            {sectionLinks.map((l) => {
+              const isExternal = l.href.startsWith("http");
+              return (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noreferrer" : undefined}
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {l.label}
+                </a>
+              );
+            })}
             <span className="h-4 w-px bg-border" />
             {ventureLinks.map((l) =>
               l.href ? (
@@ -384,16 +393,21 @@ function Home() {
         {open && (
           <div className="border-t border-border bg-background md:hidden">
             <nav className="mx-auto flex max-w-3xl flex-col gap-3 px-6 py-4">
-              {sectionLinks.map((l) => (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="text-sm text-muted-foreground"
-                >
-                  {l.label}
-                </a>
-              ))}
+              {sectionLinks.map((l) => {
+                const isExternal = l.href.startsWith("http");
+                return (
+                  <a
+                    key={l.label}
+                    href={l.href}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noreferrer" : undefined}
+                    onClick={() => setOpen(false)}
+                    className="text-sm text-muted-foreground"
+                  >
+                    {l.label}
+                  </a>
+                );
+              })}
               <span className="h-px bg-border" />
               {ventureLinks.map((l) =>
                 l.href ? (
@@ -435,7 +449,9 @@ function Home() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="mailto:charles.hsieh6@gmail.com"
+                href="https://calendly.com/charleschsieh/30-minutes"
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
               >
                 <Mail className="size-4" /> Get in touch
@@ -535,7 +551,7 @@ function Home() {
         <section className="py-14">
           <SectionHeading id="ventures" label="Ventures & Projects" />
           <div className="space-y-10">
-            {ventures.map((v) => (
+            {sortedVentures.map((v) => (
               <article key={v.name} className="group">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                   <h3 className="font-display text-lg font-semibold">
@@ -552,11 +568,6 @@ function Home() {
                     ) : (
                       <span className="inline-flex items-baseline gap-2">
                         {v.name}
-                        {"comingSoon" in v && v.comingSoon && (
-                          <span className="font-sans text-[11px] uppercase tracking-wider text-muted-foreground/70">
-                            coming soon
-                          </span>
-                        )}
                       </span>
                     )}
                   </h3>
