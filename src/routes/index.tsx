@@ -6,7 +6,7 @@ const familyPhoto = familyPhotoAsset.url;
 
 const title = "Charles Hsieh — Revenue Leader, GTM Operator & Advisor";
 const description =
-  "Charles Hsieh is a San Francisco-based revenue leader and GTM operator who has scaled products from $0 to $25M+ ARR at Google, LinkedIn, Blind, and venture-backed startups — and now advises founder-led teams through Scale GTM.";
+  "Charles Hsieh is a San Francisco revenue leader and GTM operator who scaled products $0 to $25M+ ARR at Google, LinkedIn, and Blind, and advises founders.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -440,6 +440,9 @@ function Home() {
             </p>
             <h1 className="mt-5 font-display text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
               Charles Hsieh
+              <span className="mt-3 block text-xl font-medium leading-snug tracking-normal text-muted-foreground md:text-2xl">
+                Revenue Leader, GTM Operator &amp; Advisor
+              </span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
               Founding IC and revenue leader who has developed and scaled products from{" "}
@@ -504,7 +507,7 @@ function Home() {
                   {c.logo ? (
                     <img
                       src={c.logo}
-                      alt={`${c.company} logo`}
+                      alt={c.company}
                       className="size-12 rounded-md object-contain"
                       loading="lazy"
                     />
@@ -614,7 +617,7 @@ function Home() {
               <div key={a.name} className="flex gap-4">
                 <img
                   src={a.logo}
-                  alt={`${a.name} logo`}
+                  alt={a.name}
                   loading="lazy"
                   className="size-10 shrink-0 rounded-md object-contain"
                 />
@@ -637,7 +640,7 @@ function Home() {
               <div key={e.school} className="flex gap-5">
                 <img
                   src={e.logo}
-                  alt={`${e.school} logo`}
+                  alt={e.school}
                   loading="lazy"
                   className="size-12 shrink-0 rounded-md object-contain"
                 />
