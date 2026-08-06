@@ -430,7 +430,7 @@ function Home() {
           </dl>
         </section>
 
-        <section className="py-16">
+        <section className="py-14">
           <SectionHeading id="experience" label="Experience" />
           <div className="space-y-12">
             {experience.map((role, i) => (
@@ -473,7 +473,7 @@ function Home() {
           </div>
         </section>
 
-        <section className="py-16">
+        <section className="py-14">
           <SectionHeading id="ventures" label="Ventures & Projects" />
           <div className="space-y-10">
             {ventures.map((v) => (
@@ -537,7 +537,7 @@ function Home() {
           </div>
         </section>
 
-        <section className="py-16">
+        <section className="py-14">
           <SectionHeading id="advisory" label="Advisory & Investing" />
           <div className="grid gap-8 sm:grid-cols-2">
             {advisory.map((a) => (
@@ -560,7 +560,7 @@ function Home() {
           </div>
         </section>
 
-        <section className="py-16">
+        <section className="py-14">
           <SectionHeading id="education" label="Education" />
           <div className="space-y-8">
             {education.map((e) => (
