@@ -481,40 +481,50 @@ function Home() {
         <section className="py-14">
           <SectionHeading id="experience" label="Experience" />
           <div className="space-y-12">
-            {experience.map((role, i) => (
-              <article key={`${role.company}-${i}`} className="flex gap-5">
+            {experience.map((c, i) => (
+              <article key={`${c.company}-${i}`} className="flex gap-5">
                 <div className="hidden w-12 shrink-0 sm:block">
-                  {role.logo && (
+                  {c.logo ? (
                     <img
-                      src={role.logo}
-                      alt={`${role.company} logo`}
+                      src={c.logo}
+                      alt={`${c.company} logo`}
                       className="size-12 rounded-md object-contain"
                       loading="lazy"
                     />
-                  )}
+                  ) : c.icon ? (
+                    <div className="flex size-12 items-center justify-center rounded-md border border-border bg-secondary">
+                      <Plane className="size-5 text-muted-foreground" />
+                    </div>
+                  ) : null}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                    <h3 className="font-display text-lg font-semibold leading-snug">
-                      {role.title ?? role.company}
-                    </h3>
-                    <span className="font-display text-xs uppercase tracking-wider text-muted-foreground">
-                      {role.period}
-                    </span>
-                  </div>
-                  {role.title && (
-                    <p className="mt-1 text-sm text-accent">{role.company}</p>
-                  )}
-                  <ul className="mt-3 space-y-2">
-                    {role.bullets.map((b) => (
-                      <li
-                        key={b}
-                        className="relative pl-4 text-sm leading-relaxed text-muted-foreground before:absolute before:left-0 before:top-[0.6em] before:size-1 before:rounded-full before:bg-border"
-                      >
-                        {b}
-                      </li>
+                  <h3 className="font-display text-lg font-semibold leading-snug text-accent">
+                    {c.company}
+                  </h3>
+                  <div className="mt-3 space-y-6">
+                    {c.roles.map((r, ri) => (
+                      <div key={`${r.title ?? "role"}-${ri}`}>
+                        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                          {r.title && (
+                            <h4 className="font-display text-base font-semibold">{r.title}</h4>
+                          )}
+                          <span className="font-display text-xs uppercase tracking-wider text-muted-foreground">
+                            {r.period}
+                          </span>
+                        </div>
+                        <ul className="mt-2 space-y-2">
+                          {r.bullets.map((b, bi) => (
+                            <li
+                              key={bi}
+                              className="relative pl-4 text-sm leading-relaxed text-muted-foreground before:absolute before:left-0 before:top-[0.6em] before:size-1 before:rounded-full before:bg-border"
+                            >
+                              {b}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </article>
             ))}
