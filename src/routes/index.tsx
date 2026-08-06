@@ -543,10 +543,16 @@ function Home() {
           </div>
         </section>
 
+        const sortedVentures = [...ventures].sort((a, b) => {
+          const yearA = parseInt(a.period.split("–")[0].trim());
+          const yearB = parseInt(b.period.split("–")[0].trim());
+          return yearB - yearA;
+        });
+
         <section className="py-14">
           <SectionHeading id="ventures" label="Ventures & Projects" />
           <div className="space-y-10">
-            {ventures.map((v) => (
+            {sortedVentures.map((v) => (
               <article key={v.name} className="group">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                   <h3 className="font-display text-lg font-semibold">
