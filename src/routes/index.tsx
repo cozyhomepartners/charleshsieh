@@ -551,11 +551,6 @@ function Home() {
                     ) : (
                       <span className="inline-flex items-baseline gap-2">
                         {v.name}
-                        {"comingSoon" in v && v.comingSoon && (
-                          <span className="font-sans text-[11px] uppercase tracking-wider text-muted-foreground/70">
-                            coming soon
-                          </span>
-                        )}
                       </span>
                     )}
                   </h3>
