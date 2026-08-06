@@ -318,7 +318,7 @@ const education = [
 
 function SectionHeading({ label, id }: { label: string; id: string }) {
   return (
-    <div className="mb-10 flex items-baseline gap-4 border-b border-border pb-4" id={id}>
+    <div className="scroll-mt-24 sm:scroll-mt-28 mb-10 flex items-baseline gap-4 border-b border-border pb-4" id={id}>
       <h2 className="font-display text-sm font-medium uppercase tracking-[0.22em] text-muted-foreground">
         {label}
       </h2>
