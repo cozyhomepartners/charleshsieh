@@ -106,7 +106,7 @@ const experience: Company[] = [
         title: "Vice President of Sales and Product, North America",
         period: "Feb 2023 – May 2026",
         bullets: [
-          "Designed, built, and sold new SaaS and Ads products for the US market — scaled $0 to $6M ARR in two years, landing 50 large logos including Rivian, Amazon, Chewy, and Salesforce.",
+          "Designed, built, and sold new SaaS and Ads products for the US market, scaled $0 to $6M ARR in two years, landing 50 large logos including Rivian, Amazon, Chewy, and Salesforce.",
           "Led a 15-person GTM team plus four dotted-line software engineers.",
         ],
       },
@@ -192,7 +192,7 @@ const experience: Company[] = [
         title: "Senior Enterprise Account Manager",
         period: "Feb 2010 – Jun 2013",
         bullets: [
-          "President's Club 2010, 2011, 2012 — 179%, 140%, and 159% of quota.",
+          "President's Club 2010, 2011, 2012, 179%, 140%, and 159% of quota.",
           "Global Sales Rep of the Year 2010 and 2011. First global Account Manager hire; promoted three times in three years.",
         ],
       },
