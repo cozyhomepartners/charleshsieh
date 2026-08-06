@@ -330,8 +330,8 @@ function SectionHeading({ label, id }: { label: string; id: string }) {
 function Home() {
   const [open, setOpen] = useState(false);
   const sortedVentures = [...ventures].sort((a, b) => {
-    const yearA = parseInt(a.period.split("–")[0].trim());
-    const yearB = parseInt(b.period.split("–")[0].trim());
+    const yearA = parseInt(a.period.split("–")[0]?.trim() ?? "0");
+    const yearB = parseInt(b.period.split("–")[0]?.trim() ?? "0");
     return yearB - yearA;
   });
 
