@@ -123,7 +123,7 @@ function Home() {
       <img src="/img/icons/icon_illinois.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">B.S. Degree in Electrical and Computer Engineering</span><br/>
+      <p><b className="t">B.S. Degree in Electrical and Computer Engineering</b><br/>
       University of Illinois, Urbana-Champaign <span>JUNE 2007</span>
       </p>
       </div>
@@ -131,7 +131,7 @@ function Home() {
       <img src="/img/icons/icon_tsinghua.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Minor in Chinese</span><br/>
+      <p><b className="t">Minor in Chinese</b><br/>
       Tsinghua University <span>SUMMER 2006</span>
       </p>
       </div>	
@@ -146,8 +146,8 @@ function Home() {
       <img src="/img/icons/icon_pathrise.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Advisor</span><br/>
-      Pathrise <span>2021 - CURRENT</span><br/>
+      <p><b className="t">Advisor</b><br/>
+      Pathrise <span>2021 - CURRENT</b><br/>
       </p>
       <p><span className="more">YC18. Pathrise is an online program for tech professionals that provides 1-on-1 mentorship, training and advice to help you land your next job.</span></p>
       </div>
@@ -155,8 +155,8 @@ function Home() {
       <img src="/img/icons/icon_welcome.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Investor / Advisor</span><br/>
-      Welcome <span>2019 - 2021</span><br/>
+      <p><b className="t">Investor / Advisor</b><br/>
+      Welcome <span>2019 - 2021</b><br/>
       </p>
       <p><span className="more">YC20. Welcome is on a mission to provide access to jaw-dropping virtual experiences that connect, transport and engage people like never before.</span></p>
       </div>
@@ -164,8 +164,8 @@ function Home() {
       <img src="/img/icons/icon_byteboard.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Advisor</span><br/>
-      Byteboard <span>2019 - 2021</span><br/>
+      <p><b className="t">Advisor</b><br/>
+      Byteboard <span>2019 - 2021</b><br/>
       </p>
       <p><span className="more">Backed by Google. Byteboard allows technical interview experience to be more effective, efficient, and equitable for all.</span></p>
       </div>
@@ -173,8 +173,8 @@ function Home() {
       <img src="/img/icons/icon_agave.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Advisor</span><br/>
-      Agave <span>2019 - 2020</span><br/>
+      <p><b className="t">Advisor</b><br/>
+      Agave <span>2019 - 2020</b><br/>
       </p>
       <p><span className="more">Backed by SV Angel and Box Group. The free modern, open hiring platform to help you source, track, nurture, and close the best talent.</span></p>
       </div>
@@ -182,8 +182,8 @@ function Home() {
       <img src="/img/icons/icon_codingdojo.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Advisor</span><br/>
-      CodingDojo <span>2017 - 2020</span><br/>
+      <p><b className="t">Advisor</b><br/>
+      CodingDojo <span>2017 - 2020</b><br/>
       </p>
       <p><span className="more">Backed by Ulu Ventures. Software is eating the world, and Coding Dojo is changing how people learn software. Coding Dojo is one of the highest-rated coding bootcamps in the industry for both in-person and online learning.</span></p>
       </div>
@@ -191,8 +191,8 @@ function Home() {
       <img src="/img/icons/icon_growingio.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Advisor</span><br/>
-      GrowingIO <span>2015 - 2018</span><br/>
+      <p><b className="t">Advisor</b><br/>
+      GrowingIO <span>2015 - 2018</b><br/>
       </p>
       <p><span className="more">Backed by Greylock, NEA and Matrix Partner. GrowingIO is an end-to-end web and mobile analytics platform that provides predictive and actionable business intelligence.</span></p>
       </div>
@@ -207,7 +207,7 @@ function Home() {
       <img src="/img/icons/icon_blind.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Vice President of Sales</span><br/>
+      <p><b className="t">Vice President of Sales</b><br/>
       Blind <span>MARCH 2023 - PRESENT</span>
       </p>
       <ul>
@@ -218,7 +218,7 @@ function Home() {
       <img src="/img/icons/icon_switchboard.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Vice President of Sales</span><br/>
+      <p><b className="t">Vice President of Sales</b><br/>
       Switchboard Software <span>SEPTEMBER 2022 - FEBRUARY 2023</span>
       </p>
       <ul>
@@ -229,7 +229,7 @@ function Home() {
       <img src="/img/icons/icon_google.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Head of Sales, Workspace, New Cloud Products</span><br/>
+      <p><b className="t">Head of Sales, Workspace, New Cloud Products</b><br/>
       Google <span>SEPTEMBER 2019 - SEPTEMBER 2021</span>
       </p>
       <ul>
@@ -240,7 +240,7 @@ function Home() {
       <img src="/img/icons/icon_google.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Head of Sales, Hire - Google Cloud</span><br/>
+      <p><b className="t">Head of Sales, Hire - Google Cloud</b><br/>
       Google <span>SEPTEMBER 2016 - AUGUST 2019</span>
       </p>
       <ul>
@@ -252,7 +252,7 @@ function Home() {
       <img src="/img/icons/icon_hackerrank.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Director, Solutions Engineering</span><br/>
+      <p><b className="t">Director, Solutions Engineering</b><br/>
       HackerRank <span>JULY 2014 - JULY 2016</span>
       </p>
       <ul>
@@ -265,7 +265,7 @@ function Home() {
       <img src="/img/icons/icon_linkedin.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Senior Enterprise Account Manager</span><br/>
+      <p><b className="t">Senior Enterprise Account Manager</b><br/>
       LinkedIn <span>JANUARY 2010 - JUNE 2013</span>
       </p>
       <ul>
@@ -282,7 +282,7 @@ function Home() {
       <img src="/img/icons/icon_agilent.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Strategic Account Executive</span><br/>
+      <p><b className="t">Strategic Account Executive</b><br/>
       Agilent Technologies <span>JULY 2007 - NOVEMBER 2009</span>
       </p>
       <ul>
@@ -295,7 +295,7 @@ function Home() {
       <img src="/img/icons/icon_united_technologies.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Software Engineer</span><br/>
+      <p><b className="t">Software Engineer</b><br/>
       United Technologies <span>JANUARY 2006 - JANUARY 2007</span>
       </p>
       <ul>
@@ -313,7 +313,7 @@ function Home() {
       <img src="/img/icons/icon_linkedin.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">President's Club</span><br/>
+      <p><b className="t">President's Club</b><br/>
       LinkedIn <span>2010, 2011, 2012</span>
       </p>
       </div>
@@ -321,7 +321,7 @@ function Home() {
       <img src="/img/icons/icon_linkedin.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Global Rep of The Year</span><br/>
+      <p><b className="t">Global Rep of The Year</b><br/>
       LinkedIn<span>2010, 2011</span>
       </p>
       <p><span className="more">This is a prestigious global company award that is given out to the top 5 sales rep annually. Consideration criteria includes: performance, internal resourcefulness and leadership.</span></p>
@@ -330,7 +330,7 @@ function Home() {
       <img src="/img/icons/icon_agilent.png" className="img-square" height={60}/>
       </div>
       <div className="col-lg-8 sr-work">
-      <p><span className="t">Hardball Award - Most Competitive Wins</span><br/>
+      <p><b className="t">Hardball Award - Most Competitive Wins</b><br/>
       Agilent Technologies <span>2008</span>
       </p>
       <p><span className="more">This is the annual company award that is given out to one sales rep in each region for most wins in competitive situation.</span></p>
