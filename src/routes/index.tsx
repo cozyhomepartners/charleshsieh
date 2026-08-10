@@ -176,7 +176,7 @@ const experience: Company[] = [
     roles: [
       {
         title: "Director, Solutions Engineering",
-        period: "Jan 2014 – Jul 2016",
+        period: "Oct 2013 – Jul 2016",
         bullets: [
           "Generated and supported $5.8M (2014), $10M (2015), and $7M (2016 H1) in sales, leading 14 solutions engineers across the US and India.",
         ],
@@ -189,7 +189,7 @@ const experience: Company[] = [
     roles: [
       {
         title: "Senior Enterprise Account Manager",
-        period: "Feb 2010 – Jun 2013",
+        period: "Feb 2010 – Sep 2013",
         bullets: [
           "President's Club 2010, 2011, 2012, 179%, 140%, and 159% of quota.",
           "Global Sales Rep of the Year 2010 and 2011. First global Account Manager hire; promoted three times in three years.",
