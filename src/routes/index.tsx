@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   ArrowUpRight,
@@ -65,7 +65,7 @@ export const Route = createFileRoute("/")({
 const navLinks = [
   { label: "About", href: "#about" },
   { label: "Travel", href: "#travel" },
-  { label: "Writing", href: "#writing" },
+  { label: "Blog", href: "/blog", internal: true },
   { label: "Building", href: "#building" },
   { label: "NextRoot", href: "https://nextrootsventures.com", external: true },
 ];
@@ -97,33 +97,6 @@ const travelPosts = [
     image: travelSouthwest,
     tag: "Road trip",
     tagClass: "bg-teal/15 text-teal",
-  },
-];
-
-const essays = [
-  {
-    date: "2026",
-    title: "Building things nobody asked for",
-    summary:
-      "Why I keep shipping side projects, and what they teach me that a job never could.",
-  },
-  {
-    date: "2026",
-    title: "Raising kids who like being bored",
-    summary:
-      "A running experiment in unstructured time, and what it's done to our weekends.",
-  },
-  {
-    date: "2025",
-    title: "The sabbatical year, honestly",
-    summary:
-      "What a year away actually felt like, past the highlight reel and into the awkward middle.",
-  },
-  {
-    date: "2025",
-    title: "Engineer brain, sales heart",
-    summary:
-      "On starting in C++ and ending up in front of customers, and why I never fully picked a side.",
   },
 ];
 
@@ -295,12 +268,12 @@ function Home() {
                 it's the only habit I've kept. Here's what stuck, what didn't, and
                 the handful of ideas that turned into real projects.
               </p>
-              <a
-                href="#writing"
+              <Link
+                to="/blog"
                 className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
               >
                 Keep reading <ArrowUpRight className="h-4 w-4" />
-              </a>
+              </Link>
             </div>
           </article>
         </section>
@@ -353,31 +326,6 @@ function Home() {
           >
             <Youtube className="h-4 w-4" /> Watch on Hsiehnanigans
           </a>
-        </section>
-
-        {/* Writing */}
-        <section className="border-t border-border pt-12 pb-14">
-          <SectionHeading id="writing" eyebrow="Writing" title="Thoughts, half-formed and otherwise" />
-          <ul className="mt-8 divide-y divide-border border-y border-border">
-            {essays.map((essay) => (
-              <li
-                key={essay.title}
-                className="group flex flex-col gap-2 py-5 sm:flex-row sm:items-baseline sm:gap-8"
-              >
-                <span className="w-16 shrink-0 text-sm font-semibold text-muted-foreground">
-                  {essay.date}
-                </span>
-                <div>
-                  <h3 className="font-display text-xl font-semibold tracking-tight transition-colors group-hover:text-primary">
-                    {essay.title}
-                  </h3>
-                  <p className="mt-1 leading-relaxed text-muted-foreground">
-                    {essay.summary}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
         </section>
 
         {/* Passion work */}
