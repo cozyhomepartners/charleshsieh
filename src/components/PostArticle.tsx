@@ -12,7 +12,32 @@ export type Post = {
   location?: string | null;
   cover_image_url: string | null;
   published_at: string | null;
+  tags?: string[] | null;
 };
+
+export function TagPills({ tags, tone = "warm" }: { tags?: string[] | null; tone?: "warm" | "onImage" }) {
+  if (!tags || tags.length === 0) return null;
+  const palette = [
+    "bg-primary/12 text-primary",
+    "bg-marigold/25 text-foreground",
+    "bg-teal/15 text-teal",
+  ];
+  return (
+    <div className="flex flex-wrap gap-2">
+      {tags.map((tag, i) => (
+        <span
+          key={tag}
+          className={
+            "inline-block rounded-full px-3 py-1 text-xs font-semibold " +
+            (tone === "onImage" ? "bg-background/90 text-foreground" : palette[i % palette.length])
+          }
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 const formatDate = (value: string | null) =>
   value ? new Date(value).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" }) : "";
@@ -69,6 +94,11 @@ export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: "
                 {post.location}
               </p>
             ) : null}
+            {post.tags && post.tags.length ? (
+              <div className="mt-4">
+                <TagPills tags={post.tags} tone="onImage" />
+              </div>
+            ) : null}
           </div>
         </header>
       ) : null}
@@ -92,6 +122,11 @@ export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: "
                 <MapPin className="h-4 w-4" />
                 {post.location}
               </p>
+            ) : null}
+            {post.tags && post.tags.length ? (
+              <div className="mt-4">
+                <TagPills tags={post.tags} />
+              </div>
             ) : null}
           </>
         ) : null}
@@ -128,6 +163,11 @@ export function PostCard({ post, to }: { post: Post; to: "/blog/$slug" | "/trave
         </p>
         <h2 className="font-display text-2xl font-semibold tracking-tight group-hover:text-primary">{post.title}</h2>
         {post.excerpt ? <p className="leading-relaxed text-muted-foreground">{post.excerpt}</p> : null}
+        {post.tags && post.tags.length ? (
+          <div className="pt-1">
+            <TagPills tags={post.tags} />
+          </div>
+        ) : null}
       </div>
     </Link>
   );
