@@ -200,20 +200,30 @@ function AdminPage() {
           <Link to="/" className="text-sm font-semibold text-muted-foreground hover:text-primary">
             &larr; Back to the site
           </Link>
-          <button
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => setShowPreview((v) => !v)}
+              className="text-sm font-semibold text-muted-foreground hover:text-primary"
+            >
+              {showPreview ? "Hide preview" : "Show preview"}
+            </button>
+            <button
             type="button"
             onClick={() => void supabase.auth.signOut().then(() => navigate({ to: "/" }))}
             className="text-sm font-semibold text-muted-foreground hover:text-primary"
           >
             Sign out
           </button>
+          </div>
         </div>
 
         <h1 className="mt-6 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
           {draft.id ? "Edit post" : "New post"}
         </h1>
 
-        <div className="mt-8 space-y-4 rounded-3xl border border-border bg-card p-7">
+        <div className={showPreview ? "mt-8 grid gap-6 lg:grid-cols-2" : "mt-8"}>
+        <div className="space-y-4 rounded-3xl border border-border bg-card p-7">
           <Field label="Title">
             <input
               value={draft.title}
@@ -260,6 +270,14 @@ function AdminPage() {
               value={draft.location}
               onChange={(e) => setDraft((d) => ({ ...d, location: e.target.value }))}
               placeholder="Lisbon, Portugal"
+              className={inputClass}
+            />
+          </Field>
+          <Field label="Tags (optional, comma separated)">
+            <input
+              value={draft.tags}
+              onChange={(e) => setDraft((d) => ({ ...d, tags: e.target.value }))}
+              placeholder="Family trip, Food &amp; wandering"
               className={inputClass}
             />
           </Field>
@@ -332,6 +350,23 @@ function AdminPage() {
             ) : null}
           </div>
         </div>
+        {showPreview ? (
+          <div className="lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)]">
+            <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card">
+              <p className="border-b border-border px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                Live preview
+              </p>
+              <div className="preview-pane flex-1 overflow-y-auto">
+                <PostArticle
+                  post={previewPost}
+                  backTo={draft.category === "travel" ? "/travel" : "/blog"}
+                  backLabel={draft.category === "travel" ? "All travel notes" : "All writing"}
+                />
+              </div>
+            </div>
+          </div>
+        ) : null}
+        </div>
 
         <h2 className="mt-12 font-display text-2xl font-semibold tracking-tight">Your posts</h2>
         <div className="mt-5 divide-y divide-border border-y border-border">
@@ -354,6 +389,7 @@ function AdminPage() {
                     content: post.content ?? "",
                     category: (post.category === "travel" ? "travel" : "writing") as Draft["category"],
                     location: post.location ?? "",
+                    tags: (post.tags ?? []).join(", "),
                     cover_image_url: post.cover_image_url ?? "",
                     published: post.published,
                   })
