@@ -344,6 +344,13 @@ function Home() {
               </article>
             ))}
           </div>
+          <Link
+            to="/travel"
+            className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+          >
+            Read the travel journals
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
           <a
             href="https://www.youtube.com/@hsiehnanigans"
             target="_blank"
