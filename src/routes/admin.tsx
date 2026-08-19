@@ -73,7 +73,7 @@ function AdminPage() {
 
   const save = async (publish: boolean) => {
     if (!user) return;
-    if (!draft.title.trim()) return toast.error("Give the post a title.");
+    if (!draft.title.trim()) { toast.error("Give the post a title."); return; }
     const slug = draft.slug.trim() || slugify(draft.title);
     setSaving(true);
     const payload = {
@@ -91,7 +91,7 @@ function AdminPage() {
       ? await supabase.from("posts").update(payload).eq("id", draft.id)
       : await supabase.from("posts").insert(payload);
     setSaving(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success(publish ? "Published." : "Draft saved.");
     setDraft(emptyDraft);
     void queryClient.invalidateQueries({ queryKey: ["posts"] });
@@ -99,7 +99,7 @@ function AdminPage() {
 
   const remove = async (id: string) => {
     const { error } = await supabase.from("posts").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Post deleted.");
     void queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
