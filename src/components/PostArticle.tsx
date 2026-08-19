@@ -110,7 +110,7 @@ export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: "
 
         {!hasCover ? (
           <>
-            <p className={"mt-8 text-xs font-semibold uppercase tracking-[0.2em] " + (isTravel ? "text-marigold" : "text-primary")}>
+            <p className={"mt-8 text-xs font-semibold uppercase tracking-[0.2em] " + (isTravel ? "text-marigold-ink" : "text-primary")}>
               {isTravel ? "Travel" : "Blog"}
               {post.published_at ? " · " + formatDate(post.published_at) : ""}
             </p>
@@ -157,7 +157,7 @@ export function PostCard({ post, to }: { post: Post; to: "/blog/$slug" | "/trave
         <img src={post.cover_image_url} alt={post.title} loading="lazy" className="h-56 w-full object-cover" />
       ) : null}
       <div className="space-y-2 p-7">
-        <p className={"text-xs font-semibold uppercase tracking-[0.16em] " + (isTravel ? "text-marigold" : "text-primary")}>
+        <p className={"text-xs font-semibold uppercase tracking-[0.16em] " + (isTravel ? "text-marigold-ink" : "text-primary")}>
           {post.location ?? (isTravel ? "Travel" : "Blog")}
           {post.published_at ? " · " + formatDate(post.published_at) : ""}
         </p>
