@@ -48,13 +48,13 @@ export const Route = createFileRoute("/")({
           name: "Charles Hsieh",
           description:
             "Dad, traveler, writer, and builder based in the San Francisco Bay Area.",
-          email: "charles.hsieh6@gmail.com",
+          email: "hello@charleshsieh.com",
           url: "https://charleshsieh.com",
           sameAs: [
             "https://www.linkedin.com/in/chsieh",
             "https://github.com/cozyhomepartners",
             "https://www.youtube.com/@hsiehnanigans",
-            "https://nextrootsventures.com",
+            "https://nextrootventures.com",
           ],
         }),
       },
@@ -71,10 +71,9 @@ const navLinks: {
 }[] = [
   { label: "About", href: "#about" },
   { label: "Travel", href: "/travel", internal: true },
-  { label: "Writing", href: "#writing" },
   { label: "Blog", href: "/blog", internal: true },
   { label: "Building", href: "#building" },
-  { label: "NextRoot", href: "https://nextrootsventures.com", external: true },
+  { label: "NextRoot Ventures", href: "https://nextrootventures.com", external: true },
 ];
 
 const travelPosts = [
@@ -110,7 +109,7 @@ const travelPosts = [
 const passionWork = [
   {
     name: "NextRoot Ventures",
-    href: "https://nextrootsventures.com",
+    href: "https://nextrootventures.com",
     icon: Plane,
     accent: "text-primary",
     blurb:
