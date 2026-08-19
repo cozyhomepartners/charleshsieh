@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import {
   ArrowUpRight,
   Mail,
@@ -16,7 +18,6 @@ import familyPhotoAsset from "@/assets/family-portrait.jpg.asset.json";
 import travelCoast from "@/assets/travel-coast.jpg";
 import travelJapan from "@/assets/travel-japan.jpg";
 import travelSouthwest from "@/assets/travel-southwest.jpg";
-import featuredWriting from "@/assets/featured-writing.jpg";
 
 const familyPhoto = familyPhotoAsset.url;
 
@@ -70,6 +71,7 @@ const navLinks: {
 }[] = [
   { label: "About", href: "#about" },
   { label: "Travel", href: "/travel", internal: true },
+  { label: "Writing", href: "#writing" },
   { label: "Blog", href: "/blog", internal: true },
   { label: "Building", href: "#building" },
   { label: "NextRoot", href: "https://nextrootsventures.com", external: true },
@@ -155,6 +157,20 @@ function SectionHeading({
 
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { data: writingPosts } = useQuery({
+    queryKey: ["posts", "published", "writing", "home"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("posts")
+        .select("id, title, slug, excerpt, cover_image_url, tags")
+        .eq("published", true)
+        .eq("category", "writing")
+        .order("published_at", { ascending: false })
+        .limit(3);
+      if (error) throw error;
+      return data;
+    },
+  });
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -270,40 +286,6 @@ function Home() {
           </div>
         </section>
 
-        {/* Featured */}
-        <section className="pb-14">
-          <article className="grid overflow-hidden rounded-3xl border border-border bg-card md:grid-cols-2">
-            <img
-              src={featuredWriting}
-              alt="An open notebook and coffee beside a sunlit window"
-              width={1400}
-              height={900}
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
-            <div className="flex flex-col justify-center gap-4 p-7 sm:p-10">
-              <span className="w-fit rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
-                Latest
-              </span>
-              <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-                What a year of writing every morning actually changed
-              </h2>
-              <p className="leading-relaxed text-muted-foreground">
-                I started keeping a notebook on the counter, mostly to get
-                thoughts out of my head before the house woke up. A year later,
-                it's the only habit I've kept. Here's what stuck, what didn't, and
-                the handful of ideas that turned into real projects.
-              </p>
-              <Link
-                to="/blog"
-                className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
-              >
-                Keep reading <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </article>
-        </section>
-
         {/* Travel */}
         <section className="border-t border-border pt-12 pb-14">
           <SectionHeading id="travel" eyebrow="Travel" title="Notes from the road" />
@@ -351,14 +333,58 @@ function Home() {
             Read the travel journals
             <ArrowUpRight className="h-4 w-4" />
           </Link>
-          <a
-            href="https://www.youtube.com/@hsiehnanigans"
-            target="_blank"
-            rel="noreferrer"
-            className="mt-8 inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
+        </section>
+
+        {/* Writing */}
+        <section className="border-t border-border pt-12 pb-14">
+          <SectionHeading id="writing" eyebrow="Writing" title="Essays and half-formed thoughts" />
+          <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
+            Notes I write to figure out what I actually think, about building things,
+            family, and the shape of a good week.
+          </p>
+          {writingPosts && writingPosts.length > 0 ? (
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {writingPosts.map((post) => (
+                <Link
+                  key={post.id}
+                  to="/blog/$slug"
+                  params={{ slug: post.slug }}
+                  className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card transition-transform duration-200 hover:-translate-y-1"
+                >
+                  {post.cover_image_url ? (
+                    <img
+                      src={post.cover_image_url}
+                      alt={post.title}
+                      loading="lazy"
+                      className="h-44 w-full object-cover"
+                    />
+                  ) : null}
+                  <div className="space-y-3 p-6">
+                    {post.tags && post.tags.length ? (
+                      <span className="inline-block rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">
+                        {post.tags[0]}
+                      </span>
+                    ) : null}
+                    <h3 className="font-display text-xl font-semibold tracking-tight group-hover:text-primary">
+                      {post.title}
+                    </h3>
+                    {post.excerpt ? (
+                      <p className="text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
+                    ) : null}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-8 text-muted-foreground">Nothing published yet.</p>
+          )}
+          <Link
+            to="/blog"
+            className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
           >
-            <Youtube className="h-4 w-4" /> Watch on Hsiehnanigans
-          </a>
+            Read all writing
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
         </section>
 
         {/* Passion work */}
