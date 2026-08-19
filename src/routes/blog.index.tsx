@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { PostCard, type Post } from "@/components/PostArticle";
 
-const title = "Writing — Charles Hsieh";
+const title = "Blog — Charles Hsieh";
 const description =
   "Essays, travel notes, and half-formed thoughts from Charles Hsieh on building, family, and life on the road.";
 
@@ -41,12 +41,12 @@ function BlogIndex() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-4xl px-5 py-14 sm:px-8">
+      <div className="mx-auto max-w-5xl px-5 py-14 sm:px-8">
         <Link to="/" className="text-sm font-semibold text-muted-foreground hover:text-primary">
           &larr; Charles Hsieh
         </Link>
         <h1 className="mt-6 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-          Writing
+          Blog
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
           Essays about building things, family, and whatever else I'm thinking through.
@@ -59,7 +59,7 @@ function BlogIndex() {
         ) : !posts || posts.length === 0 ? (
           <p className="mt-10 text-muted-foreground">No posts published yet. Check back soon.</p>
         ) : (
-          <div className="mt-10 space-y-6">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {posts.map((post) => (
               <PostCard key={post.id} post={post} to="/blog/$slug" />
             ))}

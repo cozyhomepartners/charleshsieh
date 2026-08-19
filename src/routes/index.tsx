@@ -15,10 +15,6 @@ import {
   Home as HomeIcon,
 } from "lucide-react";
 import familyPhotoAsset from "@/assets/family-portrait.jpg.asset.json";
-import travelCoast from "@/assets/travel-coast.jpg";
-import travelJapan from "@/assets/travel-japan.jpg";
-import travelSouthwest from "@/assets/travel-southwest.jpg";
-
 const familyPhoto = familyPhotoAsset.url;
 
 const title = "Charles Hsieh, travel writing, essays, and passion projects";
@@ -76,35 +72,14 @@ const navLinks: {
   { label: "NextRoot Ventures", href: "https://nextrootventures.com", external: true },
 ];
 
-const travelPosts = [
-  {
-    place: "Portugal",
-    title: "Slow mornings on the Atlantic coast",
-    blurb:
-      "Three weeks of cliff roads, pastel de nata, and letting the kids set the pace. What changed about how we travel as a family.",
-    image: travelCoast,
-    tag: "Family trip",
-    tagClass: "bg-primary/12 text-primary",
-  },
-  {
-    place: "Japan",
-    title: "Lantern light in the back streets",
-    blurb:
-      "Notes on eating standing up, riding trains with a toddler, and the quiet joy of getting lost on purpose.",
-    image: travelJapan,
-    tag: "Food & wandering",
-    tagClass: "bg-marigold/25 text-foreground",
-  },
-  {
-    place: "American Southwest",
-    title: "Red rock, dirt roads, no signal",
-    blurb:
-      "A road trip through canyon country, and why a week without connectivity was the most useful thing I did all year.",
-    image: travelSouthwest,
-    tag: "Road trip",
-    tagClass: "bg-teal/15 text-teal",
-  },
-];
+const formatDate = (value?: string | null) =>
+  value
+    ? new Date(value).toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })
+    : "";
 
 const passionWork = [
   {
@@ -156,16 +131,30 @@ function SectionHeading({
 
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { data: travelPosts } = useQuery({
+    queryKey: ["posts", "published", "travel", "home"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("posts")
+        .select("id, title, slug, excerpt, cover_image_url, tags, location, published_at")
+        .eq("published", true)
+        .eq("category", "travel")
+        .order("published_at", { ascending: false })
+        .limit(4);
+      if (error) throw error;
+      return data;
+    },
+  });
   const { data: writingPosts } = useQuery({
     queryKey: ["posts", "published", "writing", "home"],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("posts")
-        .select("id, title, slug, excerpt, cover_image_url, tags")
+        .select("id, title, slug, excerpt, cover_image_url, tags, published_at")
         .eq("published", true)
         .eq("category", "writing")
         .order("published_at", { ascending: false })
-        .limit(3);
+        .limit(4);
       if (error) throw error;
       return data;
     },
@@ -271,7 +260,7 @@ function Home() {
               </Link>
               <Link
                 to="/blog"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex items-center gap-2 rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-teal-foreground transition-opacity hover:opacity-90"
               >
                 Blog
               </Link>
@@ -298,39 +287,46 @@ function Home() {
         {/* Travel */}
         <section className="border-t border-border pt-12 pb-14">
           <SectionHeading id="travel" eyebrow="Travel" title="Notes from the road" />
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {travelPosts.map((post) => (
-              <article
-                key={post.title}
-                className="group overflow-hidden rounded-3xl border border-border bg-card transition-transform duration-200 hover:-translate-y-1"
-              >
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  width={1200}
-                  height={800}
-                  loading="lazy"
-                  className="h-48 w-full object-cover"
-                />
-                <div className="space-y-3 p-6">
-                  <span
-                    className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${post.tagClass}`}
-                  >
-                    {post.tag}
-                  </span>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                    {post.place}
-                  </p>
-                  <h3 className="font-display text-xl font-semibold tracking-tight">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {post.blurb}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
+          {travelPosts && travelPosts.length > 0 ? (
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {travelPosts.map((post) => (
+                <Link
+                  key={post.id}
+                  to="/travel/$slug"
+                  params={{ slug: post.slug }}
+                  className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card transition-transform duration-200 hover:-translate-y-1"
+                >
+                  {post.cover_image_url ? (
+                    <img
+                      src={post.cover_image_url}
+                      alt={post.title}
+                      loading="lazy"
+                      className="h-44 w-full object-cover"
+                    />
+                  ) : null}
+                  <div className="space-y-3 p-6">
+                    {post.tags && post.tags.length ? (
+                      <span className="inline-block rounded-full bg-marigold/25 px-3 py-1 text-xs font-semibold text-foreground">
+                        {post.tags[0]}
+                      </span>
+                    ) : null}
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                      {post.location ?? "Travel"}
+                      {post.published_at ? " · " + formatDate(post.published_at) : ""}
+                    </p>
+                    <h3 className="font-display text-xl font-semibold tracking-tight group-hover:text-primary">
+                      {post.title}
+                    </h3>
+                    {post.excerpt ? (
+                      <p className="text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
+                    ) : null}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-8 text-muted-foreground">Nothing published yet.</p>
+          )}
           <Link
             to="/travel"
             className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
@@ -344,7 +340,7 @@ function Home() {
         <section className="border-t border-border pt-12 pb-14">
           <SectionHeading id="writing" eyebrow="Blog" title="Essays and half-formed thoughts" />
           {writingPosts && writingPosts.length > 0 ? (
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {writingPosts.map((post) => (
                 <Link
                   key={post.id}
@@ -369,6 +365,11 @@ function Home() {
                     <h3 className="font-display text-xl font-semibold tracking-tight group-hover:text-primary">
                       {post.title}
                     </h3>
+                    {post.published_at ? (
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                        {formatDate(post.published_at)}
+                      </p>
+                    ) : null}
                     {post.excerpt ? (
                       <p className="text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
                     ) : null}
