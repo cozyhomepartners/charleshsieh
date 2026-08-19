@@ -15,6 +15,8 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as TravelIndexRouteImport } from './routes/travel.index'
+import { Route as TravelSlugRouteImport } from './routes/travel.$slug'
 import { Route as ApiPublicPostImageSplatRouteImport } from './routes/api/public/post-image.$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -47,6 +49,16 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TravelIndexRoute = TravelIndexRouteImport.update({
+  id: '/travel/',
+  path: '/travel/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TravelSlugRoute = TravelSlugRouteImport.update({
+  id: '/travel/$slug',
+  path: '/travel/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicPostImageSplatRoute = ApiPublicPostImageSplatRouteImport.update({
   id: '/api/public/post-image/$',
   path: '/api/public/post-image/$',
@@ -59,7 +71,9 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/travel/$slug': typeof TravelSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/travel/': typeof TravelIndexRoute
   '/api/public/post-image/$': typeof ApiPublicPostImageSplatRoute
 }
 export interface FileRoutesByTo {
@@ -68,7 +82,9 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/travel/$slug': typeof TravelSlugRoute
   '/blog': typeof BlogIndexRoute
+  '/travel': typeof TravelIndexRoute
   '/api/public/post-image/$': typeof ApiPublicPostImageSplatRoute
 }
 export interface FileRoutesById {
@@ -78,7 +94,9 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/travel/$slug': typeof TravelSlugRoute
   '/blog/': typeof BlogIndexRoute
+  '/travel/': typeof TravelIndexRoute
   '/api/public/post-image/$': typeof ApiPublicPostImageSplatRoute
 }
 export interface FileRouteTypes {
@@ -89,7 +107,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/travel/$slug'
     | '/blog/'
+    | '/travel/'
     | '/api/public/post-image/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -98,7 +118,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/travel/$slug'
     | '/blog'
+    | '/travel'
     | '/api/public/post-image/$'
   id:
     | '__root__'
@@ -107,7 +129,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/travel/$slug'
     | '/blog/'
+    | '/travel/'
     | '/api/public/post-image/$'
   fileRoutesById: FileRoutesById
 }
@@ -117,7 +141,9 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  TravelSlugRoute: typeof TravelSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  TravelIndexRoute: typeof TravelIndexRoute
   ApiPublicPostImageSplatRoute: typeof ApiPublicPostImageSplatRoute
 }
 
@@ -165,6 +191,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/travel/': {
+      id: '/travel/'
+      path: '/travel'
+      fullPath: '/travel/'
+      preLoaderRoute: typeof TravelIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/travel/$slug': {
+      id: '/travel/$slug'
+      path: '/travel/$slug'
+      fullPath: '/travel/$slug'
+      preLoaderRoute: typeof TravelSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/post-image/$': {
       id: '/api/public/post-image/$'
       path: '/api/public/post-image/$'
@@ -181,7 +221,9 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   BlogSlugRoute: BlogSlugRoute,
+  TravelSlugRoute: TravelSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
+  TravelIndexRoute: TravelIndexRoute,
   ApiPublicPostImageSplatRoute: ApiPublicPostImageSplatRoute,
 }
 export const routeTree = rootRouteImport

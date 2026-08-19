@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { PostCard, type Post } from "@/components/PostArticle";
 
 const title = "Writing — Charles Hsieh";
 const description =
@@ -25,15 +26,16 @@ export const Route = createFileRoute("/blog/")({
 
 function BlogIndex() {
   const { data: posts, isLoading } = useQuery({
-    queryKey: ["posts", "published"],
+    queryKey: ["posts", "published", "writing"],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("posts")
-        .select("id, title, slug, excerpt, category, cover_image_url, published_at")
+        .select("id, title, slug, excerpt, content, category, location, cover_image_url, published_at")
         .eq("published", true)
+        .eq("category", "writing")
         .order("published_at", { ascending: false });
       if (error) throw error;
-      return data;
+      return data as Post[];
     },
   });
 
@@ -47,8 +49,9 @@ function BlogIndex() {
           Writing
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          Notes from the road, essays about building things, and whatever else I'm
-          thinking through.
+          Essays about building things, family, and whatever else I'm thinking through.
+          Travel journals live over on{" "}
+          <Link to="/travel" className="text-primary underline underline-offset-4">travel notes</Link>.
         </p>
 
         {isLoading ? (
@@ -58,33 +61,7 @@ function BlogIndex() {
         ) : (
           <div className="mt-10 space-y-6">
             {posts.map((post) => (
-              <Link
-                key={post.id}
-                to="/blog/$slug"
-                params={{ slug: post.slug }}
-                className="group block overflow-hidden rounded-3xl border border-border bg-card transition-transform duration-200 hover:-translate-y-1"
-              >
-                {post.cover_image_url ? (
-                  <img
-                    src={post.cover_image_url}
-                    alt={post.title}
-                    loading="lazy"
-                    className="h-56 w-full object-cover"
-                  />
-                ) : null}
-                <div className="space-y-2 p-7">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-                    {post.category}
-                    {post.published_at
-                      ? " · " + new Date(post.published_at).toLocaleDateString()
-                      : ""}
-                  </p>
-                  <h2 className="font-display text-2xl font-semibold tracking-tight group-hover:text-primary">
-                    {post.title}
-                  </h2>
-                  <p className="leading-relaxed text-muted-foreground">{post.excerpt}</p>
-                </div>
-              </Link>
+              <PostCard key={post.id} post={post} to="/blog/$slug" />
             ))}
           </div>
         )}
