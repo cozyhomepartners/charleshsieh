@@ -62,7 +62,12 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const navLinks = [
+const navLinks: {
+  label: string;
+  href: string;
+  external?: boolean;
+  internal?: boolean;
+}[] = [
   { label: "About", href: "#about" },
   { label: "Travel", href: "#travel" },
   { label: "Blog", href: "/blog", internal: true },
