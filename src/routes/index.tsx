@@ -76,35 +76,14 @@ const navLinks: {
   { label: "NextRoot Ventures", href: "https://nextrootventures.com", external: true },
 ];
 
-const travelPosts = [
-  {
-    place: "Portugal",
-    title: "Slow mornings on the Atlantic coast",
-    blurb:
-      "Three weeks of cliff roads, pastel de nata, and letting the kids set the pace. What changed about how we travel as a family.",
-    image: travelCoast,
-    tag: "Family trip",
-    tagClass: "bg-primary/12 text-primary",
-  },
-  {
-    place: "Japan",
-    title: "Lantern light in the back streets",
-    blurb:
-      "Notes on eating standing up, riding trains with a toddler, and the quiet joy of getting lost on purpose.",
-    image: travelJapan,
-    tag: "Food & wandering",
-    tagClass: "bg-marigold/25 text-foreground",
-  },
-  {
-    place: "American Southwest",
-    title: "Red rock, dirt roads, no signal",
-    blurb:
-      "A road trip through canyon country, and why a week without connectivity was the most useful thing I did all year.",
-    image: travelSouthwest,
-    tag: "Road trip",
-    tagClass: "bg-teal/15 text-teal",
-  },
-];
+const formatDate = (value?: string | null) =>
+  value
+    ? new Date(value).toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })
+    : "";
 
 const passionWork = [
   {
@@ -156,16 +135,30 @@ function SectionHeading({
 
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { data: travelPosts } = useQuery({
+    queryKey: ["posts", "published", "travel", "home"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("posts")
+        .select("id, title, slug, excerpt, cover_image_url, tags, location, published_at")
+        .eq("published", true)
+        .eq("category", "travel")
+        .order("published_at", { ascending: false })
+        .limit(4);
+      if (error) throw error;
+      return data;
+    },
+  });
   const { data: writingPosts } = useQuery({
     queryKey: ["posts", "published", "writing", "home"],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("posts")
-        .select("id, title, slug, excerpt, cover_image_url, tags")
+        .select("id, title, slug, excerpt, cover_image_url, tags, published_at")
         .eq("published", true)
         .eq("category", "writing")
         .order("published_at", { ascending: false })
-        .limit(3);
+        .limit(4);
       if (error) throw error;
       return data;
     },
