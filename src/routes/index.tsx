@@ -383,7 +383,7 @@ function Home() {
             to="/blog"
             className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
           >
-            Read all writing
+            Read the blog
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </section>
