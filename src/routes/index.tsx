@@ -342,11 +342,7 @@ function Home() {
 
         {/* Writing */}
         <section className="border-t border-border pt-12 pb-14">
-          <SectionHeading id="writing" eyebrow="Writing" title="Essays and half-formed thoughts" />
-          <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
-            Notes I write to figure out what I actually think, about building things,
-            family, and the shape of a good week.
-          </p>
+          <SectionHeading id="writing" eyebrow="Blog" title="Essays and half-formed thoughts" />
           {writingPosts && writingPosts.length > 0 ? (
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {writingPosts.map((post) => (
@@ -395,7 +391,7 @@ function Home() {
         {/* Passion work */}
         <section className="border-t border-border pt-12 pb-14">
           <SectionHeading id="building" eyebrow="Passion work" title="Things I'm building" />
-          <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
+          <p className="mt-4 leading-relaxed text-muted-foreground">
             Three projects I care about, each one started because I wanted it to
             exist.
           </p>
@@ -435,8 +431,7 @@ function Home() {
               I grew up an engineer, started my career writing C++ for embedded
               systems, and somehow ended up spending most of it in front of
               customers. I've built and led go-to-market teams at Google,
-              LinkedIn, HackerRank, and Blind, and I still open a code editor
-              most weeks.
+              LinkedIn, HackerRank, and Blind, and now I just vibecode for fun.
             </p>
             <p>
               These days I live in the San Francisco Bay Area with my wife and
@@ -449,7 +444,7 @@ function Home() {
             <p>
               If you want the resume version of me, that lives at{" "}
               <a
-                href="https://nextrootsventures.com"
+                href="https://nextrootventures.com"
                 target="_blank"
                 rel="noreferrer"
                 className="font-semibold text-primary hover:underline"
@@ -477,7 +472,7 @@ function Home() {
           <div className="mt-6 flex flex-wrap gap-5">
             <a
               className="inline-flex items-center gap-2 text-sm font-semibold hover:text-primary"
-              href="mailto:charles.hsieh6@gmail.com"
+              href="mailto:hello@charleshsieh.com"
             >
               <Mail className="h-4 w-4" /> Email
             </a>
