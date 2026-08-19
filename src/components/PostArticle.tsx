@@ -41,7 +41,7 @@ function Body({ post }: { post: Post }) {
   );
 }
 
-export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: string; backLabel: string }) {
+export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: "/blog" | "/travel"; backLabel: string }) {
   const isTravel = post.category === "travel";
   const hasCover = Boolean(post.cover_image_url);
 
@@ -110,7 +110,7 @@ export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: s
   );
 }
 
-export function PostCard({ post, to }: { post: Post; to: string }) {
+export function PostCard({ post, to }: { post: Post; to: "/blog/$slug" | "/travel/$slug" }) {
   const isTravel = post.category === "travel";
   return (
     <Link

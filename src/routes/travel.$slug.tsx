@@ -3,10 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { PostArticle, type Post } from "@/components/PostArticle";
 
-export const Route = createFileRoute("/blog/$slug")({
+export const Route = createFileRoute("/travel/$slug")({
   head: ({ params }) => {
-    const title = "Post — Charles Hsieh";
-    const description = "An essay from Charles Hsieh.";
+    const title = "Travel note — Charles Hsieh";
+    const description = "A travel note from Charles Hsieh.";
     return {
       meta: [
         { title },
@@ -16,13 +16,13 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
       ],
-      links: [{ rel: "canonical", href: "https://charleshsieh.com/blog/" + params.slug }],
+      links: [{ rel: "canonical", href: "https://charleshsieh.com/travel/" + params.slug }],
     };
   },
-  component: PostPage,
+  component: TravelPost,
 });
 
-function PostPage() {
+function TravelPost() {
   const { slug } = Route.useParams();
   const { data: post, isLoading } = useQuery({
     queryKey: ["post", slug],
@@ -39,9 +39,9 @@ function PostPage() {
   if (!post) {
     return (
       <div className="min-h-screen bg-background p-10 text-muted-foreground">
-        This post doesn't exist or isn't published.
+        This note doesn't exist or isn't published.
       </div>
     );
   }
-  return <PostArticle post={post} backTo="/blog" backLabel="All writing" />;
+  return <PostArticle post={post} backTo="/travel" backLabel="All travel notes" />;
 }
