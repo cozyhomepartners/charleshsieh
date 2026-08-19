@@ -69,7 +69,7 @@ const navLinks: {
   internal?: boolean;
 }[] = [
   { label: "About", href: "#about" },
-  { label: "Travel", href: "#travel" },
+  { label: "Travel", href: "/travel", internal: true },
   { label: "Blog", href: "/blog", internal: true },
   { label: "Building", href: "#building" },
   { label: "NextRoot", href: "https://nextrootsventures.com", external: true },
