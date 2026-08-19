@@ -1,12 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowUpRight, Mail, Linkedin, Github, Menu, X, Plane } from "lucide-react";
+import {
+  ArrowUpRight,
+  Mail,
+  Linkedin,
+  Github,
+  Youtube,
+  Menu,
+  X,
+  Plane,
+  Hammer,
+  Home as HomeIcon,
+} from "lucide-react";
 import familyPhotoAsset from "@/assets/family-portrait.jpg.asset.json";
+import travelCoast from "@/assets/travel-coast.jpg";
+import travelJapan from "@/assets/travel-japan.jpg";
+import travelSouthwest from "@/assets/travel-southwest.jpg";
+import featuredWriting from "@/assets/featured-writing.jpg";
+
 const familyPhoto = familyPhotoAsset.url;
 
-const title = "Charles Hsieh, Revenue Leader, GTM Operator & Advisor";
+const title = "Charles Hsieh, travel writing, essays, and passion projects";
 const description =
-  "Charles Hsieh is a San Francisco revenue leader and GTM operator who scaled products from $0 to double digit millions in ARR at Google, LinkedIn, and Blind, and advises founders.";
+  "The personal home of Charles Hsieh: family, travel notes from the road, essays on building and living, and the side projects I care about.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,14 +45,16 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "Person",
           name: "Charles Hsieh",
-          jobTitle: "Revenue Leader, GTM Operator & Advisor",
+          description:
+            "Dad, traveler, writer, and builder based in the San Francisco Bay Area.",
           email: "charles.hsieh6@gmail.com",
           url: "https://charleshsieh.com",
           sameAs: [
             "https://www.linkedin.com/in/chsieh",
             "https://github.com/cozyhomepartners",
+            "https://www.youtube.com/@hsiehnanigans",
+            "https://nextrootsventures.com",
           ],
-          alumniOf: "University of Illinois at Urbana-Champaign",
         }),
       },
     ],
@@ -44,653 +62,439 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const ventureLinks = [
-  { label: "Scale GTM", href: "https://tryscalegtm.com" },
-  { label: "Cozy Home", href: "https://www.cozyhomepartners.com/" },
-  { label: "Roofolio", href: "https://roofolio.ai" },
-];
-
-const sectionLinks = [
+const navLinks = [
   { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Ventures", href: "#ventures" },
-  { label: "Contact", href: "https://calendly.com/charleschsieh/30-minutes" },
+  { label: "Travel", href: "#travel" },
+  { label: "Writing", href: "#writing" },
+  { label: "Building", href: "#building" },
+  { label: "NextRoot", href: "https://nextrootsventures.com", external: true },
 ];
 
-const capabilities = [
+const travelPosts = [
   {
-    title: "Revenue leadership",
-    body: "Founding sales hire turned VP. Scaled products from $0 to $6M, $8M, and double digit millions in ARR; President's Club and Global Rep of the Year at LinkedIn.",
+    place: "Portugal",
+    title: "Slow mornings on the Atlantic coast",
+    blurb:
+      "Three weeks of cliff roads, pastel de nata, and letting the kids set the pace. What changed about how we travel as a family.",
+    image: travelCoast,
+    tag: "Family trip",
+    tagClass: "bg-primary/12 text-primary",
   },
   {
-    title: "Product",
-    body: "Partnered with, and reported to, product leaders to shape pricing, packaging, and roadmap from concept through public launch.",
+    place: "Japan",
+    title: "Lantern light in the back streets",
+    blurb:
+      "Notes on eating standing up, riding trains with a toddler, and the quiet joy of getting lost on purpose.",
+    image: travelJapan,
+    tag: "Food & wandering",
+    tagClass: "bg-marigold/25 text-foreground",
   },
   {
-    title: "Team building",
-    body: "Built GTM orgs from first hire to 50+ across AEs, SDRs, solutions engineering, and sales ops, in the US and internationally.",
-  },
-  {
-    title: "Engineering background",
-    body: "B.S. in Electrical and Computer Engineering. Started in C++ embedded systems; still building software today.",
-  },
-];
-
-type Position = {
-  title?: string;
-  period: string;
-  bullets: React.ReactNode[];
-};
-
-type Company = {
-  company: string;
-  logo?: string;
-  icon?: boolean;
-  roles: Position[];
-};
-
-const experience: Company[] = [
-  {
-    company: "Blind, anonymous professional network (15M+ users)",
-    logo: "/img/icons/icon_blind.png",
-    roles: [
-      {
-        title: "Advisor to CEO",
-        period: "Jun 2026 – Present",
-        bullets: [
-          "Advising the CEO on go-to-market strategy, product direction, and US market expansion.",
-        ],
-      },
-      {
-        title: "Vice President of Sales and Product, North America",
-        period: "Feb 2023 – May 2026",
-        bullets: [
-          "Designed, built, and sold new SaaS and Ads products for the US market, scaled $0 to $6M ARR in two years, landing 50 large logos including Rivian, Amazon, Chewy, and Salesforce.",
-          "Led a 15-person GTM team plus four dotted-line software engineers.",
-        ],
-      },
-    ],
-  },
-  {
-    company: "Switchboard Software",
-    logo: "/img/icons/icon_switchboard.png",
-    roles: [
-      {
-        title: "Vice President of Sales",
-        period: "Sep 2022 – Jan 2023",
-        bullets: [
-          "Closed $4M total ARR in 2022 ($1M in Q4), leading a 10-person GTM team of AEs, SDR, solutions engineering, and sales ops.",
-        ],
-      },
-    ],
-  },
-  {
-    company: "Sabbatical",
-    icon: true,
-    roles: [
-      {
-        period: "Oct 2021 – Aug 2022",
-        bullets: [
-          <>
-            Twelve months of family travel before the kids turned school age, documented at{" "}
-            <a
-              href="https://www.youtube.com/@hsiehnanigans"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-0.5 text-accent hover:underline"
-            >
-              Hsiehnanigans
-              <ArrowUpRight className="size-3.5" />
-            </a>
-            .
-          </>,
-        ],
-      },
-    ],
-  },
-  {
-    company: "Google",
-    logo: "/img/icons/icon_google.png",
-    roles: [
-      {
-        title: "Head of Sales, Google Workspace Essentials",
-        period: "Sep 2019 – Sep 2021",
-        bullets: [
-          "Grew an incubation SaaS product from $0 to $8M ARR in two years and closed 50+ enterprise logos before it was absorbed by Google Cloud Sales (8,000+ reps and partners).",
-          "Led an 8-person sales team (AEs, SDRs, ops), reporting to the VP of Product.",
-        ],
-      },
-      {
-        title: "Head of Sales, Hire by Google",
-        period: "Sep 2016 – Aug 2019",
-        bullets: [
-          "Took a new product from $0 to $25M ARR and 3,000+ customers across idea, beta, and public launch in three years.",
-          "Led a 50-person global team; promoted twice in three years from first sales rep to global head of sales.",
-        ],
-      },
-    ],
-  },
-  {
-    company: "HackerRank",
-    logo: "/img/icons/icon_hackerrank.png",
-    roles: [
-      {
-        title: "Director, Solutions Engineering",
-        period: "Oct 2013 – Jul 2016",
-        bullets: [
-          "Generated and supported $5.8M (2014), $10M (2015), and $7M (2016 H1) in sales, leading 14 solutions engineers across the US and India.",
-        ],
-      },
-    ],
-  },
-  {
-    company: "LinkedIn",
-    logo: "/img/icons/icon_linkedin.png",
-    roles: [
-      {
-        title: "Senior Enterprise Account Manager",
-        period: "Feb 2010 – Sep 2013",
-        bullets: [
-          "President's Club 2010, 2011, 2012, 179%, 140%, and 159% of quota.",
-          "Global Sales Rep of the Year 2010 and 2011. First global Account Manager hire; promoted three times in three years.",
-        ],
-      },
-    ],
-  },
-  {
-    company: "Agilent Technologies",
-    logo: "/img/icons/icon_agilent.png",
-    roles: [
-      {
-        title: "Strategic Account Executive",
-        period: "Jul 2007 – Nov 2009",
-        bullets: ["135% of quota in 2008 (President's Club) and 115% of quota in 2009."],
-      },
-    ],
-  },
-  {
-    company: "United Technologies",
-    logo: "/img/icons/icon_united_technologies.png",
-    roles: [
-      {
-        title: "Software Engineer",
-        period: "Jul 2006 – Jun 2007",
-        bullets: [
-          "Built a C++ simulation of all Boeing 787 system errors, cutting testing costs by $2M annually.",
-        ],
-      },
-    ],
+    place: "American Southwest",
+    title: "Red rock, dirt roads, no signal",
+    blurb:
+      "A road trip through canyon country, and why a week without connectivity was the most useful thing I did all year.",
+    image: travelSouthwest,
+    tag: "Road trip",
+    tagClass: "bg-teal/15 text-teal",
   },
 ];
 
-const ventures = [
+const essays = [
   {
-    name: "Scale GTM",
-    period: "2022 – Present",
-    body: "Fractional go-to-market leadership: V1 playbooks, pricing, and first sales hires for founder-led teams.",
-    href: "https://tryscalegtm.com",
-    image: null as string | null,
+    date: "2026",
+    title: "Building things nobody asked for",
+    summary:
+      "Why I keep shipping side projects, and what they teach me that a job never could.",
   },
   {
-    name: "Cozy Home",
-    period: "2024 – Present",
-    body: "Real estate investment partnership focused on acquiring and operating single-family rentals.",
+    date: "2026",
+    title: "Raising kids who like being bored",
+    summary:
+      "A running experiment in unstructured time, and what it's done to our weekends.",
+  },
+  {
+    date: "2025",
+    title: "The sabbatical year, honestly",
+    summary:
+      "What a year away actually felt like, past the highlight reel and into the awkward middle.",
+  },
+  {
+    date: "2025",
+    title: "Engineer brain, sales heart",
+    summary:
+      "On starting in C++ and ending up in front of customers, and why I never fully picked a side.",
+  },
+];
+
+const passionWork = [
+  {
+    name: "NextRoot Ventures",
+    href: "https://nextrootsventures.com",
+    icon: Plane,
+    accent: "text-primary",
+    blurb:
+      "My professional home. Advising founder-led teams on go-to-market, revenue, and the messy middle between product and sales.",
+  },
+  {
+    name: "Cozy Home Partners",
     href: "https://www.cozyhomepartners.com/",
-    image: null,
+    icon: HomeIcon,
+    accent: "text-teal",
+    blurb:
+      "Buying and thoughtfully renovating homes. Part design obsession, part spreadsheet, entirely a weekend habit that got out of hand.",
   },
   {
     name: "Roofolio",
-    period: "2026 – Present",
-    body: "All-in-one tool for real estate investors to identify properties, track P&L, and generate investment recommendations.",
     href: "https://roofolio.ai",
-    image: null,
-  },
-  {
-    name: "VacayBug",
-    period: "2015 – 2016",
-    body: "Pre-AI social travel site reaching 2K+ monthly visitors; featured on Product Hunt and travel blogs.",
-    href: "http://www.vacaybug.com",
-    image: null,
-    press: [
-      { label: "Product Hunt", href: "https://www.producthunt.com/products/vacaybug?launch=vacaybug" },
-      { label: "Explore Inspired", href: "https://exploreinspired.com/exploration-made-easy/" },
-      {
-        label: "WWWhat's New",
-        href: "https://wwwhatsnew.com/2015/06/18/vacaybug-una-nueva-plataforma-para-registrar-nuestros-viajes/",
-      },
-    ] as { label: string; href: string }[] | undefined,
+    icon: Hammer,
+    accent: "text-marigold-foreground",
+    blurb:
+      "An operating system for rental investors, bringing property search, deal analysis, and portfolio operations into one workflow.",
   },
 ];
 
-const advisory = [
-  {
-    name: "Pathrise",
-    logo: "/img/icons/icon_pathrise.png",
-    period: "2021 – Present",
-    body: "YC18. Mentorship and training program helping tech professionals land their next role.",
-  },
-  {
-    name: "Welcome",
-    logo: "/img/icons/icon_welcome.png",
-    period: "2019 – 2021",
-    body: "Backed by Kleiner Perkins. Virtual experience platform for large-scale events.",
-  },
-  {
-    name: "Byteboard",
-    logo: "/img/icons/icon_byteboard.png",
-    period: "2019 – 2021",
-    body: "Backed by Google; acquired by Karat. More effective and equitable technical interviews.",
-  },
-  {
-    name: "Agave",
-    logo: "/img/icons/icon_agave.png",
-    period: "2019 – 2020",
-    body: "Backed by SV Angel and Box Group. Open hiring platform for sourcing and closing talent.",
-  },
-  {
-    name: "Coding Dojo",
-    logo: "/img/icons/icon_codingdojo.png",
-    period: "2017 – 2020",
-    body: "Acquired by Perdoceo. One of the highest-rated coding bootcamps, in person and online.",
-  },
-  {
-    name: "GrowingIO",
-    logo: "/img/icons/icon_growingio.png",
-    period: "2015 – 2018",
-    body: "Acquired by StartDT. End-to-end web and mobile analytics with predictive business intelligence.",
-  },
-];
-
-const education = [
-  {
-    school: "University of Illinois at Urbana-Champaign",
-    logo: "/img/icons/icon_illinois.png",
-    detail: "B.S. Electrical and Computer Engineering, Minor in Computer Science",
-    period: "Class of 2006",
-  },
-  {
-    school: "Tsinghua University",
-    logo: "/img/icons/icon_tsinghua.png",
-    detail: "Chinese language and culture program",
-    period: "Summer 2006",
-  },
-];
-
-function SectionHeading({ label, id }: { label: string; id: string }) {
+function SectionHeading({
+  id,
+  eyebrow,
+  title: heading,
+}: {
+  id: string;
+  eyebrow: string;
+  title: string;
+}) {
   return (
-    <div className="scroll-mt-24 sm:scroll-mt-28 mb-10 flex items-baseline gap-4 border-b border-border pb-4" id={id}>
-      <h2 className="font-display text-sm font-medium uppercase tracking-[0.22em] text-muted-foreground">
-        {label}
+    <div id={id} className="scroll-mt-24 sm:scroll-mt-28">
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+        {eyebrow}
+      </p>
+      <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+        {heading}
       </h2>
-      <span className="h-px flex-1" />
     </div>
   );
 }
 
 function Home() {
-  const [open, setOpen] = useState(false);
-  const sortedVentures = [...ventures].sort((a, b) => {
-    const yearA = parseInt(a.period.split("–")[0]?.trim() ?? "0");
-    const yearB = parseInt(b.period.split("–")[0]?.trim() ?? "0");
-    return yearB - yearA;
-  });
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4">
-          <a href="#top" className="font-display text-sm font-semibold tracking-tight whitespace-nowrap">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+          <a href="#top" className="font-display text-lg font-semibold tracking-tight">
             Charles Hsieh
           </a>
-          <nav className="hidden items-center gap-5 whitespace-nowrap md:flex">
-            {sectionLinks.map((l) => {
-              const isExternal = l.href.startsWith("http");
-              return (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  target={isExternal ? "_blank" : undefined}
-                  rel={isExternal ? "noreferrer" : undefined}
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {l.label}
-                </a>
-              );
-            })}
-            <span className="h-4 w-px bg-border" />
-            {ventureLinks.map((l) =>
-              l.href ? (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-0.5 text-sm text-foreground transition-colors hover:text-accent"
-                >
-                  {l.label}
-                  <ArrowUpRight className="size-3.5" />
-                </a>
-              ) : (
-                <span
-                  key={l.label}
-                  className="cursor-default text-sm text-muted-foreground/60"
-                  title="Coming soon"
-                >
-                  {l.label}
-                </span>
-              ),
-            )}
+          <nav className="hidden items-center gap-6 md:flex">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                {...(link.external
+                  ? { target: "_blank", rel: "noreferrer" }
+                  : {})}
+                className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              >
+                {link.label}
+                {link.external ? <ArrowUpRight className="h-3.5 w-3.5" /> : null}
+              </a>
+            ))}
           </nav>
           <button
             type="button"
             aria-label="Toggle menu"
-            onClick={() => setOpen((o) => !o)}
-            className="md:hidden"
+            onClick={() => setMenuOpen((v) => !v)}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border md:hidden"
           >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
-        {open && (
-          <div className="border-t border-border bg-background md:hidden">
-            <nav className="mx-auto flex max-w-3xl flex-col gap-3 px-6 py-4">
-              {sectionLinks.map((l) => {
-                const isExternal = l.href.startsWith("http");
-                return (
-                  <a
-                    key={l.label}
-                    href={l.href}
-                    target={isExternal ? "_blank" : undefined}
-                    rel={isExternal ? "noreferrer" : undefined}
-                    onClick={() => setOpen(false)}
-                    className="text-sm text-muted-foreground"
-                  >
-                    {l.label}
-                  </a>
-                );
-              })}
-              <span className="h-px bg-border" />
-              {ventureLinks.map((l) =>
-                l.href ? (
-                  <a
-                    key={l.label}
-                    href={l.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-0.5 text-sm"
-                  >
-                    {l.label}
-                    <ArrowUpRight className="size-3.5" />
-                  </a>
-                ) : (
-                  <span key={l.label} className="text-sm text-muted-foreground/60">
-                    {l.label} · soon
-                  </span>
-                ),
-              )}
-            </nav>
-          </div>
-        )}
+        {menuOpen ? (
+          <nav className="border-t border-border/70 bg-background px-5 py-3 md:hidden">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                {...(link.external
+                  ? { target: "_blank", rel: "noreferrer" }
+                  : {})}
+                className="block py-2 text-sm font-medium text-muted-foreground"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        ) : null}
       </header>
 
-      <main id="top" className="mx-auto max-w-6xl px-5">
-        <section className="grid items-center gap-10 py-10 md:grid-cols-[1.15fr_0.85fr] md:py-14">
+      <main id="top" className="mx-auto max-w-6xl px-5 sm:px-8">
+        {/* Hero */}
+        <section className="grid items-center gap-10 py-12 md:grid-cols-[1.1fr_0.9fr] md:py-16">
           <div>
-            <p className="font-display text-xs uppercase tracking-[0.28em] text-accent">
-              San Francisco, CA
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              Hello, I'm Charles
             </p>
-            <h1 className="mt-5 font-display text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
-              Charles Hsieh
-              <span className="mt-3 block text-xl font-medium leading-snug tracking-normal text-muted-foreground md:text-2xl">
-                Revenue Leader, GTM Operator &amp; Advisor
-              </span>
+            <h1 className="mt-3 font-display text-4xl leading-tight font-semibold tracking-tight sm:text-5xl">
+              Dad, traveler, writer, and a builder who can't sit still.
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Founding IC and revenue leader who has developed and scaled products from{" "}
-              <span className="text-foreground">$0 to double digit millions in ARR</span> across Google, LinkedIn,
-              Blind, and venture-backed startups, building teams from first hire to 50+ and
-              establishing the V1 GTM playbooks along the way.
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              This is my personal corner of the internet. I write about the places
+              we drag our kids to, the things I'm thinking through, and the
+              projects I build on nights and weekends. If you're here for work, my
+              professional home lives at NextRoot Ventures.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3">
               <a
-                href="https://calendly.com/charleschsieh/30-minutes"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                href="#travel"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
               >
-                <Mail className="size-4" /> Get in touch
+                Read the travel notes
               </a>
               <a
-                href="https://www.linkedin.com/in/chsieh"
+                href="https://nextrootsventures.com"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:bg-secondary"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
               >
-                <Linkedin className="size-4" /> LinkedIn
+                NextRoot Ventures <ArrowUpRight className="h-4 w-4" />
               </a>
             </div>
           </div>
-          <figure className="m-0">
+          <div className="relative">
+            <div className="absolute -inset-3 -rotate-2 rounded-3xl bg-marigold/25" aria-hidden />
             <img
               src={familyPhoto}
-              alt="Charles Hsieh with his wife and two children"
-              className="aspect-[4/5] w-full rounded-lg border border-border object-cover object-center"
+              alt="Charles Hsieh with his family"
+              className="relative w-full rounded-3xl object-cover shadow-lg"
             />
-            <figcaption className="mt-3 font-display text-xs uppercase tracking-wider text-muted-foreground">
-              Husband, father of two, San Francisco
-            </figcaption>
-          </figure>
+          </div>
         </section>
 
-        <section className="pb-14 pt-2">
-          <SectionHeading id="about" label="About" />
-          <p className="text-base leading-relaxed text-muted-foreground">
-            I moved from Taiwan when I was twelve, chasing the American dream. I studied
-            engineering at Illinois, spent two decades building revenue teams at companies from
-            seed-stage to Google-scale, and I'm a proud husband and father of two.
+        {/* Featured */}
+        <section className="pb-14">
+          <article className="grid overflow-hidden rounded-3xl border border-border bg-card md:grid-cols-2">
+            <img
+              src={featuredWriting}
+              alt="An open notebook and coffee beside a sunlit window"
+              width={1400}
+              height={900}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+            <div className="flex flex-col justify-center gap-4 p-7 sm:p-10">
+              <span className="w-fit rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+                Latest
+              </span>
+              <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+                What a year of writing every morning actually changed
+              </h2>
+              <p className="leading-relaxed text-muted-foreground">
+                I started keeping a notebook on the counter, mostly to get
+                thoughts out of my head before the house woke up. A year later,
+                it's the only habit I've kept. Here's what stuck, what didn't, and
+                the handful of ideas that turned into real projects.
+              </p>
+              <a
+                href="#writing"
+                className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+              >
+                Keep reading <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+          </article>
+        </section>
+
+        {/* Travel */}
+        <section className="border-t border-border pt-12 pb-14">
+          <SectionHeading id="travel" eyebrow="Travel" title="Notes from the road" />
+          <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
+            We travel a lot, usually with more luggage and less of a plan than we
+            should. I keep written notes here and film the rest on YouTube.
           </p>
-          <dl className="mt-10 grid gap-8 sm:grid-cols-2">
-            {capabilities.map((c) => (
-              <div key={c.title}>
-                <dt className="font-display text-base font-semibold">{c.title}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-
-        <section className="py-14">
-          <SectionHeading id="experience" label="Experience" />
-          <div className="space-y-12">
-            {experience.map((c, i) => (
-              <article key={`${c.company}-${i}`} className="flex gap-5">
-                <div className="hidden w-12 shrink-0 sm:block">
-                  {c.logo ? (
-                    <img
-                      src={c.logo}
-                      alt={c.company}
-                      className="size-12 rounded-md object-contain"
-                      loading="lazy"
-                    />
-                  ) : c.icon ? (
-                    <div className="flex size-12 items-center justify-center rounded-md border border-border bg-secondary">
-                      <Plane className="size-5 text-muted-foreground" />
-                    </div>
-                  ) : null}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className="font-display text-lg font-semibold leading-snug text-accent">
-                    {c.company}
-                  </h3>
-                  <div className="mt-3 space-y-6">
-                    {c.roles.map((r, ri) => (
-                      <div key={`${r.title ?? "role"}-${ri}`}>
-                        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                          {r.title && (
-                            <h4 className="font-display text-base font-semibold">{r.title}</h4>
-                          )}
-                          <span className="font-display text-xs uppercase tracking-wider text-muted-foreground">
-                            {r.period}
-                          </span>
-                        </div>
-                        <ul className="mt-2 space-y-2">
-                          {r.bullets.map((b, bi) => (
-                            <li
-                              key={bi}
-                              className="relative pl-4 text-sm leading-relaxed text-muted-foreground before:absolute before:left-0 before:top-[0.6em] before:size-1 before:rounded-full before:bg-border"
-                            >
-                              {b}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="py-14">
-          <SectionHeading id="ventures" label="Ventures & Projects" />
-          <div className="space-y-10">
-            {sortedVentures.map((v) => (
-              <article key={v.name} className="group">
-                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 className="font-display text-lg font-semibold">
-                    {v.href ? (
-                      <a
-                        href={v.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1 transition-colors hover:text-accent"
-                      >
-                        {v.name}
-                        <ArrowUpRight className="size-4" />
-                      </a>
-                    ) : (
-                      <span className="inline-flex items-baseline gap-2">
-                        {v.name}
-                      </span>
-                    )}
-                  </h3>
-                  <span className="font-display text-xs uppercase tracking-wider text-muted-foreground">
-                    {v.period}
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {travelPosts.map((post) => (
+              <article
+                key={post.title}
+                className="group overflow-hidden rounded-3xl border border-border bg-card transition-transform duration-200 hover:-translate-y-1"
+              >
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  width={1200}
+                  height={800}
+                  loading="lazy"
+                  className="h-48 w-full object-cover"
+                />
+                <div className="space-y-3 p-6">
+                  <span
+                    className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${post.tagClass}`}
+                  >
+                    {post.tag}
                   </span>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                    {post.place}
+                  </p>
+                  <h3 className="font-display text-xl font-semibold tracking-tight">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {post.blurb}
+                  </p>
                 </div>
-                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                  {v.body}
-                </p>
-                {v.image && (
-                  <img
-                    src={v.image}
-                    alt={`${v.name} screenshot`}
-                    loading="lazy"
-                    className="mt-4 w-full max-w-md rounded-md border border-border object-cover"
-                  />
-                )}
-                {"press" in v && v.press && (
-                  <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
-                    {v.press.map((p) => (
-                      <a
-                        key={p.href}
-                        href={p.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-accent"
-                      >
-                        {p.label}
-                        <ArrowUpRight className="size-3.5" />
-                      </a>
-                    ))}
-                  </div>
-                )}
               </article>
             ))}
           </div>
+          <a
+            href="https://www.youtube.com/@hsiehnanigans"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-8 inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
+          >
+            <Youtube className="h-4 w-4" /> Watch on Hsiehnanigans
+          </a>
         </section>
 
-        <section className="py-14">
-          <SectionHeading id="advisory" label="Advisory & Investing" />
-          <div className="grid gap-8 sm:grid-cols-2">
-            {advisory.map((a) => (
-              <div key={a.name} className="flex gap-4">
-                <img
-                  src={a.logo}
-                  alt={a.name}
-                  loading="lazy"
-                  className="size-10 shrink-0 rounded-md object-contain"
-                />
+        {/* Writing */}
+        <section className="border-t border-border pt-12 pb-14">
+          <SectionHeading id="writing" eyebrow="Writing" title="Thoughts, half-formed and otherwise" />
+          <ul className="mt-8 divide-y divide-border border-y border-border">
+            {essays.map((essay) => (
+              <li
+                key={essay.title}
+                className="group flex flex-col gap-2 py-5 sm:flex-row sm:items-baseline sm:gap-8"
+              >
+                <span className="w-16 shrink-0 text-sm font-semibold text-muted-foreground">
+                  {essay.date}
+                </span>
                 <div>
-                  <h3 className="font-display text-base font-semibold">{a.name}</h3>
-                  <p className="font-display text-xs uppercase tracking-wider text-muted-foreground">
-                    {a.period}
+                  <h3 className="font-display text-xl font-semibold tracking-tight transition-colors group-hover:text-primary">
+                    {essay.title}
+                  </h3>
+                  <p className="mt-1 leading-relaxed text-muted-foreground">
+                    {essay.summary}
                   </p>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{a.body}</p>
                 </div>
-              </div>
+              </li>
             ))}
+          </ul>
+        </section>
+
+        {/* Passion work */}
+        <section className="border-t border-border pt-12 pb-14">
+          <SectionHeading id="building" eyebrow="Passion work" title="Things I'm building" />
+          <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
+            Three projects I care about, each one started because I wanted it to
+            exist.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {passionWork.map((item) => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex flex-col gap-3 rounded-3xl border border-border bg-card p-7 transition-all duration-200 hover:-translate-y-1 hover:border-primary"
+                >
+                  <Icon className={`h-6 w-6 ${item.accent}`} />
+                  <h3 className="flex items-center gap-1.5 font-display text-xl font-semibold tracking-tight">
+                    {item.name}
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {item.blurb}
+                  </p>
+                  <span className="mt-auto pt-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                    {item.href.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
+                  </span>
+                </a>
+              );
+            })}
           </div>
         </section>
 
-        <section className="py-14">
-          <SectionHeading id="education" label="Education" />
-          <div className="space-y-8">
-            {education.map((e) => (
-              <div key={e.school} className="flex gap-5">
-                <img
-                  src={e.logo}
-                  alt={e.school}
-                  loading="lazy"
-                  className="size-12 shrink-0 rounded-md object-contain"
-                />
-                <div className="flex-1">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                    <h3 className="font-display text-base font-semibold">{e.school}</h3>
-                    <span className="font-display text-xs uppercase tracking-wider text-muted-foreground">
-                      {e.period}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-sm text-muted-foreground">{e.detail}</p>
-                </div>
-              </div>
-            ))}
+        {/* About */}
+        <section className="border-t border-border pt-12 pb-14">
+          <SectionHeading id="about" eyebrow="About" title="A little more about me" />
+          <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted-foreground">
+            <p>
+              I grew up an engineer, started my career writing C++ for embedded
+              systems, and somehow ended up spending most of it in front of
+              customers. I've built and led go-to-market teams at Google,
+              LinkedIn, HackerRank, and Blind, and I still open a code editor
+              most weeks.
+            </p>
+            <p>
+              These days I live in the San Francisco Bay Area with my wife and
+              our two kids. We travel whenever school lets us, I renovate houses
+              when I should be resting, and I write to figure out what I
+              actually think. I took a sabbatical year that reset how I approach
+              basically everything, and a lot of what's on this site came out of
+              it.
+            </p>
+            <p>
+              If you want the resume version of me, that lives at{" "}
+              <a
+                href="https://nextrootsventures.com"
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold text-primary hover:underline"
+              >
+                NextRoot Ventures
+              </a>
+              .
+            </p>
           </div>
         </section>
       </main>
 
-      <footer id="contact" className="scroll-mt-24 sm:scroll-mt-28 border-t border-border bg-secondary/60">
-        <div className="mx-auto max-w-6xl px-5 py-16">
-          <h2 className="font-display text-3xl font-semibold tracking-tight">Let's talk.</h2>
-          <p className="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground">
-            Building a go-to-market motion from scratch, or scaling one that's stalled? I'm always
-            up for a conversation.
+      <footer
+        id="contact"
+        className="scroll-mt-24 border-t border-border bg-secondary/50 sm:scroll-mt-28"
+      >
+        <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
+          <h2 className="font-display text-2xl font-semibold tracking-tight">
+            Say hello
+          </h2>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            I like hearing from people, whether it's about a trip you're
+            planning, something I wrote, or a project you're stuck on.
           </p>
-          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm">
+          <div className="mt-6 flex flex-wrap gap-5">
             <a
+              className="inline-flex items-center gap-2 text-sm font-semibold hover:text-primary"
               href="mailto:charles.hsieh6@gmail.com"
-              className="inline-flex items-center gap-2 transition-colors hover:text-accent"
             >
-              <Mail className="size-4" /> charles.hsieh6@gmail.com
+              <Mail className="h-4 w-4" /> Email
             </a>
             <a
+              className="inline-flex items-center gap-2 text-sm font-semibold hover:text-primary"
               href="https://www.linkedin.com/in/chsieh"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 transition-colors hover:text-accent"
             >
-              <Linkedin className="size-4" /> linkedin.com/in/chsieh
+              <Linkedin className="h-4 w-4" /> LinkedIn
             </a>
             <a
+              className="inline-flex items-center gap-2 text-sm font-semibold hover:text-primary"
+              href="https://www.youtube.com/@hsiehnanigans"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Youtube className="h-4 w-4" /> YouTube
+            </a>
+            <a
+              className="inline-flex items-center gap-2 text-sm font-semibold hover:text-primary"
               href="https://github.com/cozyhomepartners"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 transition-colors hover:text-accent"
             >
-              <Github className="size-4" /> github.com/cozyhomepartners
+              <Github className="h-4 w-4" /> GitHub
             </a>
           </div>
-          <p className="mt-12 text-xs text-muted-foreground">
+          <p className="mt-10 text-xs text-muted-foreground">
             © {new Date().getFullYear()} Charles Hsieh
           </p>
         </div>
