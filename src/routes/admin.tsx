@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { RichTextEditor } from "@/components/RichTextEditor";
+import { PostArticle, type Post } from "@/components/PostArticle";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -30,6 +31,7 @@ type Draft = {
   category: "travel" | "writing";
   location: string;
   cover_image_url: string;
+  tags: string;
   published: boolean;
 };
 
@@ -41,6 +43,7 @@ const emptyDraft: Draft = {
   category: "writing",
   location: "",
   cover_image_url: "",
+  tags: "",
   published: false,
 };
 
@@ -80,6 +83,23 @@ function AdminPage() {
   const [draft, setDraft] = useState<Draft>(emptyDraft);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [showPreview, setShowPreview] = useState(true);
+
+  const parseTags = (value: string) =>
+    value.split(",").map((t) => t.trim()).filter(Boolean);
+
+  const previewPost: Post = {
+    id: draft.id ?? "preview",
+    title: draft.title || "Untitled post",
+    slug: draft.slug || "preview",
+    excerpt: draft.excerpt,
+    content: draft.content,
+    category: draft.category,
+    location: draft.location || null,
+    cover_image_url: draft.cover_image_url || null,
+    published_at: new Date().toISOString(),
+    tags: parseTags(draft.tags),
+  };
 
   const handleCoverUpload = async () => {
     const file = await pickFile();
@@ -125,6 +145,7 @@ function AdminPage() {
       content: draft.content,
       category: draft.category,
       location: draft.location || null,
+      tags: parseTags(draft.tags),
       cover_image_url: draft.cover_image_url || null,
       published: publish,
       published_at: publish ? new Date().toISOString() : null,
