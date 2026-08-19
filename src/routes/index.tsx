@@ -102,7 +102,7 @@ const passionWork = [
     name: "Roofolio",
     href: "https://roofolio.ai",
     icon: Hammer,
-    accent: "text-marigold-foreground",
+    accent: "text-marigold-ink",
     blurb:
       "An operating system for rental investors, bringing property search, deal analysis, and portfolio operations into one workflow.",
   },
