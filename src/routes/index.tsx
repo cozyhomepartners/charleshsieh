@@ -254,23 +254,29 @@ function Home() {
               Hello, I'm Charles
             </p>
             <h1 className="mt-3 font-display text-4xl leading-tight font-semibold tracking-tight sm:text-5xl">
-              Dad, traveler, writer, and a builder who can't sit still.
+              Dad, husband, traveler, and a builder who can't sit still.
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
               This is my personal corner of the internet. I write about the places
               we drag our kids to, the things I'm thinking through, and the
               projects I build on nights and weekends. If you're here for work, my
               professional home lives at NextRoot Ventures.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a
-                href="#travel"
+              <Link
+                to="/travel"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
               >
-                Read the travel notes
-              </a>
+                Travel notes
+              </Link>
+              <Link
+                to="/blog"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
+              >
+                Blog
+              </Link>
               <a
-                href="https://nextrootsventures.com"
+                href="https://nextrootventures.com"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
@@ -292,10 +298,6 @@ function Home() {
         {/* Travel */}
         <section className="border-t border-border pt-12 pb-14">
           <SectionHeading id="travel" eyebrow="Travel" title="Notes from the road" />
-          <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
-            We travel a lot, usually with more luggage and less of a plan than we
-            should. I keep written notes here and film the rest on YouTube.
-          </p>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {travelPosts.map((post) => (
               <article
