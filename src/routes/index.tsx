@@ -15,10 +15,6 @@ import {
   Home as HomeIcon,
 } from "lucide-react";
 import familyPhotoAsset from "@/assets/family-portrait.jpg.asset.json";
-import travelCoast from "@/assets/travel-coast.jpg";
-import travelJapan from "@/assets/travel-japan.jpg";
-import travelSouthwest from "@/assets/travel-southwest.jpg";
-
 const familyPhoto = familyPhotoAsset.url;
 
 const title = "Charles Hsieh, travel writing, essays, and passion projects";
@@ -264,7 +260,7 @@ function Home() {
               </Link>
               <Link
                 to="/blog"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex items-center gap-2 rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-teal-foreground transition-opacity hover:opacity-90"
               >
                 Blog
               </Link>

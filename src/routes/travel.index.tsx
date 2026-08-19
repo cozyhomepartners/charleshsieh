@@ -41,7 +41,7 @@ function TravelIndex() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-4xl px-5 py-14 sm:px-8">
+      <div className="mx-auto max-w-5xl px-5 py-14 sm:px-8">
         <Link to="/" className="text-sm font-semibold text-muted-foreground hover:text-primary">
           &larr; Charles Hsieh
         </Link>
@@ -56,7 +56,7 @@ function TravelIndex() {
         ) : !posts || posts.length === 0 ? (
           <p className="mt-10 text-muted-foreground">No travel notes published yet.</p>
         ) : (
-          <div className="mt-10 space-y-6">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {posts.map((post) => (
               <PostCard key={post.id} post={post} to="/travel/$slug" />
             ))}
