@@ -189,17 +189,21 @@ function Home() {
                   {link.label}
                 </Link>
               ) : (
-              <a
-                key={link.label}
-                href={link.href}
-                {...(link.external
-                  ? { target: "_blank", rel: "noreferrer" }
-                  : {})}
-                className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-              >
-                {link.label}
-                {link.external ? <ArrowUpRight className="h-3.5 w-3.5" /> : null}
-              </a>
+              <div key={link.label} className="flex items-center gap-6">
+                {link.external ? (
+                  <span aria-hidden className="h-5 w-px bg-border" />
+                ) : null}
+                <a
+                  href={link.href}
+                  {...(link.external
+                    ? { target: "_blank", rel: "noreferrer" }
+                    : {})}
+                  className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                >
+                  {link.label}
+                  {link.external ? <ArrowUpRight className="h-3.5 w-3.5" /> : null}
+                </a>
+              </div>
               ),
             )}
           </nav>
@@ -232,7 +236,7 @@ function Home() {
                 {...(link.external
                   ? { target: "_blank", rel: "noreferrer" }
                   : {})}
-                className="block py-2 text-sm font-medium text-muted-foreground"
+                className={`block py-2 text-sm font-medium text-muted-foreground${link.external ? " mt-1 border-t border-border pt-3" : ""}`}
               >
                 {link.label}
               </a>
