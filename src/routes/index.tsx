@@ -159,7 +159,16 @@ function Home() {
             Charles Hsieh
           </a>
           <nav className="hidden items-center gap-6 md:flex">
-            {navLinks.map((link) => (
+            {navLinks.map((link) =>
+              link.internal ? (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                >
+                  {link.label}
+                </Link>
+              ) : (
               <a
                 key={link.label}
                 href={link.href}
@@ -171,7 +180,8 @@ function Home() {
                 {link.label}
                 {link.external ? <ArrowUpRight className="h-3.5 w-3.5" /> : null}
               </a>
-            ))}
+              ),
+            )}
           </nav>
           <button
             type="button"
@@ -184,7 +194,17 @@ function Home() {
         </div>
         {menuOpen ? (
           <nav className="border-t border-border/70 bg-background px-5 py-3 md:hidden">
-            {navLinks.map((link) => (
+            {navLinks.map((link) =>
+              link.internal ? (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="block py-2 text-sm font-medium text-muted-foreground"
+                >
+                  {link.label}
+                </Link>
+              ) : (
               <a
                 key={link.label}
                 href={link.href}
@@ -196,7 +216,8 @@ function Home() {
               >
                 {link.label}
               </a>
-            ))}
+              ),
+            )}
           </nav>
         ) : null}
       </header>
