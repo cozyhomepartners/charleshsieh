@@ -30,7 +30,7 @@ function TravelIndex() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("posts")
-        .select("id, title, slug, excerpt, content, category, location, cover_image_url, published_at")
+        .select("id, title, slug, excerpt, content, category, location, cover_image_url, published_at, tags")
         .eq("published", true)
         .eq("category", "travel")
         .order("published_at", { ascending: false });
