@@ -69,7 +69,7 @@ const navLinks: {
   internal?: boolean;
 }[] = [
   { label: "About", href: "#about" },
-  { label: "Travel", href: "#travel" },
+  { label: "Travel", href: "/travel", internal: true },
   { label: "Blog", href: "/blog", internal: true },
   { label: "Building", href: "#building" },
   { label: "NextRoot", href: "https://nextrootsventures.com", external: true },
@@ -344,6 +344,13 @@ function Home() {
               </article>
             ))}
           </div>
+          <Link
+            to="/travel"
+            className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+          >
+            Read the travel journals
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
           <a
             href="https://www.youtube.com/@hsiehnanigans"
             target="_blank"

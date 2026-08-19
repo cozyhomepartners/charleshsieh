@@ -3,11 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { PostCard, type Post } from "@/components/PostArticle";
 
-const title = "Writing — Charles Hsieh";
+const title = "Travel notes — Charles Hsieh";
 const description =
-  "Essays, travel notes, and half-formed thoughts from Charles Hsieh on building, family, and life on the road.";
+  "Trip journals and photos from Charles Hsieh: family travel, slow mornings, long drives, and the places worth going back to.";
 
-export const Route = createFileRoute("/blog/")({
+export const Route = createFileRoute("/travel/")({
   head: () => ({
     meta: [
       { title },
@@ -19,20 +19,20 @@ export const Route = createFileRoute("/blog/")({
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
     ],
-    links: [{ rel: "canonical", href: "https://charleshsieh.com/blog" }],
+    links: [{ rel: "canonical", href: "https://charleshsieh.com/travel" }],
   }),
-  component: BlogIndex,
+  component: TravelIndex,
 });
 
-function BlogIndex() {
+function TravelIndex() {
   const { data: posts, isLoading } = useQuery({
-    queryKey: ["posts", "published", "writing"],
+    queryKey: ["posts", "published", "travel"],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("posts")
         .select("id, title, slug, excerpt, content, category, location, cover_image_url, published_at")
         .eq("published", true)
-        .eq("category", "writing")
+        .eq("category", "travel")
         .order("published_at", { ascending: false });
       if (error) throw error;
       return data as Post[];
@@ -45,23 +45,20 @@ function BlogIndex() {
         <Link to="/" className="text-sm font-semibold text-muted-foreground hover:text-primary">
           &larr; Charles Hsieh
         </Link>
-        <h1 className="mt-6 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-          Writing
-        </h1>
+        <h1 className="mt-6 font-display text-4xl font-semibold tracking-tight sm:text-5xl">Travel notes</h1>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          Essays about building things, family, and whatever else I'm thinking through.
-          Travel journals live over on{" "}
-          <Link to="/travel" className="text-primary underline underline-offset-4">travel notes</Link>.
+          Where we went, what it cost us in sleep, and what we'd do again. Mostly with two
+          kids in tow.
         </p>
 
         {isLoading ? (
-          <p className="mt-10 text-muted-foreground">Loading posts…</p>
+          <p className="mt-10 text-muted-foreground">Loading…</p>
         ) : !posts || posts.length === 0 ? (
-          <p className="mt-10 text-muted-foreground">No posts published yet. Check back soon.</p>
+          <p className="mt-10 text-muted-foreground">No travel notes published yet.</p>
         ) : (
           <div className="mt-10 space-y-6">
             {posts.map((post) => (
-              <PostCard key={post.id} post={post} to="/blog/$slug" />
+              <PostCard key={post.id} post={post} to="/travel/$slug" />
             ))}
           </div>
         )}

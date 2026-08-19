@@ -4,6 +4,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { RichTextEditor } from "@/components/RichTextEditor";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -26,7 +27,8 @@ type Draft = {
   slug: string;
   excerpt: string;
   content: string;
-  category: string;
+  category: "travel" | "writing";
+  location: string;
   cover_image_url: string;
   published: boolean;
 };
@@ -36,10 +38,34 @@ const emptyDraft: Draft = {
   slug: "",
   excerpt: "",
   content: "",
-  category: "Writing",
+  category: "writing",
+  location: "",
   cover_image_url: "",
   published: false,
 };
+
+const uploadImage = async (file: File): Promise<string | null> => {
+  const ext = file.name.split(".").pop()?.toLowerCase() ?? "jpg";
+  const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const { error } = await supabase.storage.from("post-images").upload(path, file, {
+    contentType: file.type || "application/octet-stream",
+    upsert: false,
+  });
+  if (error) {
+    toast.error(error.message);
+    return null;
+  }
+  return `/api/public/post-image/${path}`;
+};
+
+const pickFile = () =>
+  new Promise<File | null>((resolve) => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.onchange = () => resolve(input.files?.[0] ?? null);
+    input.click();
+  });
 
 const slugify = (value: string) =>
   value
@@ -53,6 +79,22 @@ function AdminPage() {
   const { user, isAdmin, loading } = useAuth();
   const [draft, setDraft] = useState<Draft>(emptyDraft);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+
+  const handleCoverUpload = async () => {
+    const file = await pickFile();
+    if (!file) return;
+    setUploading(true);
+    const url = await uploadImage(file);
+    setUploading(false);
+    if (url) setDraft((d) => ({ ...d, cover_image_url: url }));
+  };
+
+  const handleInlineUpload = async () => {
+    const file = await pickFile();
+    if (!file) return null;
+    return uploadImage(file);
+  };
 
   useEffect(() => {
     if (!loading && !user) void navigate({ to: "/auth" });
@@ -81,7 +123,8 @@ function AdminPage() {
       slug,
       excerpt: draft.excerpt,
       content: draft.content,
-      category: draft.category || "Writing",
+      category: draft.category,
+      location: draft.location || null,
       cover_image_url: draft.cover_image_url || null,
       published: publish,
       published_at: publish ? new Date().toISOString() : null,
@@ -171,21 +214,58 @@ function AdminPage() {
                 className={inputClass}
               />
             </Field>
-            <Field label="Category">
-              <input
-                value={draft.category}
-                onChange={(e) => setDraft((d) => ({ ...d, category: e.target.value }))}
-                placeholder="Travel, Writing, Building…"
-                className={inputClass}
-              />
+            <Field label="Where it lives">
+              <div className="mt-1 flex gap-2">
+                {(["travel", "writing"] as const).map((value) => (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => setDraft((d) => ({ ...d, category: value }))}
+                    className={
+                      "flex-1 rounded-xl border px-4 py-2.5 text-sm font-semibold capitalize transition-colors " +
+                      (draft.category === value
+                        ? "border-primary bg-primary/10 text-primary"
+                        : "border-input text-muted-foreground hover:border-primary")
+                    }
+                  >
+                    {value === "travel" ? "Travel · /travel" : "Writing · /blog"}
+                  </button>
+                ))}
+              </div>
             </Field>
           </div>
-          <Field label="Cover image URL (optional)">
+          <Field label="Location (optional)">
             <input
-              value={draft.cover_image_url}
-              onChange={(e) => setDraft((d) => ({ ...d, cover_image_url: e.target.value }))}
+              value={draft.location}
+              onChange={(e) => setDraft((d) => ({ ...d, location: e.target.value }))}
+              placeholder="Lisbon, Portugal"
               className={inputClass}
             />
+          </Field>
+          <Field label="Cover photo (optional)">
+            <div className="mt-1 flex flex-wrap items-center gap-3">
+              <input
+                value={draft.cover_image_url}
+                onChange={(e) => setDraft((d) => ({ ...d, cover_image_url: e.target.value }))}
+                placeholder="Upload a photo or paste a URL"
+                className={inputClass + " mt-0 flex-1"}
+              />
+              <button
+                type="button"
+                disabled={uploading}
+                onClick={() => void handleCoverUpload()}
+                className="rounded-full border border-border px-4 py-2.5 text-sm font-semibold hover:border-primary hover:text-primary disabled:opacity-60"
+              >
+                {uploading ? "Uploading…" : "Upload"}
+              </button>
+            </div>
+            {draft.cover_image_url ? (
+              <img
+                src={draft.cover_image_url}
+                alt="Cover preview"
+                className="mt-3 h-44 w-full rounded-xl object-cover"
+              />
+            ) : null}
           </Field>
           <Field label="Excerpt">
             <textarea
@@ -196,12 +276,11 @@ function AdminPage() {
             />
           </Field>
           <Field label="Post">
-            <textarea
-              rows={16}
+            <RichTextEditor
               value={draft.content}
-              onChange={(e) => setDraft((d) => ({ ...d, content: e.target.value }))}
-              placeholder="Write here. Leave a blank line between paragraphs."
-              className={inputClass}
+              onChange={(html) => setDraft((d) => ({ ...d, content: html }))}
+              onRequestImage={handleInlineUpload}
+              placeholder="Write here. Use the toolbar for headings, quotes, lists, and photos."
             />
           </Field>
           <div className="flex flex-wrap gap-3 pt-2">
@@ -240,7 +319,7 @@ function AdminPage() {
               <div className="min-w-0 flex-1">
                 <p className="font-display text-lg font-semibold">{post.title}</p>
                 <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                  {post.published ? "Published" : "Draft"} · /{post.slug}
+                  {post.published ? "Published" : "Draft"} · /{post.category === "travel" ? "travel" : "blog"}/{post.slug}
                 </p>
               </div>
               <button
@@ -252,7 +331,8 @@ function AdminPage() {
                     slug: post.slug,
                     excerpt: post.excerpt ?? "",
                     content: post.content ?? "",
-                    category: post.category ?? "Writing",
+                    category: (post.category === "travel" ? "travel" : "writing") as Draft["category"],
+                    location: post.location ?? "",
                     cover_image_url: post.cover_image_url ?? "",
                     published: post.published,
                   })
