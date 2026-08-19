@@ -195,7 +195,7 @@ function AdminPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-4xl px-5 py-12 sm:px-8">
+      <div className={(showPreview ? "mx-auto max-w-7xl" : "mx-auto max-w-4xl") + " px-5 py-12 sm:px-8"}>
         <div className="flex items-center justify-between gap-4">
           <Link to="/" className="text-sm font-semibold text-muted-foreground hover:text-primary">
             &larr; Back to the site
