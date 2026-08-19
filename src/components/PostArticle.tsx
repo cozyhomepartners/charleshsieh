@@ -82,7 +82,7 @@ export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: "
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/25 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 mx-auto max-w-4xl px-5 pb-10 sm:px-8">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-background/90">
-              {isTravel ? "Travel" : "Writing"}
+              {isTravel ? "Travel" : "Blog"}
               {post.published_at ? " · " + formatDate(post.published_at) : ""}
             </p>
             <h1 className="mt-3 font-display text-4xl font-semibold leading-tight tracking-tight text-background sm:text-6xl">
@@ -111,7 +111,7 @@ export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: "
         {!hasCover ? (
           <>
             <p className={"mt-8 text-xs font-semibold uppercase tracking-[0.2em] " + (isTravel ? "text-marigold" : "text-primary")}>
-              {isTravel ? "Travel" : "Writing"}
+              {isTravel ? "Travel" : "Blog"}
               {post.published_at ? " · " + formatDate(post.published_at) : ""}
             </p>
             <h1 className="mt-3 font-display text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
@@ -158,7 +158,7 @@ export function PostCard({ post, to }: { post: Post; to: "/blog/$slug" | "/trave
       ) : null}
       <div className="space-y-2 p-7">
         <p className={"text-xs font-semibold uppercase tracking-[0.16em] " + (isTravel ? "text-marigold" : "text-primary")}>
-          {post.location ?? (isTravel ? "Travel" : "Writing")}
+          {post.location ?? (isTravel ? "Travel" : "Blog")}
           {post.published_at ? " · " + formatDate(post.published_at) : ""}
         </p>
         <h2 className="font-display text-2xl font-semibold tracking-tight group-hover:text-primary">{post.title}</h2>
