@@ -455,10 +455,21 @@ function AdminPage() {
             </div>
           </div>
         ) : null}
+        {tab === "posts" ? (
+        <div>
+        <div className="mb-5 flex items-center justify-between gap-4">
+          <p className="text-sm text-muted-foreground">
+            Pick a post to edit it, or start something new.
+          </p>
+          <button
+            type="button"
+            onClick={() => { setDraft(emptyDraft); setTab("edit"); }}
+            className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
+          >
+            New post
+          </button>
         </div>
-
-        <h2 className="mt-12 font-display text-2xl font-semibold tracking-tight">Your posts</h2>
-        <div className="mt-5 divide-y divide-border border-y border-border">
+        <div className="divide-y divide-border border-y border-border">
           {(posts ?? []).map((post) => (
             <div key={post.id} className="flex flex-wrap items-center gap-3 py-4">
               <div className="min-w-0 flex-1">
