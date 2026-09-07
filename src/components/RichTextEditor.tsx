@@ -6,7 +6,7 @@ import {
 type Props = {
   value: string;
   onChange: (html: string) => void;
-  onRequestImage: () => Promise<string | null>;
+  onRequestImages: () => Promise<string[]>;
   placeholder?: string;
 };
 
@@ -18,10 +18,18 @@ const SIZES = [
   { key: "right", label: "Wrap right" },
 ] as const;
 
-export function RichTextEditor({ value, onChange, onRequestImage, placeholder }: Props) {
+const GROUP_LAYOUTS = [
+  { key: "grid", label: "Grid" },
+  { key: "row", label: "Side by side" },
+  { key: "stack", label: "Full-width stack" },
+] as const;
+
+export function RichTextEditor({ value, onChange, onRequestImages, placeholder }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [selectedFigure, setSelectedFigure] = useState<HTMLElement | null>(null);
   const [figureSize, setFigureSize] = useState<string>("medium");
+  const [groupLayout, setGroupLayout] = useState<string>("grid");
+  const [inserting, setInserting] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -45,12 +53,29 @@ export function RichTextEditor({ value, onChange, onRequestImage, placeholder }:
     emit();
   };
 
-  const insertImage = async () => {
-    const url = await onRequestImage();
-    if (!url) return;
+  const insertImages = async () => {
+    if (inserting) return;
+    setInserting(true);
+    let urls: string[] = [];
+    try {
+      urls = await onRequestImages();
+    } finally {
+      setInserting(false);
+    }
+    if (!urls.length) return;
+
+    if (urls.length === 1) {
+      run(
+        "insertHTML",
+        `<figure data-size="medium"><img src="${urls[0]}" alt="" /><figcaption><br/></figcaption></figure><p><br/></p>`,
+      );
+      return;
+    }
+
+    const imgs = urls.map((u) => `<img src="${u}" alt="" />`).join("");
     run(
       "insertHTML",
-      `<figure data-size="medium"><img src="${url}" alt="" /><figcaption><br/></figcaption></figure><p><br/></p>`,
+      `<figure data-group="grid" data-count="${urls.length}">${imgs}<figcaption><br/></figcaption></figure><p><br/></p>`,
     );
   };
 
@@ -73,13 +98,25 @@ export function RichTextEditor({ value, onChange, onRequestImage, placeholder }:
     const target = e.target as HTMLElement;
     const fig = target.closest("figure") as HTMLElement | null;
     setSelectedFigure(fig);
-    if (fig) setFigureSize(fig.getAttribute("data-size") ?? "full");
+    if (fig) {
+      setFigureSize(fig.getAttribute("data-size") ?? "full");
+      setGroupLayout(fig.getAttribute("data-group") ?? "grid");
+    }
   };
+
+  const isGroup = Boolean(selectedFigure?.hasAttribute("data-group"));
 
   const applySize = (size: string) => {
     if (!selectedFigure) return;
     selectedFigure.setAttribute("data-size", size);
     setFigureSize(size);
+    emit();
+  };
+
+  const applyGroupLayout = (layout: string) => {
+    if (!selectedFigure) return;
+    selectedFigure.setAttribute("data-group", layout);
+    setGroupLayout(layout);
     emit();
   };
 
@@ -94,30 +131,38 @@ export function RichTextEditor({ value, onChange, onRequestImage, placeholder }:
         <ToolbarButton label="Bullet list" onClick={() => run("insertUnorderedList")}><List className="h-4 w-4" /></ToolbarButton>
         <ToolbarButton label="Numbered list" onClick={() => run("insertOrderedList")}><ListOrdered className="h-4 w-4" /></ToolbarButton>
         <ToolbarButton label="Link (⌘K)" onClick={insertLink}><Link2 className="h-4 w-4" /></ToolbarButton>
-        <ToolbarButton label="Insert photo" onClick={() => void insertImage()}><ImagePlus className="h-4 w-4" /></ToolbarButton>
+        <ToolbarButton
+          label={inserting ? "Uploading photos…" : "Insert photos (one or many)"}
+          onClick={() => void insertImages()}
+        >
+          <ImagePlus className={"h-4 w-4" + (inserting ? " animate-pulse" : "")} />
+        </ToolbarButton>
         <ToolbarButton label="Undo (⌘Z)" onClick={() => run("undo")}><Undo2 className="h-4 w-4" /></ToolbarButton>
 
         {selectedFigure ? (
           <div className="ml-auto flex items-center gap-1 rounded-lg bg-background px-1.5 py-1">
             <span className="px-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Photo
+              {isGroup ? "Photos" : "Photo"}
             </span>
-            {SIZES.map((s) => (
-              <button
-                key={s.key}
-                type="button"
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={() => applySize(s.key)}
-                className={
-                  "rounded-md px-2 py-1 text-xs font-semibold transition-colors " +
-                  (figureSize === s.key
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-primary")
-                }
-              >
-                {s.label}
-              </button>
-            ))}
+            {(isGroup ? GROUP_LAYOUTS : SIZES).map((s) => {
+              const active = isGroup ? groupLayout === s.key : figureSize === s.key;
+              return (
+                <button
+                  key={s.key}
+                  type="button"
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => (isGroup ? applyGroupLayout(s.key) : applySize(s.key))}
+                  className={
+                    "rounded-md px-2 py-1 text-xs font-semibold transition-colors " +
+                    (active
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-primary")
+                  }
+                >
+                  {s.label}
+                </button>
+              );
+            })}
           </div>
         ) : null}
       </div>

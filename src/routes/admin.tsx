@@ -61,12 +61,13 @@ const uploadImage = async (file: File): Promise<string | null> => {
   return `/api/public/post-image/${path}`;
 };
 
-const pickFile = () =>
-  new Promise<File | null>((resolve) => {
+const pickFiles = (multiple = false) =>
+  new Promise<File[]>((resolve) => {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = "image/*";
-    input.onchange = () => resolve(input.files?.[0] ?? null);
+    input.multiple = multiple;
+    input.onchange = () => resolve(Array.from(input.files ?? []));
     input.click();
   });
 
@@ -102,7 +103,7 @@ function AdminPage() {
   };
 
   const handleCoverUpload = async () => {
-    const file = await pickFile();
+    const [file] = await pickFiles(false);
     if (!file) return;
     setUploading(true);
     const url = await uploadImage(file);
@@ -111,9 +112,17 @@ function AdminPage() {
   };
 
   const handleInlineUpload = async () => {
-    const file = await pickFile();
-    if (!file) return null;
-    return uploadImage(file);
+    const files = await pickFiles(true);
+    if (!files.length) return [];
+    const urls: string[] = [];
+    let failed = 0;
+    for (const file of files) {
+      const url = await uploadImage(file);
+      if (url) urls.push(url);
+      else failed += 1;
+    }
+    if (failed) toast.error(`${failed} photo${failed > 1 ? "s" : ""} couldn't be uploaded.`);
+    return urls;
   };
 
   useEffect(() => {
@@ -318,7 +327,7 @@ function AdminPage() {
             <RichTextEditor
               value={draft.content}
               onChange={(html) => setDraft((d) => ({ ...d, content: html }))}
-              onRequestImage={handleInlineUpload}
+              onRequestImages={handleInlineUpload}
               placeholder="Write here. Use the toolbar for headings, quotes, lists, and photos."
             />
           </Field>
@@ -420,10 +429,12 @@ const inputClass =
   "mt-1 w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm outline-none focus:border-primary";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  // Intentionally a <div>, not a <label>: wrapping the rich-text editor in a
+  // label makes a double-click activate the first button inside it (Bold).
   return (
-    <label className="block">
+    <div className="block">
       <span className="text-sm font-semibold">{label}</span>
       {children}
-    </label>
+    </div>
   );
 }

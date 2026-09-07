@@ -314,3 +314,68 @@
 .post-body--gallery figure[data-size] img { aspect-ratio: auto; max-width: 100%; }
 
 .prose-editor figure { position: relative; }
+
+/* Photo groups: several photos inserted at once share one frame */
+.prose-editor figure[data-group],
+.post-body figure[data-group] {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.prose-editor figure[data-group] img,
+.post-body figure[data-group] img {
+  width: 100%;
+  height: 100%;
+  max-height: 22rem;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.prose-editor figure[data-group] figcaption,
+.post-body figure[data-group] figcaption {
+  grid-column: 1 / -1;
+  margin-top: 0.2rem;
+}
+
+/* Grid: three photos get a larger lead image beside two stacked */
+.prose-editor figure[data-group="grid"][data-count="3"],
+.post-body figure[data-group="grid"][data-count="3"] {
+  grid-template-columns: 1.6fr 1fr;
+}
+.prose-editor figure[data-group="grid"][data-count="3"] img:first-child,
+.post-body figure[data-group="grid"][data-count="3"] img:first-child {
+  grid-row: span 2;
+  aspect-ratio: auto;
+  max-height: 28rem;
+}
+
+/* Side by side: one even row, whatever the count */
+.prose-editor figure[data-group="row"],
+.post-body figure[data-group="row"] {
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-template-columns: none;
+}
+.prose-editor figure[data-group="row"] figcaption,
+.post-body figure[data-group="row"] figcaption { grid-column: 1 / -1; grid-row: 2; }
+
+/* Full-width stack: back to one photo per line */
+.prose-editor figure[data-group="stack"],
+.post-body figure[data-group="stack"] { grid-template-columns: minmax(0, 1fr); }
+.prose-editor figure[data-group="stack"] img,
+.post-body figure[data-group="stack"] img { aspect-ratio: auto; max-height: 34rem; }
+
+@media (max-width: 767px) {
+  .prose-editor figure[data-group],
+  .post-body figure[data-group] {
+    grid-auto-flow: row;
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-columns: auto;
+  }
+  .prose-editor figure[data-group] img,
+  .post-body figure[data-group] img { grid-row: auto; }
+}
+
+/* Gallery rhythm must not reshape grouped photos */
+.post-body--gallery figure[data-group] img { aspect-ratio: 4 / 3; max-width: 100%; }
+.post-body--gallery figure[data-group="stack"] img { aspect-ratio: auto; }
