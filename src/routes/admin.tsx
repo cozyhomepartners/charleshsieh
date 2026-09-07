@@ -171,7 +171,9 @@ function AdminPage() {
       tags: parseTags(draft.tags),
       cover_image_url: draft.cover_image_url || null,
       published: publish,
-      published_at: publish ? new Date().toISOString() : null,
+      published_at: publish
+        ? new Date(draft.published_at + "T12:00:00").toISOString()
+        : null,
       author_id: user.id,
     };
     const { error } = draft.id
