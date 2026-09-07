@@ -112,7 +112,7 @@ function AdminPage() {
     category: draft.category,
     location: draft.location || null,
     cover_image_url: draft.cover_image_url || null,
-    published_at: new Date().toISOString(),
+    published_at: new Date(draft.published_at + "T12:00:00").toISOString(),
     tags: parseTags(draft.tags),
   };
 
