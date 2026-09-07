@@ -172,6 +172,18 @@
   color: var(--muted-foreground);
 }
 
+/* Regular copy is never bold; only explicit strong/b is */
+.prose-editor,
+.prose-editor p,
+.prose-editor div,
+.prose-editor li,
+.prose-editor span,
+.post-body,
+.post-body p,
+.post-body div,
+.post-body li,
+.post-body span { font-weight: 400; }
+
 /* Editor content mirrors published typography so drafts look right while writing */
 .prose-editor > * + * { margin-top: 1.1rem; }
 .prose-editor h2 {

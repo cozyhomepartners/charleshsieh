@@ -41,6 +41,7 @@ export function sanitizeHtml(html: string): string {
       const value = m[3] ?? m[4] ?? "";
       if (!allowed.includes(name)) continue;
       if ((name === "href" || name === "src") && !isSafeUrl(value)) continue;
+      if (name === "data-size" && !ALLOWED_SIZES.has(value)) continue;
       attrs.push(`${name}="${value.replace(/"/g, "&quot;")}"`);
     }
     if (tag === "a") {
