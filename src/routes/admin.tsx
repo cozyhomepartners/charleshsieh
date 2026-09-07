@@ -104,7 +104,7 @@ function AdminPage() {
   const [draft, setDraft] = useState<Draft>(emptyDraft);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
-  const [showPreview, setShowPreview] = useState(true);
+  const [tab, setTab] = useState<"edit" | "preview">("edit");
 
   const parseTags = (value: string) =>
     value.split(",").map((t) => t.trim()).filter(Boolean);
@@ -245,19 +245,12 @@ function AdminPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className={(showPreview ? "mx-auto max-w-7xl" : "mx-auto max-w-4xl") + " px-5 py-12 sm:px-8"}>
+      <div className="mx-auto max-w-4xl px-5 py-12 sm:px-8">
         <div className="flex items-center justify-between gap-4">
           <Link to="/" className="text-sm font-semibold text-muted-foreground hover:text-primary">
             &larr; Back to the site
           </Link>
           <div className="flex items-center gap-4">
-            <button
-              type="button"
-              onClick={() => setShowPreview((v) => !v)}
-              className="text-sm font-semibold text-muted-foreground hover:text-primary"
-            >
-              {showPreview ? "Hide preview" : "Show preview"}
-            </button>
             <button
             type="button"
             onClick={() => void supabase.auth.signOut().then(() => navigate({ to: "/" }))}
@@ -272,7 +265,26 @@ function AdminPage() {
           {draft.id ? "Edit post" : "New post"}
         </h1>
 
-        <div className={showPreview ? "mt-8 grid gap-6 lg:grid-cols-2" : "mt-8"}>
+        <div className="mt-6 flex gap-1 rounded-full border border-border bg-card p-1">
+          {(["edit", "preview"] as const).map((t) => (
+            <button
+              key={t}
+              type="button"
+              onClick={() => setTab(t)}
+              className={
+                "flex-1 rounded-full px-5 py-2 text-sm font-semibold transition-colors " +
+                (tab === t
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-primary")
+              }
+            >
+              {t === "edit" ? "Edit" : "Live preview"}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-8">
+        {tab === "edit" ? (
         <div className="space-y-4 rounded-3xl border border-border bg-card p-7">
           <Field label="Title">
             <input
@@ -409,19 +421,15 @@ function AdminPage() {
             ) : null}
           </div>
         </div>
-        {showPreview ? (
-          <div className="lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)]">
-            <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card">
-              <p className="border-b border-border px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Live preview
-              </p>
-              <div className="preview-pane flex-1 overflow-y-auto">
-                <PostArticle
-                  post={previewPost}
-                  backTo={draft.category === "travel" ? "/travel" : "/blog"}
-                  backLabel={draft.category === "travel" ? "All travel notes" : "All writing"}
-                />
-              </div>
+        ) : null}
+        {tab === "preview" ? (
+          <div className="overflow-hidden rounded-3xl border border-border bg-card">
+            <div className="preview-pane">
+              <PostArticle
+                post={previewPost}
+                backTo={draft.category === "travel" ? "/travel" : "/blog"}
+                backLabel={draft.category === "travel" ? "All travel notes" : "All writing"}
+              />
             </div>
           </div>
         ) : null}
