@@ -104,7 +104,7 @@ function AdminPage() {
   const [draft, setDraft] = useState<Draft>(emptyDraft);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
-  const [tab, setTab] = useState<"edit" | "preview">("edit");
+  const [tab, setTab] = useState<"posts" | "edit" | "preview">(editId ? "edit" : "posts");
 
   const parseTags = (value: string) =>
     value.split(",").map((t) => t.trim()).filter(Boolean);
@@ -187,6 +187,7 @@ function AdminPage() {
     if (error) { toast.error(error.message); return; }
     toast.success(publish ? "Published." : "Draft saved.");
     setDraft(emptyDraft);
+    setTab("posts");
     void queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
 
@@ -194,6 +195,7 @@ function AdminPage() {
     if (!editId || !posts) return;
     const post = posts.find((p) => p.id === editId);
     if (!post) return;
+    setTab("edit");
     setDraft({
       id: post.id,
       title: post.title,
@@ -262,11 +264,11 @@ function AdminPage() {
         </div>
 
         <h1 className="mt-6 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-          {draft.id ? "Edit post" : "New post"}
+          {tab === "posts" ? "Your posts" : draft.id ? "Edit post" : "New post"}
         </h1>
 
         <div className="mt-6 flex gap-1 rounded-full border border-border bg-card p-1">
-          {(["edit", "preview"] as const).map((t) => (
+          {(["posts", "edit", "preview"] as const).map((t) => (
             <button
               key={t}
               type="button"
@@ -278,7 +280,7 @@ function AdminPage() {
                   : "text-muted-foreground hover:text-primary")
               }
             >
-              {t === "edit" ? "Edit" : "Live preview"}
+              {t === "posts" ? `Posts${posts ? ` (${posts.length})` : ""}` : t === "edit" ? "Edit" : "Live preview"}
             </button>
           ))}
         </div>
@@ -454,10 +456,21 @@ function AdminPage() {
             </div>
           </div>
         ) : null}
+        {tab === "posts" ? (
+        <div>
+        <div className="mb-5 flex items-center justify-between gap-4">
+          <p className="text-sm text-muted-foreground">
+            Pick a post to edit it, or start something new.
+          </p>
+          <button
+            type="button"
+            onClick={() => { setDraft(emptyDraft); setTab("edit"); }}
+            className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
+          >
+            New post
+          </button>
         </div>
-
-        <h2 className="mt-12 font-display text-2xl font-semibold tracking-tight">Your posts</h2>
-        <div className="mt-5 divide-y divide-border border-y border-border">
+        <div className="divide-y divide-border border-y border-border">
           {(posts ?? []).map((post) => (
             <div key={post.id} className="flex flex-wrap items-center gap-3 py-4">
               <div className="min-w-0 flex-1">
@@ -468,7 +481,7 @@ function AdminPage() {
               </div>
               <button
                 type="button"
-                onClick={() =>
+                onClick={() => {
                   setDraft({
                     id: post.id,
                     title: post.title,
@@ -482,8 +495,10 @@ function AdminPage() {
                     published: post.published,
                     published_at: toDateInput(post.published_at),
 
-                  })
-                }
+                  });
+                  setTab("edit");
+                  window.scrollTo({ top: 0 });
+                }}
                 className="text-sm font-semibold hover:text-primary"
               >
                 Edit
@@ -500,6 +515,9 @@ function AdminPage() {
           {posts && posts.length === 0 ? (
             <p className="py-4 text-muted-foreground">Nothing written yet.</p>
           ) : null}
+        </div>
+        </div>
+        ) : null}
         </div>
       </div>
     </div>
