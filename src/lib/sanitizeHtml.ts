@@ -43,6 +43,8 @@ export function sanitizeHtml(html: string): string {
       if (!allowed.includes(name)) continue;
       if ((name === "href" || name === "src") && !isSafeUrl(value)) continue;
       if (name === "data-size" && !ALLOWED_SIZES.has(value)) continue;
+      if (name === "data-group" && !ALLOWED_GROUPS.has(value)) continue;
+      if (name === "data-count" && !/^\d{1,2}$/.test(value)) continue;
       attrs.push(`${name}="${value.replace(/"/g, "&quot;")}"`);
     }
     if (tag === "a") {
