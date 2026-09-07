@@ -443,7 +443,7 @@ function Home() {
               it.
             </p>
             <p>
-              If you want the resume version of me, that lives at{" "}
+              If you want the professional version of me, that lives at{" "}
               <a
                 href="https://nextrootventures.com"
                 target="_blank"
