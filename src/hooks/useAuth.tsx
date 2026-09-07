@@ -14,13 +14,7 @@ export function useAuth() {
       setUser(s?.user ?? null);
       if (s?.user) {
         setTimeout(() => {
-          void supabase
-            .from("user_roles")
-            .select("role")
-            .eq("user_id", s.user.id)
-            .eq("role", "admin")
-            .maybeSingle()
-            .then(({ data }) => setIsAdmin(Boolean(data)));
+          void checkAdmin(s.user.id).then(setIsAdmin);
         }, 0);
       } else {
         setIsAdmin(false);
