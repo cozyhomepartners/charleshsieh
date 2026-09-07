@@ -420,10 +420,12 @@ const inputClass =
   "mt-1 w-full rounded-xl border border-input bg-background px-4 py-2.5 text-sm outline-none focus:border-primary";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  // Intentionally a <div>, not a <label>: wrapping the rich-text editor in a
+  // label makes a double-click activate the first button inside it (Bold).
   return (
-    <label className="block">
+    <div className="block">
       <span className="text-sm font-semibold">{label}</span>
       {children}
-    </label>
+    </div>
   );
 }
