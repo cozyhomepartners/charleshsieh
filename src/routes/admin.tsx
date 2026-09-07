@@ -40,8 +40,14 @@ type Draft = {
   published_at: string;
 };
 
+const toISOFromDateInput = (value: string) => {
+  const d = new Date(`${value}T12:00:00`);
+  return Number.isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString();
+};
+
 const toDateInput = (iso: string | null | undefined) => {
-  const d = iso ? new Date(iso) : new Date();
+  const parsed = iso ? new Date(iso) : new Date();
+  const d = Number.isNaN(parsed.getTime()) ? new Date() : parsed;
   const pad = (n: number) => String(n).padStart(2, "0");
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 };
@@ -112,7 +118,7 @@ function AdminPage() {
     category: draft.category,
     location: draft.location || null,
     cover_image_url: draft.cover_image_url || null,
-    published_at: new Date(draft.published_at + "T12:00:00").toISOString(),
+    published_at: toISOFromDateInput(draft.published_at),
     tags: parseTags(draft.tags),
   };
 
@@ -171,9 +177,7 @@ function AdminPage() {
       tags: parseTags(draft.tags),
       cover_image_url: draft.cover_image_url || null,
       published: publish,
-      published_at: publish
-        ? new Date(draft.published_at + "T12:00:00").toISOString()
-        : null,
+      published_at: publish ? toISOFromDateInput(draft.published_at) : null,
       author_id: user.id,
     };
     const { error } = draft.id
