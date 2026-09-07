@@ -104,7 +104,7 @@ function AdminPage() {
   const [draft, setDraft] = useState<Draft>(emptyDraft);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
-  const [tab, setTab] = useState<"edit" | "preview">("edit");
+  const [tab, setTab] = useState<"posts" | "edit" | "preview">(editId ? "edit" : "posts");
 
   const parseTags = (value: string) =>
     value.split(",").map((t) => t.trim()).filter(Boolean);
