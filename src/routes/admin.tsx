@@ -284,6 +284,7 @@ function AdminPage() {
         </div>
 
         <div className="mt-8">
+        {tab === "edit" ? (
         <div className="space-y-4 rounded-3xl border border-border bg-card p-7">
           <Field label="Title">
             <input
@@ -420,19 +421,15 @@ function AdminPage() {
             ) : null}
           </div>
         </div>
-        {showPreview ? (
-          <div className="lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)]">
-            <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card">
-              <p className="border-b border-border px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Live preview
-              </p>
-              <div className="preview-pane flex-1 overflow-y-auto">
-                <PostArticle
-                  post={previewPost}
-                  backTo={draft.category === "travel" ? "/travel" : "/blog"}
-                  backLabel={draft.category === "travel" ? "All travel notes" : "All writing"}
-                />
-              </div>
+        ) : null}
+        {tab === "preview" ? (
+          <div className="overflow-hidden rounded-3xl border border-border bg-card">
+            <div className="preview-pane">
+              <PostArticle
+                post={previewPost}
+                backTo={draft.category === "travel" ? "/travel" : "/blog"}
+                backLabel={draft.category === "travel" ? "All travel notes" : "All writing"}
+              />
             </div>
           </div>
         ) : null}
