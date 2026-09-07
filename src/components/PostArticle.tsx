@@ -235,7 +235,14 @@ export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: "
         <div className="mt-9">
           <Body post={post} />
         </div>
+        {post.tags && post.tags.length && hasCover ? (
+          <div className="mt-10 border-t border-border pt-6">
+            <TagPills tags={post.tags} />
+          </div>
+        ) : null}
       </article>
+
+      {post.id !== "preview" ? <PostFooter post={post} /> : null}
     </div>
   );
 }
