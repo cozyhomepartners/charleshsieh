@@ -436,6 +436,8 @@ function AdminPage() {
                     tags: (post.tags ?? []).join(", "),
                     cover_image_url: post.cover_image_url ?? "",
                     published: post.published,
+                    published_at: toDateInput(post.published_at),
+
                   })
                 }
                 className="text-sm font-semibold hover:text-primary"
