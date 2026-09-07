@@ -106,20 +106,6 @@ function RelatedPosts({ post }: { post: Post }) {
 function PostFooter({ post }: { post: Post }) {
   return (
     <div className="mx-auto max-w-5xl px-5 pb-20 sm:px-8">
-      <div className="rounded-3xl border border-border bg-card p-7">
-        <p className="font-display text-xl font-semibold tracking-tight">Charles Hsieh</p>
-        <p className="mt-2 leading-relaxed text-muted-foreground">
-          Dad, husband, traveler, and a builder who can't sit still. I write here about the road,
-          the family, and whatever I'm making next.
-        </p>
-        <a
-          href="mailto:hello@charleshsieh.com"
-          className="mt-4 inline-block text-sm font-semibold text-primary hover:underline"
-        >
-          Say hello
-        </a>
-      </div>
-
       <RelatedPosts post={post} />
 
       <div className="mt-12 flex flex-wrap gap-3">
@@ -235,11 +221,6 @@ export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: "
         <div className="mt-9">
           <Body post={post} />
         </div>
-        {post.tags && post.tags.length && hasCover ? (
-          <div className="mt-10 border-t border-border pt-6">
-            <TagPills tags={post.tags} />
-          </div>
-        ) : null}
       </article>
 
       {post.id !== "preview" ? <PostFooter post={post} /> : null}
