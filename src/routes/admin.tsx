@@ -494,8 +494,10 @@ function AdminPage() {
                     published: post.published,
                     published_at: toDateInput(post.published_at),
 
-                  })
-                }
+                  });
+                  setTab("edit");
+                  window.scrollTo({ top: 0 });
+                }}
                 className="text-sm font-semibold hover:text-primary"
               >
                 Edit
@@ -512,6 +514,9 @@ function AdminPage() {
           {posts && posts.length === 0 ? (
             <p className="py-4 text-muted-foreground">Nothing written yet.</p>
           ) : null}
+        </div>
+        </div>
+        ) : null}
         </div>
       </div>
     </div>
