@@ -480,7 +480,7 @@ function AdminPage() {
               </div>
               <button
                 type="button"
-                onClick={() =>
+                onClick={() => {
                   setDraft({
                     id: post.id,
                     title: post.title,
