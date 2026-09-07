@@ -199,6 +199,8 @@ function AdminPage() {
       tags: (post.tags ?? []).join(", "),
       cover_image_url: post.cover_image_url ?? "",
       published: post.published,
+      published_at: toDateInput(post.published_at),
+
     });
     window.scrollTo({ top: 0 });
   }, [editId, posts]);
