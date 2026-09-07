@@ -327,6 +327,15 @@ function AdminPage() {
               className={inputClass}
             />
           </Field>
+          <Field label="Publish date">
+            <input
+              type="date"
+              value={draft.published_at}
+              onChange={(e) => setDraft((d) => ({ ...d, published_at: e.target.value }))}
+              className={inputClass}
+            />
+          </Field>
+
           <Field label="Cover photo (optional)">
             <div className="mt-1 flex flex-wrap items-center gap-3">
               <input
