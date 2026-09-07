@@ -37,6 +37,13 @@ type Draft = {
   cover_image_url: string;
   tags: string;
   published: boolean;
+  published_at: string;
+};
+
+const toDateInput = (iso: string | null | undefined) => {
+  const d = iso ? new Date(iso) : new Date();
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 };
 
 const emptyDraft: Draft = {
@@ -49,7 +56,9 @@ const emptyDraft: Draft = {
   cover_image_url: "",
   tags: "",
   published: false,
+  published_at: toDateInput(null),
 };
+
 
 const uploadImage = async (file: File): Promise<string | null> => {
   const ext = file.name.split(".").pop()?.toLowerCase() ?? "jpg";
@@ -103,7 +112,7 @@ function AdminPage() {
     category: draft.category,
     location: draft.location || null,
     cover_image_url: draft.cover_image_url || null,
-    published_at: new Date().toISOString(),
+    published_at: new Date(draft.published_at + "T12:00:00").toISOString(),
     tags: parseTags(draft.tags),
   };
 
@@ -162,7 +171,9 @@ function AdminPage() {
       tags: parseTags(draft.tags),
       cover_image_url: draft.cover_image_url || null,
       published: publish,
-      published_at: publish ? new Date().toISOString() : null,
+      published_at: publish
+        ? new Date(draft.published_at + "T12:00:00").toISOString()
+        : null,
       author_id: user.id,
     };
     const { error } = draft.id
@@ -190,6 +201,8 @@ function AdminPage() {
       tags: (post.tags ?? []).join(", "),
       cover_image_url: post.cover_image_url ?? "",
       published: post.published,
+      published_at: toDateInput(post.published_at),
+
     });
     window.scrollTo({ top: 0 });
   }, [editId, posts]);
@@ -314,6 +327,15 @@ function AdminPage() {
               className={inputClass}
             />
           </Field>
+          <Field label="Publish date">
+            <input
+              type="date"
+              value={draft.published_at}
+              onChange={(e) => setDraft((d) => ({ ...d, published_at: e.target.value }))}
+              className={inputClass}
+            />
+          </Field>
+
           <Field label="Cover photo (optional)">
             <div className="mt-1 flex flex-wrap items-center gap-3">
               <input
@@ -425,6 +447,8 @@ function AdminPage() {
                     tags: (post.tags ?? []).join(", "),
                     cover_image_url: post.cover_image_url ?? "",
                     published: post.published,
+                    published_at: toDateInput(post.published_at),
+
                   })
                 }
                 className="text-sm font-semibold hover:text-primary"
