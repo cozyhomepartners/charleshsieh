@@ -172,6 +172,17 @@
   color: var(--muted-foreground);
 }
 
+/* Regular copy is never bold; only explicit strong/b is */
+.prose-editor,
+.prose-editor p,
+.prose-editor li,
+.post-body,
+.post-body p,
+.post-body li { font-weight: 400; }
+.post-body strong, .post-body b { font-weight: 700; }
+.prose-editor strong *, .prose-editor b *,
+.post-body strong *, .post-body b * { font-weight: inherit; }
+
 /* Editor content mirrors published typography so drafts look right while writing */
 .prose-editor > * + * { margin-top: 1.1rem; }
 .prose-editor h2 {
@@ -269,3 +280,37 @@
   padding: 0.35rem 0.6rem 0 0;
   color: var(--primary);
 }
+
+/* Photo sizing: figures carry data-size chosen in the editor */
+.prose-editor figure,
+.post-body figure { max-width: 100%; }
+.prose-editor figure img,
+.post-body figure img { max-height: 34rem; object-fit: cover; }
+
+.prose-editor figure[data-size="medium"],
+.post-body figure[data-size="medium"] { max-width: 66%; margin-inline: auto; }
+.prose-editor figure[data-size="small"],
+.post-body figure[data-size="small"] { max-width: 34%; margin-inline: auto; }
+.prose-editor figure[data-size="full"],
+.post-body figure[data-size="full"] { max-width: 100%; }
+
+@media (min-width: 768px) {
+  .prose-editor figure[data-size="left"],
+  .post-body figure[data-size="left"] {
+    float: left; width: 42%; margin: 0.4rem 1.6rem 1.2rem 0;
+  }
+  .prose-editor figure[data-size="right"],
+  .post-body figure[data-size="right"] {
+    float: right; width: 42%; margin: 0.4rem 0 1.2rem 1.6rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .prose-editor figure[data-size],
+  .post-body figure[data-size] { max-width: 100%; width: 100%; float: none; margin-inline: 0; }
+}
+
+/* Gallery rhythm should not fight an explicit size choice */
+.post-body--gallery figure[data-size] img { aspect-ratio: auto; max-width: 100%; }
+
+.prose-editor figure { position: relative; }

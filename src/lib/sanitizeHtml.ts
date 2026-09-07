@@ -6,7 +6,10 @@ const ALLOWED_TAGS = new Set([
 const ALLOWED_ATTRS: Record<string, string[]> = {
   a: ["href", "title", "target", "rel"],
   img: ["src", "alt", "title"],
+  figure: ["data-size"],
 };
+
+const ALLOWED_SIZES = new Set(["full", "medium", "small", "left", "right"]);
 
 const isSafeUrl = (value: string) => {
   const v = value.trim().toLowerCase();
@@ -38,6 +41,7 @@ export function sanitizeHtml(html: string): string {
       const value = m[3] ?? m[4] ?? "";
       if (!allowed.includes(name)) continue;
       if ((name === "href" || name === "src") && !isSafeUrl(value)) continue;
+      if (name === "data-size" && !ALLOWED_SIZES.has(value)) continue;
       attrs.push(`${name}="${value.replace(/"/g, "&quot;")}"`);
     }
     if (tag === "a") {
