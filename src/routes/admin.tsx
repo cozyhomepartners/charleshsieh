@@ -103,7 +103,7 @@ function AdminPage() {
   };
 
   const handleCoverUpload = async () => {
-    const file = await pickFile();
+    const [file] = await pickFiles(false);
     if (!file) return;
     setUploading(true);
     const url = await uploadImage(file);
@@ -112,9 +112,17 @@ function AdminPage() {
   };
 
   const handleInlineUpload = async () => {
-    const file = await pickFile();
-    if (!file) return null;
-    return uploadImage(file);
+    const files = await pickFiles(true);
+    if (!files.length) return [];
+    const urls: string[] = [];
+    let failed = 0;
+    for (const file of files) {
+      const url = await uploadImage(file);
+      if (url) urls.push(url);
+      else failed += 1;
+    }
+    if (failed) toast.error(`${failed} photo${failed > 1 ? "s" : ""} couldn't be uploaded.`);
+    return urls;
   };
 
   useEffect(() => {
