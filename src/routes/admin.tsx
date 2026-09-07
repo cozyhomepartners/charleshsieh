@@ -37,6 +37,13 @@ type Draft = {
   cover_image_url: string;
   tags: string;
   published: boolean;
+  published_at: string;
+};
+
+const toDateInput = (iso: string | null | undefined) => {
+  const d = iso ? new Date(iso) : new Date();
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 };
 
 const emptyDraft: Draft = {
@@ -49,7 +56,9 @@ const emptyDraft: Draft = {
   cover_image_url: "",
   tags: "",
   published: false,
+  published_at: toDateInput(null),
 };
+
 
 const uploadImage = async (file: File): Promise<string | null> => {
   const ext = file.name.split(".").pop()?.toLowerCase() ?? "jpg";
