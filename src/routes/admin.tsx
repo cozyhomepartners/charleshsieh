@@ -61,12 +61,13 @@ const uploadImage = async (file: File): Promise<string | null> => {
   return `/api/public/post-image/${path}`;
 };
 
-const pickFile = () =>
-  new Promise<File | null>((resolve) => {
+const pickFiles = (multiple = false) =>
+  new Promise<File[]>((resolve) => {
     const input = document.createElement("input");
     input.type = "file";
     input.accept = "image/*";
-    input.onchange = () => resolve(input.files?.[0] ?? null);
+    input.multiple = multiple;
+    input.onchange = () => resolve(Array.from(input.files ?? []));
     input.click();
   });
 
