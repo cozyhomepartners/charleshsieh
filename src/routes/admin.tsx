@@ -104,7 +104,7 @@ function AdminPage() {
   const [draft, setDraft] = useState<Draft>(emptyDraft);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
-  const [showPreview, setShowPreview] = useState(true);
+  const [tab, setTab] = useState<"edit" | "preview">("edit");
 
   const parseTags = (value: string) =>
     value.split(",").map((t) => t.trim()).filter(Boolean);
@@ -245,19 +245,12 @@ function AdminPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className={(showPreview ? "mx-auto max-w-7xl" : "mx-auto max-w-4xl") + " px-5 py-12 sm:px-8"}>
+      <div className="mx-auto max-w-4xl px-5 py-12 sm:px-8">
         <div className="flex items-center justify-between gap-4">
           <Link to="/" className="text-sm font-semibold text-muted-foreground hover:text-primary">
             &larr; Back to the site
           </Link>
           <div className="flex items-center gap-4">
-            <button
-              type="button"
-              onClick={() => setShowPreview((v) => !v)}
-              className="text-sm font-semibold text-muted-foreground hover:text-primary"
-            >
-              {showPreview ? "Hide preview" : "Show preview"}
-            </button>
             <button
             type="button"
             onClick={() => void supabase.auth.signOut().then(() => navigate({ to: "/" }))}
