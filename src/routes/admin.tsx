@@ -265,7 +265,25 @@ function AdminPage() {
           {draft.id ? "Edit post" : "New post"}
         </h1>
 
-        <div className={showPreview ? "mt-8 grid gap-6 lg:grid-cols-2" : "mt-8"}>
+        <div className="mt-6 flex gap-1 rounded-full border border-border bg-card p-1">
+          {(["edit", "preview"] as const).map((t) => (
+            <button
+              key={t}
+              type="button"
+              onClick={() => setTab(t)}
+              className={
+                "flex-1 rounded-full px-5 py-2 text-sm font-semibold transition-colors " +
+                (tab === t
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-primary")
+              }
+            >
+              {t === "edit" ? "Edit" : "Live preview"}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-8">
         <div className="space-y-4 rounded-3xl border border-border bg-card p-7">
           <Field label="Title">
             <input
