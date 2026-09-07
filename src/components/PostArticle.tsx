@@ -106,9 +106,7 @@ function RelatedPosts({ post }: { post: Post }) {
 function PostFooter({ post }: { post: Post }) {
   return (
     <div className="mx-auto max-w-5xl px-5 pb-20 sm:px-8">
-      <RelatedPosts post={post} />
-
-      <div className="mt-12 flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3">
         <Link
           to="/travel"
           className="rounded-full border border-border px-5 py-2.5 text-sm font-semibold hover:border-primary hover:text-primary"
@@ -128,7 +126,10 @@ function PostFooter({ post }: { post: Post }) {
           Back home
         </Link>
       </div>
+
+      <RelatedPosts post={post} />
     </div>
+
   );
 }
 
