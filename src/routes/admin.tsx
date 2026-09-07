@@ -19,6 +19,10 @@ export const Route = createFileRoute("/admin")({
       { name: "robots", content: "noindex" },
     ],
   }),
+  validateSearch: (search: Record<string, unknown>): { edit?: string } => {
+    const edit = search['edit'];
+    return typeof edit === "string" && edit ? { edit } : {};
+  },
   component: AdminPage,
 });
 
@@ -81,6 +85,7 @@ function AdminPage() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { user, isAdmin, loading } = useAuth();
+  const { edit: editId } = Route.useSearch();
   const [draft, setDraft] = useState<Draft>(emptyDraft);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -169,6 +174,25 @@ function AdminPage() {
     setDraft(emptyDraft);
     void queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
+
+  useEffect(() => {
+    if (!editId || !posts) return;
+    const post = posts.find((p) => p.id === editId);
+    if (!post) return;
+    setDraft({
+      id: post.id,
+      title: post.title,
+      slug: post.slug,
+      excerpt: post.excerpt ?? "",
+      content: post.content ?? "",
+      category: (post.category === "travel" ? "travel" : "writing") as Draft["category"],
+      location: post.location ?? "",
+      tags: (post.tags ?? []).join(", "),
+      cover_image_url: post.cover_image_url ?? "",
+      published: post.published,
+    });
+    window.scrollTo({ top: 0 });
+  }, [editId, posts]);
 
   const remove = async (id: string) => {
     const { error } = await supabase.from("posts").delete().eq("id", id);

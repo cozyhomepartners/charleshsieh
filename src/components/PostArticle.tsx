@@ -1,5 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { MapPin } from "lucide-react";
+import { MapPin, Pencil } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 import { sanitizeHtml, isHtmlContent, countImages } from "@/lib/sanitizeHtml";
 
 export type Post = {
@@ -66,9 +69,88 @@ function Body({ post }: { post: Post }) {
   );
 }
 
+function RelatedPosts({ post }: { post: Post }) {
+  const { data } = useQuery({
+    queryKey: ["related-posts", post.slug],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("posts")
+        .select("*")
+        .eq("published", true)
+        .neq("slug", post.slug)
+        .order("published_at", { ascending: false })
+        .limit(12);
+      if (error) throw error;
+      return (data ?? []) as Post[];
+    },
+  });
+
+  const all = data ?? [];
+  const same = all.filter((p) => p.category === post.category);
+  const others = all.filter((p) => p.category !== post.category);
+  const related = [...same, ...others].slice(0, 3);
+  if (related.length === 0) return null;
+
+  return (
+    <section className="mt-14">
+      <h2 className="font-display text-2xl font-semibold tracking-tight">Keep reading</h2>
+      <div className="mt-6 grid gap-6 md:grid-cols-3">
+        {related.map((p) => (
+          <PostCard key={p.id} post={p} to={p.category === "travel" ? "/travel/$slug" : "/blog/$slug"} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function PostFooter({ post }: { post: Post }) {
+  return (
+    <div className="mx-auto max-w-5xl px-5 pb-20 sm:px-8">
+      <div className="rounded-3xl border border-border bg-card p-7">
+        <p className="font-display text-xl font-semibold tracking-tight">Charles Hsieh</p>
+        <p className="mt-2 leading-relaxed text-muted-foreground">
+          Dad, husband, traveler, and a builder who can't sit still. I write here about the road,
+          the family, and whatever I'm making next.
+        </p>
+        <a
+          href="mailto:hello@charleshsieh.com"
+          className="mt-4 inline-block text-sm font-semibold text-primary hover:underline"
+        >
+          Say hello
+        </a>
+      </div>
+
+      <RelatedPosts post={post} />
+
+      <div className="mt-12 flex flex-wrap gap-3">
+        <Link
+          to="/travel"
+          className="rounded-full border border-border px-5 py-2.5 text-sm font-semibold hover:border-primary hover:text-primary"
+        >
+          All travel notes
+        </Link>
+        <Link
+          to="/blog"
+          className="rounded-full border border-border px-5 py-2.5 text-sm font-semibold hover:border-primary hover:text-primary"
+        >
+          All blog posts
+        </Link>
+        <Link
+          to="/"
+          className="rounded-full border border-border px-5 py-2.5 text-sm font-semibold hover:border-primary hover:text-primary"
+        >
+          Back home
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: "/blog" | "/travel"; backLabel: string }) {
   const isTravel = post.category === "travel";
   const hasCover = Boolean(post.cover_image_url);
+  const { isAdmin } = useAuth();
+  const canEdit = isAdmin && post.id !== "preview";
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -104,9 +186,22 @@ export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: "
       ) : null}
 
       <article className={"mx-auto max-w-3xl px-5 sm:px-8 " + (hasCover ? "pt-10 pb-16" : "py-14")}>
-        <Link to={backTo} className="text-sm font-semibold text-muted-foreground hover:text-primary">
-          &larr; {backLabel}
-        </Link>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <Link to={backTo} className="text-sm font-semibold text-muted-foreground hover:text-primary">
+            &larr; {backLabel}
+          </Link>
+          {canEdit ? (
+            <Link
+              to="/admin"
+              search={{ edit: post.id }}
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-1.5 text-sm font-semibold hover:border-primary hover:text-primary"
+            >
+              <Pencil className="h-3.5 w-3.5" />
+              Edit this post
+            </Link>
+          ) : null}
+        </div>
+
 
         {!hasCover ? (
           <>
@@ -140,7 +235,14 @@ export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: "
         <div className="mt-9">
           <Body post={post} />
         </div>
+        {post.tags && post.tags.length && hasCover ? (
+          <div className="mt-10 border-t border-border pt-6">
+            <TagPills tags={post.tags} />
+          </div>
+        ) : null}
       </article>
+
+      {post.id !== "preview" ? <PostFooter post={post} /> : null}
     </div>
   );
 }
