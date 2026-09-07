@@ -194,6 +194,7 @@ function AdminPage() {
     if (!editId || !posts) return;
     const post = posts.find((p) => p.id === editId);
     if (!post) return;
+    setTab("edit");
     setDraft({
       id: post.id,
       title: post.title,
