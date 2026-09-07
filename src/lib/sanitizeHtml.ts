@@ -6,10 +6,11 @@ const ALLOWED_TAGS = new Set([
 const ALLOWED_ATTRS: Record<string, string[]> = {
   a: ["href", "title", "target", "rel"],
   img: ["src", "alt", "title"],
-  figure: ["data-size"],
+  figure: ["data-size", "data-group", "data-count"],
 };
 
 const ALLOWED_SIZES = new Set(["full", "medium", "small", "left", "right"]);
+const ALLOWED_GROUPS = new Set(["grid", "row", "stack"]);
 
 const isSafeUrl = (value: string) => {
   const v = value.trim().toLowerCase();
