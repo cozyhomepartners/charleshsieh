@@ -327,7 +327,7 @@ function AdminPage() {
             <RichTextEditor
               value={draft.content}
               onChange={(html) => setDraft((d) => ({ ...d, content: html }))}
-              onRequestImage={handleInlineUpload}
+              onRequestImages={handleInlineUpload}
               placeholder="Write here. Use the toolbar for headings, quotes, lists, and photos."
             />
           </Field>
