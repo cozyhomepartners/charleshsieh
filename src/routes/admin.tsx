@@ -353,11 +353,16 @@ function AdminPage() {
           </Field>
 
           <Field label="Cover photo (optional)">
-            <div className="mt-1 flex flex-wrap items-center gap-3">
+            <p className="mt-1 text-xs text-muted-foreground">
+              Paste an image link (https://…) or upload a photo from your computer.
+            </p>
+            <div className="mt-2 flex flex-wrap items-center gap-3">
               <input
+                type="url"
+                inputMode="url"
                 value={draft.cover_image_url}
-                onChange={(e) => setDraft((d) => ({ ...d, cover_image_url: e.target.value }))}
-                placeholder="Upload a photo or paste a URL"
+                onChange={(e) => setDraft((d) => ({ ...d, cover_image_url: e.target.value.trim() }))}
+                placeholder="https://example.com/photo.jpg"
                 className={inputClass + " mt-0 flex-1"}
               />
               <button
@@ -368,15 +373,31 @@ function AdminPage() {
               >
                 {uploading ? "Uploading…" : "Upload"}
               </button>
+              {draft.cover_image_url ? (
+                <button
+                  type="button"
+                  onClick={() => setDraft((d) => ({ ...d, cover_image_url: "" }))}
+                  className="rounded-full border border-border px-4 py-2.5 text-sm font-semibold hover:border-primary hover:text-primary"
+                >
+                  Remove
+                </button>
+              ) : null}
             </div>
             {draft.cover_image_url ? (
               <img
                 src={draft.cover_image_url}
                 alt="Cover preview"
                 className="mt-3 h-44 w-full rounded-xl object-cover"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).style.display = "none";
+                }}
+                onLoad={(e) => {
+                  (e.currentTarget as HTMLImageElement).style.display = "";
+                }}
               />
             ) : null}
           </Field>
+
           <Field label="Excerpt">
             <textarea
               rows={2}
