@@ -1,5 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { MapPin } from "lucide-react";
+import { MapPin, Pencil } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 import { sanitizeHtml, isHtmlContent, countImages } from "@/lib/sanitizeHtml";
 
 export type Post = {
