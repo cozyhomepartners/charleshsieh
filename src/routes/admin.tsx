@@ -187,6 +187,7 @@ function AdminPage() {
     if (error) { toast.error(error.message); return; }
     toast.success(publish ? "Published." : "Draft saved.");
     setDraft(emptyDraft);
+    setTab("posts");
     void queryClient.invalidateQueries({ queryKey: ["posts"] });
   };
 
