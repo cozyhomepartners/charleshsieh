@@ -263,11 +263,11 @@ function AdminPage() {
         </div>
 
         <h1 className="mt-6 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-          {draft.id ? "Edit post" : "New post"}
+          {tab === "posts" ? "Your posts" : draft.id ? "Edit post" : "New post"}
         </h1>
 
         <div className="mt-6 flex gap-1 rounded-full border border-border bg-card p-1">
-          {(["edit", "preview"] as const).map((t) => (
+          {(["posts", "edit", "preview"] as const).map((t) => (
             <button
               key={t}
               type="button"
@@ -279,7 +279,7 @@ function AdminPage() {
                   : "text-muted-foreground hover:text-primary")
               }
             >
-              {t === "edit" ? "Edit" : "Live preview"}
+              {t === "posts" ? `Posts${posts ? ` (${posts.length})` : ""}` : t === "edit" ? "Edit" : "Live preview"}
             </button>
           ))}
         </div>
