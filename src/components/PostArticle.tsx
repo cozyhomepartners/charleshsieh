@@ -186,9 +186,22 @@ export function PostArticle({ post, backTo, backLabel }: { post: Post; backTo: "
       ) : null}
 
       <article className={"mx-auto max-w-3xl px-5 sm:px-8 " + (hasCover ? "pt-10 pb-16" : "py-14")}>
-        <Link to={backTo} className="text-sm font-semibold text-muted-foreground hover:text-primary">
-          &larr; {backLabel}
-        </Link>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <Link to={backTo} className="text-sm font-semibold text-muted-foreground hover:text-primary">
+            &larr; {backLabel}
+          </Link>
+          {canEdit ? (
+            <Link
+              to="/admin"
+              search={{ edit: post.id }}
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-1.5 text-sm font-semibold hover:border-primary hover:text-primary"
+            >
+              <Pencil className="h-3.5 w-3.5" />
+              Edit this post
+            </Link>
+          ) : null}
+        </div>
+
 
         {!hasCover ? (
           <>
