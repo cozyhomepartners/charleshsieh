@@ -19,9 +19,10 @@ export const Route = createFileRoute("/admin")({
       { name: "robots", content: "noindex" },
     ],
   }),
-  validateSearch: (search: Record<string, unknown>) => ({
-    edit: typeof search.edit === "string" ? search.edit : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { edit?: string } => {
+    const edit = search['edit'];
+    return typeof edit === "string" && edit ? { edit } : {};
+  },
   component: AdminPage,
 });
 
@@ -84,6 +85,7 @@ function AdminPage() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { user, isAdmin, loading } = useAuth();
+  const { edit: editId } = Route.useSearch();
   const [draft, setDraft] = useState<Draft>(emptyDraft);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
