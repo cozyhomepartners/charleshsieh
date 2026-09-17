@@ -249,7 +249,16 @@ function Home() {
               This is my personal corner of the internet. I write about the places
               we drag our kids to, the things I'm thinking through, and the
               projects I build on nights and weekends. If you're here for work, my
-              professional home lives at NextRoot Ventures.
+              professional home lives at{" "}
+              <a
+                href="https://nextrootventures.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold text-primary hover:underline"
+              >
+                NextRoot Ventures
+              </a>
+              .
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
