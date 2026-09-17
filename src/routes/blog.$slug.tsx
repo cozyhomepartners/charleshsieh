@@ -2,23 +2,18 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { PostArticle, type Post } from "@/components/PostArticle";
+import { buildPostHead, fetchPostMeta } from "@/lib/postHead";
 
 export const Route = createFileRoute("/blog/$slug")({
-  head: ({ params }) => {
-    const title = "Post — Charles Hsieh";
-    const description = "An essay from Charles Hsieh.";
-    return {
-      meta: [
-        { title },
-        { name: "description", content: description },
-        { property: "og:title", content: title },
-        { property: "og:description", content: description },
-        { property: "og:type", content: "article" },
-        { name: "twitter:card", content: "summary_large_image" },
-      ],
-      links: [{ rel: "canonical", href: "https://charleshsieh.com/blog/" + params.slug }],
-    };
-  },
+  loader: ({ params }) => fetchPostMeta(params.slug),
+  head: ({ params, loaderData }) =>
+    buildPostHead({
+      slug: params.slug,
+      post: loaderData ?? null,
+      base: "blog",
+      fallbackTitle: "Post — Charles Hsieh",
+      fallbackDescription: "An essay from Charles Hsieh.",
+    }),
   component: PostPage,
 });
 
