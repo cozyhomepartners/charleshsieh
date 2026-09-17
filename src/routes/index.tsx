@@ -273,14 +273,6 @@ function Home() {
               >
                 Travel notes
               </Link>
-              <a
-                href="https://nextrootventures.com"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
-              >
-                NextRoot Ventures <ArrowUpRight className="h-4 w-4" />
-              </a>
             </div>
           </div>
           <div className="relative">
