@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
+import { claimAdminRole } from "@/lib/admin.functions";
 
 async function checkAdmin(userId: string): Promise<boolean> {
   const { data } = await supabase
@@ -11,8 +12,8 @@ async function checkAdmin(userId: string): Promise<boolean> {
     .maybeSingle();
   if (data) return true;
   // Approved writers get access automatically the first time they sign in.
-  const { data: claimed } = await supabase.rpc("claim_admin");
-  return Boolean(claimed);
+  const { isAdmin } = await claimAdminRole();
+  return isAdmin;
 }
 
 export function useAuth() {
