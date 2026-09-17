@@ -262,16 +262,16 @@ function Home() {
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
-                to="/travel"
+                to="/blog"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
               >
-                Travel notes
+                Blog
               </Link>
               <Link
-                to="/blog"
+                to="/travel"
                 className="inline-flex items-center gap-2 rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-teal-foreground transition-opacity hover:opacity-90"
               >
-                Blog
+                Travel notes
               </Link>
               <a
                 href="https://nextrootventures.com"
@@ -291,6 +291,59 @@ function Home() {
               className="relative w-full rounded-3xl object-cover shadow-lg"
             />
           </div>
+        </section>
+
+        {/* Blog */}
+        <section className="border-t border-border pt-12 pb-14">
+          <SectionHeading id="writing" eyebrow="Blog" title="Essays and half-formed thoughts" />
+          {writingPosts && writingPosts.length > 0 ? (
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {writingPosts.map((post) => (
+                <Link
+                  key={post.id}
+                  to="/blog/$slug"
+                  params={{ slug: post.slug }}
+                  className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card transition-transform duration-200 hover:-translate-y-1"
+                >
+                  {post.cover_image_url ? (
+                    <img
+                      src={post.cover_image_url}
+                      alt={post.title}
+                      loading="lazy"
+                      className="h-44 w-full object-cover"
+                    />
+                  ) : null}
+                  <div className="space-y-3 p-6">
+                    {post.tags && post.tags.length ? (
+                      <span className="inline-block rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">
+                        {post.tags[0]}
+                      </span>
+                    ) : null}
+                    <h3 className="font-display text-xl font-semibold tracking-tight group-hover:text-primary">
+                      {post.title}
+                    </h3>
+                    {post.published_at ? (
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                        {formatDate(post.published_at)}
+                      </p>
+                    ) : null}
+                    {post.excerpt ? (
+                      <p className="text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
+                    ) : null}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-8 text-muted-foreground">Nothing published yet.</p>
+          )}
+          <Link
+            to="/blog"
+            className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+          >
+            Read the blog
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
         </section>
 
         {/* Travel */}
@@ -341,59 +394,6 @@ function Home() {
             className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
           >
             Read the travel journals
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
-        </section>
-
-        {/* Writing */}
-        <section className="border-t border-border pt-12 pb-14">
-          <SectionHeading id="writing" eyebrow="Blog" title="Essays and half-formed thoughts" />
-          {writingPosts && writingPosts.length > 0 ? (
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {writingPosts.map((post) => (
-                <Link
-                  key={post.id}
-                  to="/blog/$slug"
-                  params={{ slug: post.slug }}
-                  className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card transition-transform duration-200 hover:-translate-y-1"
-                >
-                  {post.cover_image_url ? (
-                    <img
-                      src={post.cover_image_url}
-                      alt={post.title}
-                      loading="lazy"
-                      className="h-44 w-full object-cover"
-                    />
-                  ) : null}
-                  <div className="space-y-3 p-6">
-                    {post.tags && post.tags.length ? (
-                      <span className="inline-block rounded-full bg-primary/12 px-3 py-1 text-xs font-semibold text-primary">
-                        {post.tags[0]}
-                      </span>
-                    ) : null}
-                    <h3 className="font-display text-xl font-semibold tracking-tight group-hover:text-primary">
-                      {post.title}
-                    </h3>
-                    {post.published_at ? (
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                        {formatDate(post.published_at)}
-                      </p>
-                    ) : null}
-                    {post.excerpt ? (
-                      <p className="text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
-                    ) : null}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <p className="mt-8 text-muted-foreground">Nothing published yet.</p>
-          )}
-          <Link
-            to="/blog"
-            className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
-          >
-            Read the blog
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </section>
