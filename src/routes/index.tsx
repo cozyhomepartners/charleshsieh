@@ -273,14 +273,6 @@ function Home() {
               >
                 Travel notes
               </Link>
-              <a
-                href="https://nextrootventures.com"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
-              >
-                NextRoot Ventures <ArrowUpRight className="h-4 w-4" />
-              </a>
             </div>
           </div>
           <div className="relative">
@@ -290,6 +282,41 @@ function Home() {
               alt="Charles Hsieh with his family"
               className="relative w-full rounded-3xl object-cover shadow-lg"
             />
+          </div>
+        </section>
+
+        {/* Passion work */}
+        <section className="border-t border-border pt-12 pb-14">
+          <SectionHeading id="building" eyebrow="Passion work" title="Things I'm building" />
+          <p className="mt-4 leading-relaxed text-muted-foreground">
+            Three projects I care about, each one started because I wanted it to
+            exist.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {passionWork.map((item) => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex flex-col gap-3 rounded-3xl border border-border bg-card p-7 transition-all duration-200 hover:-translate-y-1 hover:border-primary"
+                >
+                  <Icon className={`h-6 w-6 ${item.accent}`} />
+                  <h3 className="flex items-center gap-1.5 font-display text-xl font-semibold tracking-tight">
+                    {item.name}
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {item.blurb}
+                  </p>
+                  <span className="mt-auto pt-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                    {item.href.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
+                  </span>
+                </a>
+              );
+            })}
           </div>
         </section>
 
@@ -398,40 +425,6 @@ function Home() {
           </Link>
         </section>
 
-        {/* Passion work */}
-        <section className="border-t border-border pt-12 pb-14">
-          <SectionHeading id="building" eyebrow="Passion work" title="Things I'm building" />
-          <p className="mt-4 leading-relaxed text-muted-foreground">
-            Three projects I care about, each one started because I wanted it to
-            exist.
-          </p>
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
-            {passionWork.map((item) => {
-              const Icon = item.icon;
-              return (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group flex flex-col gap-3 rounded-3xl border border-border bg-card p-7 transition-all duration-200 hover:-translate-y-1 hover:border-primary"
-                >
-                  <Icon className={`h-6 w-6 ${item.accent}`} />
-                  <h3 className="flex items-center gap-1.5 font-display text-xl font-semibold tracking-tight">
-                    {item.name}
-                    <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
-                  </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {item.blurb}
-                  </p>
-                  <span className="mt-auto pt-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                    {item.href.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
-                  </span>
-                </a>
-              );
-            })}
-          </div>
-        </section>
 
         {/* About */}
         <section className="border-t border-border pt-12 pb-14">
