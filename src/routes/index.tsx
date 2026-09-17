@@ -262,16 +262,16 @@ function Home() {
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
-                to="/travel"
+                to="/blog"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
               >
-                Travel notes
+                Blog
               </Link>
               <Link
-                to="/blog"
+                to="/travel"
                 className="inline-flex items-center gap-2 rounded-full bg-teal px-5 py-2.5 text-sm font-semibold text-teal-foreground transition-opacity hover:opacity-90"
               >
-                Blog
+                Travel notes
               </Link>
               <a
                 href="https://nextrootventures.com"
